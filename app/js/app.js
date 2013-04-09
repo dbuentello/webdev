@@ -7,5 +7,6 @@ $(function() {
 	app.mainView = new MainView();
 	var dummyCollection  = new WatchListModelCollection()
 	app.watchlistView = new WatchlistView({collection: dummyCollection});
+	app.assetcache = new AssetCache();
         Backbone.history.start();
 });
