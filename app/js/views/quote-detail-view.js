@@ -9,20 +9,25 @@ var app = app || {};
 
 app.quoteDetailView = new QuoteDetailView.extend({
 
-    .el ='.page',
-    symbol=null,
-    initilize: function(){
+    .el = '.page',
+    symbol = null,
+    initilize
+:
+function () {
 
 
-    },
+}
+,
 
-    render: function(){
-        var template = _.template($('#tda-quote-page').html(), {});
-        this.$el.html(template);
+render: function () {
+    var template = _.template($('#tda-quote-page').html(), {});
+    this.$el.html(template);
 
-    },
-    update: function(){
+}
+,
+update: function () {
 
-    }
+}
 
-});
+})
+;
