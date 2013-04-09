@@ -5,7 +5,8 @@
 		routes: {
 			'':'home',
 			'watchlist':'watchlist',
-			'watchlistname/:name':'watchlistname'
+			'watchlistname/:name':'watchlistname',
+                        'chart':'chart'
 		}	
 	});
 
@@ -22,6 +23,12 @@
 
     app.router.on('route:watchlistname',function(name){
         app.watchlistView.renderList(name);
+
+    });
+    
+     app.router.on('route:chart',function(actions){
+		
+        app.chartView.render();
 
     });
 

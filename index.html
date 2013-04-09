@@ -38,19 +38,22 @@
               </a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
+              <li><a href="#chart">Chart</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 	<div class="container">
-		<div class="page"></div>
+		<div id="page" class="page" style="height: 100%; width: 100%"></div>       
 	</div>
 
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+         <script src="http://code.highcharts.com/stock/highstock.js"></script>
+        <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
     <script type="text/javascript" src="app/js/lib/jquery.xml2json.js"></script>
 	<script type="text/javascript" src="app/js/utils/parsexml.js"></script>
 	<script type="text/javascript" src="app/js/utils/xml2json.js"></script>
@@ -66,6 +69,8 @@
     <script type="text/javascript" src="app/js/views/watch-view.js"></script>
 	<script type="text/javascript" src="app/js/views/main-view.js"></script>
 	<script type="text/javascript" src="app/js/app.js"></script>
+           <script type="text/javascript" src="app/js/views/charts-view.js"></script>	
+        <script type="text/javascript" src="app/js/utils/jDataView.js"></script>
 
 
 	<!-- page templates -->

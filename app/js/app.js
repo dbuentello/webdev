@@ -7,5 +7,6 @@ $(function() {
 	app.mainView = new MainView();
 	var dummyCollection  = new WatchListModelCollection()
 	app.watchlistView = new WatchlistView({collection: dummyCollection});
+        app.chartView = new ChartView();
         Backbone.history.start();
 });
