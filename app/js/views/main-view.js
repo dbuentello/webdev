@@ -4,7 +4,6 @@ var app = app || {};
 
 var MainView = Backbone.View.extend({
 	el: '.page',
-	loginView: {},
 	initialize: function(){
 		console.log("initialize");
 	},		

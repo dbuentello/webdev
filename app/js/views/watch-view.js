@@ -28,10 +28,6 @@ var WatchlistView = Backbone.View.extend({
 				dataType:'',
 				data:'source=TAG',
 				success:function(data) {
-					// convert data in JSON from XML
-					// Save Response
-			    		console.log("parsing xml login response");
-					console.log(data);
 				        var xml = parseXml(data);
 
 					var jsonResponse  = xmlToJson(xml);
@@ -58,8 +54,9 @@ var WatchlistView = Backbone.View.extend({
 					       			var assetType = symboldetails["security"]["asset-type"];
 					       			var desc = symboldetails["security"]["description"];
 					       			var symbol = symboldetails["security"]["symbol"];
-					       			
 					       			var wlObj = new WatchListModel({symbol:symbol,description:desc,assetType:assetType});
+					       			wlObj.set({asset: app.assetcache.getAssetObject(symbol)});
+					       			wlObj.registerAsset();
 					       			wlc.add(wlObj);
 					       		}
 					       	}
@@ -114,10 +111,19 @@ var WatchlistView = Backbone.View.extend({
 	},
 	update: function(model) {
 		//this.collection.each(this.renderOne);
-		var diff = model.changedAttributes();
+		var diff = model.get('changedColumns');
 		for(var att in diff){
-			console.log(" callingge  ..."+att);
-			$("#"+model.cid+att).text(model.get(att));
+			$("#"+model.cid+att).text(model.get('asset').get(att));
+			if(att == 'change' || att == 'changePercent'){
+				var val= 0;
+				val = model.get('asset').get(att);
+
+				if(model.get('asset').get(att) > 0){
+					$("#"+model.cid+att).removeClass().addClass("greenColorText");
+				}else {
+					$("#"+model.cid+att).removeClass().addClass("redColorText");
+				}
+			}
 		}				
 	}
 });

@@ -29,7 +29,7 @@ function getSteamerInfo(app) {
 				app.streamerconfig.userid =app.userProfileModel.get("accounts").account["account-id"];
 				app.streamerconfig.token = info.token;
 				app.streamerconfig.company =app.userProfileModel.get("accounts").account["company"];
-				app.streamerconfig.source ='TAG';
+				app.streamerconfig.source ='TAG-1234';
 				app.streamerconfig.segment =app.userProfileModel.get("accounts").account["segment"];
 				app.streamerconfig.cddomain =app.userProfileModel.get("accounts").account["cdi"];
 				app.streamerconfig.usergroup =info.usergroup;
@@ -71,7 +71,8 @@ function streamerError(message){
 
 function onMessage(message){
 	console.log(message);
-	var wl111 = app.currentWLMap[message['key']];
+	var wl111 = app.assetcache.getAssetObject(message['key']);
+
 	if( typeof message[1] != 'undefined'){
 		wl111.set('bid',message[1]);
 	}

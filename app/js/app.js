@@ -8,5 +8,6 @@ $(function() {
 	var dummyCollection  = new WatchListModelCollection()
 	app.watchlistView = new WatchlistView({collection: dummyCollection});
         app.chartView = new ChartView();
+	app.assetcache = new AssetCache();
         Backbone.history.start();
 });
