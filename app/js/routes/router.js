@@ -5,7 +5,8 @@
 		routes: {
 			'':'home',
 			'watchlist':'watchlist',
-			'watchlistname/:name':'watchlistname'
+			'watchlistname/:name':'watchlistname',
+            'quotedetails/:symbol':'quote'
 		}	
 	});
 
@@ -24,4 +25,8 @@
         app.watchlistView.renderList(name);
 
     });
+
+    app.router.on('route:quote', function(symbol){
+
+    }) ;
 
