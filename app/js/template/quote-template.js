@@ -1,4 +1,3 @@
-<table>
-    <td>Symbol</td>
-    <td></td>
-</table>
+<div>
+<h2>Loading..</h2>
+</div>

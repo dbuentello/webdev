@@ -1,152 +1,4 @@
-<<<<<<< HEAD
-<html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap.min.css">
-	<style>
-	      body {
-	        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-	      }
-    </style>
 
-	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap-responsive.min.css">
-
-
-</head>
-<body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="#">TD API Test</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#watchlist">Watchlist</a></li>
-              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Accounts
-              <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#positions">Positions</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#balance">Balances</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#orders">Orders</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#History">History</a></li>
-                  </ul>
-              </a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="#chart">Chart</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-	<div class="container">
-		<div id="page" class="page" style="height: 100%; width: 100%"></div>       
-	</div>
-
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
-         <script src="http://code.highcharts.com/stock/highstock.js"></script>
-        <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
-    <script type="text/javascript" src="app/js/lib/jquery.xml2json.js"></script>
-	<script type="text/javascript" src="app/js/utils/parsexml.js"></script>
-	<script type="text/javascript" src="app/js/utils/xml2json.js"></script>
-	<script type="text/javascript" src="app/js/utils/serializeobj.js"></script>
-    <script type="text/javascript" src="app/js/utils/emptyobj.js"></script>
-    <script type="text/javascript" src="app/js/streamer/streamermanager.js"></script>
-    <script type="text/javascript" src="app/js/streamer/tdaStreamer.js"></script>
-	<script type="text/javascript" src="app/js/model/userprofilemodel.js"></script>
-	<script type="text/javascript" src="app/js/model/watchlistmodel.js"></script>
-	<script type="text/javascript" src="app/js/model/watchlistmodelcollection.js"></script>
-	<script type="text/javascript" src="app/js/routes/router.js"></script>
-	<script type="text/javascript" src="app/js/views/login-view.js"></script>
-    <script type="text/javascript" src="app/js/views/watch-view.js"></script>
-	<script type="text/javascript" src="app/js/views/main-view.js"></script>
-	<script type="text/javascript" src="app/js/app.js"></script>
-           <script type="text/javascript" src="app/js/views/charts-view.js"></script>	
-        <script type="text/javascript" src="app/js/utils/jDataView.js"></script>
-
-
-	<!-- page templates -->
-	<script type="text/template" id="tda-login-page">
-		<form class="form-horizontal" id="tda-login-form">
-			<legend> Login </legend>
-
-			<div class="control-group">
-				<label class="control-label" for="inputUsername">User Name</label>
-				<div class="controls">
-					<input type="text" name="username" value="apiuprtest07" id="inputUsername" placeholder="User Name"/>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label" for="inputPassword" placeholder="Password">Password</Label>
-				<div class="controls">
-					<input type="password" name="password" value="07apiuprtest" id="inputPassword"/>
-				</div>
-			</div>
-			<div class="control-group">
-				<div class="controls">
-					<button type="button" class="btn btn-success" id="loginButton"> Login </button>
-				</div>
-			</div>
-		</form>
-	</script>
-    <script  type="text/template" id="tda-main-page">
-        <h1>Welcome!</h1>
-    </script>
-
-
-    <script type="text/template" id="watch-list-template">
-
-			<div class="btn-group">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-				WatchList
-				<span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<% for(var propt in wlmap){ %>
-						<li role="presentation"><a role="menuitem" tabindex="-1" href="#watchlistname/<%= propt%>"><%= propt%></a></li>
-					<% }%>
-				</ul>
-			</div>
-		<table  id="watchlistTable" class="table table-hover">
-			<thead>
-				<tr>
-					<th>SYMBOL</th>
-					<th id="SYMBOL1">BID</th>
-					<th id="SYMBOL2">ASK</th>
-					<th id="SYMBOL3">LAST</th>
-					<th id="SYMBOL4">CHANG</th>
-					<th id="SYMBOL5">%CHANG</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% coll.each(function(model){
-				%>
-					<tr>
-						<td><a href="#quotedetails/<%= model.get('symbol')%>"><%= model.get('symbol')%></a></td>
-						<td id='<%= model.cid%>bid' ><%= model.get('bid')%></td>
-						<td id='<%= model.cid%>ask' ><%= model.get('ask')%></td>
-						<td id='<%= model.cid%>last' ><%= model.get('last')%></td>
-						<td id='<%= model.cid%>change' ><%= model.get('change')%></td>
-						<td id='<%= model.cid%>changePercent' ><%= model.get('changePercent')%></td>
-					<tr>
-				<%
-				}); %>
-
-			</tbody>
-			</table>
-	</script>
-
-</body>
-=======
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -180,7 +32,7 @@
                     <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#quotedetails">Detail</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#charts">Charts</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#chart">Charts</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#research">Research</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#optoins">Options</a></li>
                     </ul>
@@ -197,14 +49,14 @@
                   </ul>
               </a></li>
               <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="#contact">Contact</a></li>             
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 	<div class="container">
-		<div class="page"></div>
+		<div id="page" class="page" style="height:100%;width:100%"></div>
 	</div>
 	<link rel="stylesheet" href="main.css">
 
@@ -212,6 +64,8 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+           <script src="http://code.highcharts.com/stock/highstock.js"></script>
+        <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
     <script type="text/javascript" src="app/js/lib/jquery.xml2json.js"></script>
 	<script type="text/javascript" src="app/js/utils/parsexml.js"></script>
 	<script type="text/javascript" src="app/js/utils/xml2json.js"></script>
@@ -229,6 +83,22 @@
     <script type="text/javascript" src="app/js/views/watch-view.js"></script>
 	<script type="text/javascript" src="app/js/views/main-view.js"></script>
 	<script type="text/javascript" src="app/js/app.js"></script>
+           <script type="text/javascript" src="app/js/views/charts-view.js"></script>	
+        <script type="text/javascript" src="app/js/utils/jDataView.js"></script>
+
+<script type="text/javascript" src="app/js/views/quote-detail-view.js"></script>
+	
+
+	<!-- page templates -->
+	<script type="text/template" id="tda-loading">
+		<h1>Loading <%= name %></h1>
+	</script>
+
+	<script type="text/template" id="tda-quote-detail">
+		<table>
+			<tr><td>Symbol<td> <td id="qd_symbol">...</td></tr>			
+		</table>
+	</script>
 
 
 	<!-- page templates -->
@@ -303,5 +173,5 @@
 	</script>
 
 </body>
->>>>>>> b37c51df8e1ce2ef0556cf4379fa14bc6c7cc7e3
+
 </html>
