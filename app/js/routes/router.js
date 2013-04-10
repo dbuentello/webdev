@@ -8,8 +8,8 @@
 			'':'home',
 			'watchlist':'watchlist',
 			'watchlistname/:name':'watchlistname',
-            'chart':'chart',
-            'quotedetails/:symbol': 'quotedetails'
+			'chart':'chart',
+			'quotedetails/:symbol': 'quotedetails'
 		}	
 	});
 
@@ -37,6 +37,6 @@
 
 
     app.router.on('route:quotedetails', function (symbol){
-    console.log('quotedetails - route');
-     app.quoteDetailView.render();
-});
+	 console.log('quotedetails - route');
+	 app.quoteDetailView.render();
+    });

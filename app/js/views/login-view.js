@@ -13,6 +13,7 @@
 		},
 
 		login: function(ev) {
+			Backbone.history.navigate('', true); 
 			ev.preventDefault();
 			
 			var userDetails = {

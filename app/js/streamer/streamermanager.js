@@ -92,10 +92,14 @@ function onMessage(message){
 
 //pass comma seperated symbols for level1 quote subscription
 function addLevel1QuoteSubscription(symbols){
-	symbols = symbols.toUpperCase();
-	var fields = "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,22,23,24,25,28,29,30,31,32,37,38,39";
-	var dataID = "QUOTE";
-	app.streamer.addSymbol(dataID, symbols, fields);
+	if(app.streamerLoggedIn){
+		symbols = symbols.toUpperCase();
+		var fields = "0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,22,23,24,25,28,29,30,31,32,37,38,39";
+		var dataID = "QUOTE";
+		app.streamer.addSymbol(dataID, symbols, fields);
+	}else{
+		alert('not logged on');
+	}
 }
 
 //pass comma seperated symbols for level1 quote subscription
