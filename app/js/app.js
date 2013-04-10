@@ -12,3 +12,4 @@ $(function() {
 	app.assetcache = new AssetCache();
 	app.quoteDetailView = new QuoteDetailView();
         Backbone.history.start();
+});
