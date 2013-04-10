@@ -9,7 +9,8 @@
 			'watchlist':'watchlist',
 			'watchlistname/:name':'watchlistname',
             'chart':'chart',
-            'quotedetails/:symbol': 'quotedetails'
+            'quotedetails/:symbol': 'quotedetails',
+            'quotedetails': 'quotedetails'
 		}	
 	});
 
@@ -37,6 +38,11 @@
 
 
     app.router.on('route:quotedetails', function (symbol){
-    console.log('quotedetails - route');
-     app.quoteDetailView.render();
-});
+
+        if (!this.quoteDetailView)
+            this.quoteDetailView = new app.QuoteDetailView();
+        else
+            this.quoteDetailView.render();
+    });
+
+
