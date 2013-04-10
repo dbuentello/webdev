@@ -5,12 +5,14 @@
 var SecureView = new Backbone.Model.extend({
 	var session;
 
-	initalize: function (argument) {
+	initalize: function (session) {
 		// Prepare the view if the check for the security model to see if we are logged in
+        this.sesssion = session;
 		
 	},
 
 	render: function (argument) {
+
 		// body...
 	}
 	

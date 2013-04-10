@@ -5,11 +5,17 @@ var app = app || {};
 $(function() {
 	console.log('starting application');
 
-	app.mainView = new MainView();
-	var dummyCollection  = new WatchListModelCollection()
-	app.watchlistView = new WatchlistView({collection: dummyCollection});
-        app.chartView = new ChartView();
-	app.assetcache = new AssetCache();
-	app.quoteDetailView = new QuoteDetailView();
-        Backbone.history.start();
+
+    utils.loadTemplates(['QuoteDetailView'], function(){
+            app.mainView = new MainView();
+            var dummyCollection  = new WatchListModelCollection()
+            app.watchlistView = new WatchlistView({collection: dummyCollection});
+            app.chartView = new ChartView();
+            app.assetcache = new AssetCache();
+
+            Backbone.history.start();
+
+        }
+      ) ;
+
 });
