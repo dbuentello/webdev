@@ -1,4 +1,5 @@
 
+
 	var app = app || {};
 
 	<!-- Router -->
@@ -7,7 +8,8 @@
 			'':'home',
 			'watchlist':'watchlist',
 			'watchlistname/:name':'watchlistname',
-                        'chart':'chart'
+            'chart':'chart',
+            'quotedetails/:symbol': 'quotedetails'
 		}	
 	});
 
@@ -32,3 +34,9 @@
         app.chartView.render();
 
     });
+
+
+    app.router.on('route:quotedetails', function (symbol){
+    console.log('quotedetails - route');
+     app.quoteDetailView.render();
+});
