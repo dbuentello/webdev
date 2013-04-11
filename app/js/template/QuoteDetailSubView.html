@@ -1,0 +1,26 @@
+<div>
+	<div>
+		<p><h2><%= model.get('asset').get('description')%></h2></p>
+	</div>
+	<div>
+	<p>$<span id='<%= model.cid%>last' ><%= model.get('asset').get('last')%></span><span id='<%= model.cid%>change' style='padding-left:5px;padding-right:5px;' ><%= model.get('asset').get('change')%></span></p>
+	</div>
+	<div>
+		<table  id="bidasktable" class="table table-hover">
+			<thead>
+				<tr>
+					<th id="SYMBOL1">BID</th>
+					<th id="SYMBOL2">ASK</th>
+					<th id="SYMBOL3">VOLUME</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr>
+						<td id='<%= model.cid%>bid' ><%= model.get('asset').get('bid')%></td>
+						<td id='<%= model.cid%>ask' ><%= model.get('asset').get('ask')%></td>
+						<td id='<%= model.cid%>last' ><%= model.get('asset').get('volume')%></td>
+					<tr>
+			</tbody>
+		</table>
+	</div>
+</div>
