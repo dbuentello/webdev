@@ -1,22 +1,34 @@
 //Chart View
 var app = app || {};
 var ChartView = Backbone.View.extend({
-    el: '.page',
+    el: '.page',      
     initialize: function() {
         console.log("Chart initialize " + app.userProfileModel);
+        this.chartModel = new ChartModel();
+        _.bindAll(this,'render');
+      
     },
     render: function() {
-        console.log('rendering');
-        //this.$el.html("Charting started");
-        this.getPriceHistory();
+       console.log('render quote detail view');
+       var template = _.template($('#chart_template').html(),{});
+       this.$el.html(template);    
+       if(this.chartModel.get('symbol') !=='')
+            $('#chartSymbol').val(this.chartModel.get('symbol'));
+       this.drawCharts();
+       
+    },
+    events:{
+            'click #goButton':'getPriceHistory'
     },
     getPriceHistory: function()
     {
+        var symbol = $('#chartSymbol').val();      
+        this.chartModel.set({symbol:symbol});
         var sessionToken = app.userProfileModel.get('session-id');
 
         var oReq = new XMLHttpRequest();
         var url = 'https://apista.tdameritrade.com/apps/100/PriceHistory?jsessionid=' + sessionToken +
-                '&requestidentifiertype=SYMBOL&requestvalue=AAPL&source=TAG' +
+                '&requestidentifiertype=SYMBOL&requestvalue='+ symbol + '&source=TAG' +
                 '&intervaltype=DAILY&periodtype=YEAR' +
                 '&intervalduration=1&enddate=20130409&period=3' +
                 '&extended=false';
@@ -28,7 +40,7 @@ var ChartView = Backbone.View.extend({
                 var byteArray = new Uint8Array(arrayBuffer);
                 var view = new jDataView(byteArray);
                 var symCount = view.getInt32();
-                var symStr = view.getUTF8String(6, 4);
+                var symStr = view.getUTF8String(6,symbol.length);
                 var errorCode = view.getInt8();
                 var barCount = view.getInt32();
                 var ohlc = [],
@@ -56,8 +68,16 @@ var ChartView = Backbone.View.extend({
                         symVolume // the volume
                     ]);
                 }
+                app.chartView.chartModel.set({ohlc: ohlc});
+                app.chartView.chartModel.set({volume: volume});
+                app.chartView.drawCharts();
+            }
+        };
+        oReq.send(null);
 
-                var groupingUnits = [[
+    },            
+    drawCharts: function(){
+        var groupingUnits = [[
                         'week', // unit name
                         [1]                             // allowed multiples
                     ], [
@@ -66,12 +86,12 @@ var ChartView = Backbone.View.extend({
                     ]];
 
               
-                $('#page').highcharts('StockChart', {
+                $('#chartPage').highcharts('StockChart', {
                     rangeSelector: {
                         selected: 1
                     },
                     title: {
-                        text: 'AAPL Historical'
+                        text: this.chartModel.get('symbol') + ' Historical'
                     },
                     yAxis: [{
                             title: {
@@ -90,25 +110,21 @@ var ChartView = Backbone.View.extend({
                         }],
                     series: [{
                             type: 'candlestick',
-                            name: 'AAPL',
-                            data: ohlc,
+                            name: this.chartModel.get('symbol'),
+                            data: this.chartModel.get('ohlc'),
                             dataGrouping: {
                                 units: groupingUnits
                             }
                         }, {
                             type: 'column',
                             name: 'Volume',
-                            data: volume,
+                            data: this.chartModel.get('volume'),
                             yAxis: 1,
                             dataGrouping: {
                                 units: groupingUnits
                             }
                         }]
                 });
-            }
-        };
-        oReq.send(null);
-
     }
 
 });
