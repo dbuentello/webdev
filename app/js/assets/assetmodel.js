@@ -7,6 +7,7 @@ var AssetModel = Backbone.Model.extend({
 		ask:"",
 		last:"",
 		change:"",
+		volume:"",
 		changePercent:"",
 		description:"",
 		assettype:""

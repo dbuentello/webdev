@@ -46,7 +46,7 @@
                   </ul>
               </a></li>
               <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>             
+              <li><a href="#contact">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -73,6 +73,7 @@
     <script type="text/javascript" src="app/js/streamer/tdaStreamer.js"></script>
 	<script type="text/javascript" src="app/js/model/userprofilemodel.js"></script>
 	<script type="text/javascript" src="app/js/model/watchlistmodel.js"></script>
+	<script type="text/javascript" src="app/js/model/quotedetailmodel.js"></script>
 	<script type="text/javascript" src="app/js/model/watchlistmodelcollection.js"></script>
 	<script type="text/javascript" src="app/js/assets/AssetCache.js"></script>
 	<script type="text/javascript" src="app/js/assets/assetmodel.js"></script>
@@ -80,14 +81,15 @@
 	<script type="text/javascript" src="app/js/views/login-view.js"></script>
     <script type="text/javascript" src="app/js/views/watch-view.js"></script>
 	<script type="text/javascript" src="app/js/views/main-view.js"></script>
-	
-    <script type="text/javascript" src="app/js/views/charts-view.js"></script>	
+	<script type="text/javascript" src="app/js/views/quotedetailsubview.js"></script>
+
+    <script type="text/javascript" src="app/js/views/charts-view.js"></script>
     <script type="text/javascript" src="app/js/utils/jDataView.js"></script>
 <script type="text/javascript" src="app/js/app.js"></script>
 
 
 <script type="text/javascript" src="app/js/views/quotedetailview.js"></script>
-	
+
 
 	<!-- page templates -->
 	<script type="text/template" id="tda-loading">
@@ -96,7 +98,7 @@
 
 	<script type="text/template" id="tda-quote-detail">
 		<table>
-			<tr><td>Symbol<td> <td id="qd_symbol">...</td></tr>			
+			<tr><td>Symbol<td> <td id="qd_symbol">...</td></tr>
 		</table>
 	</script>
 
@@ -162,7 +164,7 @@
 						<td id='<%= model.cid%>bid' ><%= model.get('asset').get('bid')%></td>
 						<td id='<%= model.cid%>ask' ><%= model.get('asset').get('ask')%></td>
 						<td id='<%= model.cid%>last' ><%= model.get('asset').get('last')%></td>
-						<td id='<%= model.cid%>change' class='redColorText' ><%= model.get('asset').get('change')%></td>
+						<td id='<%= model.cid%>change' ><%= model.get('asset').get('change')%></td>
 						<td id='<%= model.cid%>changePercent' ><%= model.get('asset').get('changePercent')%></td>
 					<tr>
 				<%

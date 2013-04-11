@@ -6,7 +6,7 @@ $(function() {
 	console.log('starting application');
 
 
-    utils.loadTemplates(['QuoteDetailView'], function(){
+    utils.loadTemplates(['QuoteDetailView','QuoteDetailSubView'], function(){
             app.mainView = new MainView();
             var dummyCollection  = new WatchListModelCollection()
             app.watchlistView = new WatchlistView({collection: dummyCollection});

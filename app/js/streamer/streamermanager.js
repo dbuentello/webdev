@@ -47,7 +47,7 @@ function getSteamerInfo(app) {
 						"ws" :  "ws://tdameritrade-web.streamer.com/ws",
 						"flash" : "ws://tdameritrade-web.streamer.com/ws",
 						});
-				app.streamer.setDebugMode(false);
+				app.streamer.setDebugMode(true);
 				app.streamer.onMessage(onMessage,"default");
 				app.streamer.onLogin(loginUpdate);
 				app.streamer.onError(streamerError);
@@ -61,10 +61,12 @@ function getSteamerInfo(app) {
 }
 
 function loginUpdate(message){
-	app.streamerLoggedIn=true;
-	Backbone.history.navigate('watchlist', true); 
-
+	if(!app.streamerLoggedIn){
+		app.streamerLoggedIn=true;
+		Backbone.history.navigate('watchlist', true); 
+	}
 }
+
 function streamerError(message){
 	alert(message);
 }
@@ -81,6 +83,9 @@ function onMessage(message){
 	}
 	if( typeof message[3] != 'undefined'){
 		wl111.set('last',message[3]);
+	}
+	if( typeof message[8] != 'undefined'){
+		wl111.set('volume',message[8]);
 	}
 	if( typeof message[29] != 'undefined'){
 		wl111.set('change',message[29]);

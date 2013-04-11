@@ -9,9 +9,8 @@
 			'watchlist':'watchlist',
 			'watchlistname/:name':'watchlistname',
             'chart':'chart',
-            'quotedetails/:symbol': 'quotedetails',
-            'quotedetails': 'quotedetails'
-		}	
+            'quotedetails/:symbol': 'quotedetails'		
+            }	
 	});
 
     app.router = new Router();
@@ -39,10 +38,12 @@
 
     app.router.on('route:quotedetails', function (symbol){
 
-        if (!this.quoteDetailView)
+        if (!this.quoteDetailView){
             this.quoteDetailView = new app.QuoteDetailView();
-        else
-            this.quoteDetailView.render();
+        }
+
+        this.quoteDetailView.render(symbol);
+       
     });
 
 
