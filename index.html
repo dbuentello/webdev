@@ -74,6 +74,7 @@
 	<script type="text/javascript" src="app/js/model/userprofilemodel.js"></script>
 	<script type="text/javascript" src="app/js/model/watchlistmodel.js"></script>
 	<script type="text/javascript" src="app/js/model/watchlistmodelcollection.js"></script>
+        <script type="text/javascript" src="app/js/model/chartmodel.js"></script>
 	<script type="text/javascript" src="app/js/assets/AssetCache.js"></script>
 	<script type="text/javascript" src="app/js/assets/assetmodel.js"></script>
 	<script type="text/javascript" src="app/js/routes/router.js"></script>
@@ -170,6 +171,15 @@
 
 			</tbody>
 			</table>
+	</script>
+        
+        <script type="text/template" id="chart_template">
+            <div class="control-group">                 
+		  <input type="text" name="chartSymbol" id="chartSymbol" placeholder="[Symbol]"/>
+                  <button type="button" class="btn btn-success" id="goButton"> Go </button>		
+	     </div>   
+              
+		<div id="chartPage" class="page" style="height:100%;width:100%"></div>
 	</script>
 
 </body>
