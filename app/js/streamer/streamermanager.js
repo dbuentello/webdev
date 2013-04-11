@@ -72,27 +72,16 @@ function streamerError(message){
 }
 
 function onMessage(message){
-	console.log(message);
 	var wl111 = app.assetcache.getAssetObject(message['key']);
 
-	if( typeof message[1] != 'undefined'){
-		wl111.set('bid',message[1]);
+	for(var propt in message){
+		console.log(" PROMTP "+propt);
+		if(app.streamerResponseReaderHelper.quoteReaderMap[propt]){
+			wl111.set(app.streamerResponseReaderHelper.quoteReaderMap[propt],message[propt]);
+		}
+		
 	}
-	if( typeof message[2] != 'undefined'){
-		wl111.set('ask',message[2]);
-	}
-	if( typeof message[3] != 'undefined'){
-		wl111.set('last',message[3]);
-	}
-	if( typeof message[8] != 'undefined'){
-		wl111.set('volume',message[8]);
-	}
-	if( typeof message[29] != 'undefined'){
-		wl111.set('change',message[29]);
-	}
-	if( typeof message[29] != 'undefined'){
-		wl111.set('changePercent',message[29]);
-	}
+	
 }
 
 //pass comma seperated symbols for level1 quote subscription

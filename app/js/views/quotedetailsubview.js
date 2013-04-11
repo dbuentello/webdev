@@ -29,6 +29,10 @@ app.QuoteDetailSubView = Backbone.View.extend({
 					$("#"+model.cid+att).removeClass().addClass("redColorText");
 				}
 			}
+			
+			if(att == 'volume'){
+				$("#"+model.cid+"1"+att).empty().html(model.get('asset').get(att));
+			}
 		}				
 	}
 	
