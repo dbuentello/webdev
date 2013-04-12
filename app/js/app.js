@@ -12,6 +12,7 @@ $(function() {
             app.watchlistView = new WatchlistView({collection: dummyCollection});
             app.chartView = new ChartView();
             app.assetcache = new AssetCache();
+            app.streamerResponseReaderHelper = new StreamerResponseReaderHelper();
 
             Backbone.history.start();
 

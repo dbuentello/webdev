@@ -113,6 +113,7 @@ var WatchlistView = Backbone.View.extend({
 		//this.collection.each(this.renderOne);
 		var diff = model.get('changedColumns');
 		for(var att in diff){
+			console.log("changeingg ... "+att);
 			$("#"+model.cid+att).text(model.get('asset').get(att));
 			if(att == 'change' || att == 'changePercent'){
 				var val= 0;
@@ -122,6 +123,10 @@ var WatchlistView = Backbone.View.extend({
 					$("#"+model.cid+att).removeClass().addClass("greenColorText");
 				}else {
 					$("#"+model.cid+att).removeClass().addClass("redColorText");
+				}
+				
+				if(att == 'changePercent'){
+					$("#"+model.cid+att).text(model.get('asset').get(att)+"%");
 				}
 			}
 		}				
