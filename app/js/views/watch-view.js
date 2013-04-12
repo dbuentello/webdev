@@ -66,6 +66,7 @@ var WatchlistView = Backbone.View.extend({
 						// This is an error
 						//Backbone.history.navigate('watchlist', true); 
 						app.watchlistView.collection = wlc;
+						
 						app.watchlistView.render();
 						app.watchlistView.collection.on("change",app.watchlistView.update);
 						app.watchlistView.collection.on("add",app.watchlistView.render);

@@ -1,0 +1,29 @@
+
+<div class="row-fluid">
+	<div class="span6">
+		<table  id="newslistTable" class="table table-hover">
+			<tbody>
+				<% coll.each(function(model){
+				%>
+					<tr>
+						<td>
+							<a style="text-decoration: none;" href='#newsdetail/<%=model.get('DocumentKey')%>' >
+								<div>
+									<small><%= model.get('DocumentDate')%> - <%= model.get('Source')%></small>
+								</div>
+								<div>
+									<p style="color:#2480D2;"><span><%= model.get('Headline')%></span></p>
+								</div>
+							</a>
+						</td>
+					<tr>
+				<%
+				}); %>
+
+			</tbody>
+			</table>
+	</div>
+	<div id="newdetailssection" class="span4">
+		<p><span id="newdetailssectionspan"></span></p>
+	</div>
+</div>

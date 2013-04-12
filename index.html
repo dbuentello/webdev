@@ -30,6 +30,7 @@
                     <ul class="dropdown-menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#quotedetails">Detail</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#chart">Charts</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#news">News</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#research">Research</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#optoins">Options</a></li>
                     </ul>
@@ -76,7 +77,9 @@
 	<script type="text/javascript" src="app/js/model/watchlistmodel.js"></script>
 	<script type="text/javascript" src="app/js/model/quotedetailmodel.js"></script>
 	<script type="text/javascript" src="app/js/model/watchlistmodelcollection.js"></script>
-        <script type="text/javascript" src="app/js/model/chartmodel.js"></script>
+    <script type="text/javascript" src="app/js/model/chartmodel.js"></script>
+    <script type="text/javascript" src="app/js/model/newsheadlinemodel.js"></script>
+    <script type="text/javascript" src="app/js/model/newsheadlinemodelcollection.js"></script>
 	<script type="text/javascript" src="app/js/assets/AssetCache.js"></script>
 	<script type="text/javascript" src="app/js/assets/assetmodel.js"></script>
 	<script type="text/javascript" src="app/js/routes/router.js"></script>
@@ -84,6 +87,7 @@
     <script type="text/javascript" src="app/js/views/watch-view.js"></script>
 	<script type="text/javascript" src="app/js/views/main-view.js"></script>
 	<script type="text/javascript" src="app/js/views/quotedetailsubview.js"></script>
+	<script type="text/javascript" src="app/js/views/newssubview.js"></script>
 
     <script type="text/javascript" src="app/js/views/charts-view.js"></script>
     <script type="text/javascript" src="app/js/utils/jDataView.js"></script>
@@ -175,13 +179,13 @@
 			</tbody>
 			</table>
 	</script>
-        
+
         <script type="text/template" id="chart_template">
-            <div class="control-group">                 
+            <div class="control-group">
 		  <input type="text" name="chartSymbol" id="chartSymbol" placeholder="[Symbol]"/>
-                  <button type="button" class="btn btn-success" id="goButton"> Go </button>		
-	     </div>   
-              
+                  <button type="button" class="btn btn-success" id="goButton"> Go </button>
+	     </div>
+
 		<div id="chartPage" class="page" style="height:100%;width:100%"></div>
 	</script>
 

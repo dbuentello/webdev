@@ -25,66 +25,70 @@
 		</table>
 		</div>
     </div>
-    <div>
     <div class="row-fluid">
-      <div class="span8">
-			<table  id="quotedetailsTable" class="table table-hover">
-				<tbody>
-						<tr>
-							<td>Today's Open</td>
-							<td id='<%= model.cid%>open' ><%= model.get('asset').get('open')%></td>
-						<tr>
-						<tr>
-							<td>Previous Close</td>
-							<td id='<%= model.cid%>close' ><%= model.get('asset').get('close')%></td>
-						<tr>
-						<tr>
-							<td>Day Range</td>
-							<td id='<%= model.cid%>dayRange' ><%= model.get('asset').dayRange()%></td>
-						<tr>
-						<tr>
-							<td>Volume</td>
-							<td id='<%= model.cid%>1volume' ><%= model.get('asset').get('volume')%></td>
-						<tr>
-						<tr>
-							<td>Last(Time)</td>
-							<td id='<%= model.cid%>lastTime' ><%= model.get('asset').get('lastTime')%></td>
-						<tr>
-						<tr>
-							<td>Last(Size)</td>
-							<td id='<%= model.cid%>lastSize' ><%= model.get('asset').get('lastSize')%></td>
-						<tr>
-						<tr>
-							<td>52 wk Rande</td>
-							<td id='<%= model.cid%>yearRange' ><%= model.get('asset').yearRange()%></td>
-						<tr>
-						<tr>
-							<td>Div Ex-Date</td>
-							<td id='<%= model.cid%>divDate' ><%= model.get('asset').get('divDate')%></td>
-						<tr>
-						<tr>
-							<td>Market Cap</td>
-							<td id='<%= model.cid%>marktetCap' ><%= model.get('asset').get('marktetCap')%></td>
-						<tr>
-						<tr>
-							<td>Sector</td>
-							<td id='<%= model.cid%>sector' ><%= model.get('asset').get('sector')%></td>
-						<tr>
-						<tr>
-							<td>Industry</td>
-							<td id='<%= model.cid%>industry' ><%= model.get('asset').get('industry')%></td>
-						<tr>
-						<tr>
-							<td>P/E Ratio</td>
-							<td id='<%= model.cid%>peRatio' ><%= model.get('asset').get('peRatio')%></td>
-						<tr>
-						<tr>
-							<td>Ann. Dividend Yield</td>
-							<td id='<%= model.cid%>divYield' ><%= model.get('asset').get('divYield')%></td>
-						<tr>
-				</tbody>
-			</table>
-			</div>
+	         <div class="span6">
+	   			<table  id="quotedetailsTable" class="table">
+	   				<tbody>
+	   						<tr>
+	   							<td>Today's Open</td>
+	   							<td id='<%= model.cid%>open' ><%= model.get('asset').get('open')%></td>
+	   						<tr>
+	   						<tr>
+	   							<td>Previous Close</td>
+	   							<td id='<%= model.cid%>close' ><%= model.get('asset').get('close')%></td>
+	   						<tr>
+	   						<tr>
+	   							<td>Day Range</td>
+	   							<td id='<%= model.cid%>dayRange' ><%= model.get('asset').dayRange()%></td>
+	   						<tr>
+	   						<tr>
+	   							<td>Volume</td>
+	   							<td id='<%= model.cid%>1volume' ><%= model.get('asset').get('volume')%></td>
+	   						<tr>
+	   						<tr>
+	   							<td>Last(Time)</td>
+	   							<td id='<%= model.cid%>lastTime' ><%= model.get('asset').get('lastTime')%></td>
+	   						<tr>
+	   						<tr>
+	   							<td>Last(Size)</td>
+	   							<td id='<%= model.cid%>lastSize' ><%= model.get('asset').get('lastSize')%></td>
+	   						<tr>
+	   						<tr>
+	   							<td>52 wk Rande</td>
+	   							<td id='<%= model.cid%>yearRange' ><%= model.get('asset').yearRange()%></td>
+	   						<tr>
+	   				</tbody>
+	   			</table>
+	   			</div>
+	   			<div class="span5">
+				   			<table  id="quotedetailsTable" class="table">
+				   				<tbody>
+				   						<tr>
+				   							<td>Div Ex-Date</td>
+				   							<td id='<%= model.cid%>divDate' ><%= model.get('asset').get('divDate')%></td>
+				   						<tr>
+				   						<tr>
+				   							<td>Market Cap</td>
+				   							<td id='<%= model.cid%>marktetCap' ><%= model.get('asset').get('marktetCap')%></td>
+				   						<tr>
+				   						<tr>
+				   							<td>Sector</td>
+				   							<td id='<%= model.cid%>sector' ><%= model.get('asset').get('sector')%></td>
+				   						<tr>
+				   						<tr>
+				   							<td>Industry</td>
+				   							<td id='<%= model.cid%>industry' ><%= model.get('asset').get('industry')%></td>
+				   						<tr>
+				   						<tr>
+				   							<td>P/E Ratio</td>
+				   							<td id='<%= model.cid%>peRatio' ><%= model.get('asset').get('peRatio')%></td>
+				   						<tr>
+				   						<tr>
+				   							<td>Ann. Dividend Yield</td>
+				   							<td id='<%= model.cid%>divYield' ><%= model.get('asset').get('divYield')%></td>
+				   						<tr>
+				   				</tbody>
+				   			</table>
+	   			</div>
     	</div>
-	</div>
 </div>

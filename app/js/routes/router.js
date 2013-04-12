@@ -9,6 +9,8 @@
 			'watchlist':'watchlist',
 			'watchlistname/:name':'watchlistname',
             'chart':'chart',
+            'news':'news',
+            'news/:newsid':'newsdetail',
             'quotedetails/:symbol': 'quotedetails'		
             }	
 	});
@@ -33,6 +35,20 @@
 		
         app.chartView.render();
 
+    });
+    
+    app.router.on('route:news',function(actions){
+	if (!this.newssubview){
+	    this.newssubview = new app.NewsSubView();
+	 }
+	 this.newssubview.render();
+    
+    });
+    
+    app.router.on('route:news',function(newsid){
+    	
+    	this.newssubview.loadNewsDetails(newsid,"newdetailssectionspan");
+        
     });
 
 
