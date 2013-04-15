@@ -10,7 +10,7 @@
 			'watchlistname/:name':'watchlistname',
             'chart':'chart',
             'news':'news',
-            'news/:newsid':'newsdetail',
+            'newsdetail/:newsid':'newsdetail',
             'quotedetails/:symbol': 'quotedetails'		
             }	
 	});
@@ -45,9 +45,9 @@
     
     });
     
-    app.router.on('route:news',function(newsid){
+    app.router.on('route:newsdetail',function(newsid){
     	
-    	this.newssubview.loadNewsDetails(newsid,"newdetailssectionspan");
+    	this.newssubview.loadNewsDetails(newsid,"newdetailssectionspan", "newheadsectionspan");
         
     });
 

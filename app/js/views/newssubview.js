@@ -26,8 +26,27 @@ app.NewsSubView = Backbone.View.extend({
 	       console.log(item);
         },
 	
-	loadNewsDetails: function(newsid, spanid){
-		console.log(newsid);
+	loadNewsDetails: function(newsid, spanid, headid){
+		//console.log(newsid);
+		$("#"+spanid).html(newsid);
+		
+		var url = 'https://test.tdameritrade.wallst.com/MobileAPI/News/Document?docKey='+newsid+'&user_id=mobileapi&user_password=mobileapi';
+		$.ajax({
+			url:url,
+			type:'GET',
+			dataType:'',
+			data:'source=TAG',
+			success:function(data) {
+				console.log(data.Body);
+			},
+			error:function(data){
+				var resp = JSON.parse(data.responseText);
+				$("#"+spanid).html(resp.Body);
+				$("#"+headid).html(resp.Headline);
+				$("#viewdetails"+newsid).html(resp.Body);
+				console.log(data.responseText);
+			}
+			});
 	}
 	
 });
