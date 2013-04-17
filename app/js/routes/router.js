@@ -57,9 +57,19 @@
         if (!this.quoteDetailView){
             this.quoteDetailView = new app.QuoteDetailView();
         }
-
-        this.quoteDetailView.render(symbol);
-        app.chartView.renderTodayChart(symbol,"quotedetailschartholder");
+        var that = this;
+	//need to call the snapquotes to get the details
+	getAssetOverView(symbol,'E',function(resp) { 
+					alert('Success');
+					},
+				    function(respData) {
+				    	var assetM = app.assetcache.getAssetObject(symbol)
+				    	var respJson = JSON.parse(respData.responseText);
+				    	assetM.setMODDetails(respJson);
+					that.quoteDetailView.render(symbol);
+        				app.chartView.renderTodayChart(symbol,"quotedetailschartholder");
+				    });	
+        
     });
 
 

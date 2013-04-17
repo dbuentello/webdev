@@ -7,7 +7,6 @@ app.QuoteDetailView = Backbone.View.extend({
        //this.render();
     },
 	render: function (symbol) {
-			console.log('render quote detail view');
 			var tmp = _.template(utils.templates['QuoteDetailView'], {name:'Quote Details'});
 			this.$el.html(tmp);
 			this.quoteDetailSubView = new app.QuoteDetailSubView();

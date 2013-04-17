@@ -8,6 +8,24 @@
 	font-weight: bold;
 }
 
+.greybox {
+	width: 12px;
+	height: 12px;
+	background-color: lightgray;
+	float:left; 
+	text-align:left;
+	margin-left: 1px;
+}
+
+.blackbox {
+	width: 12px;
+	height: 12px;
+	background-color: black;
+	float:left; 
+	text-align:left;
+	margin-left: 1px;
+}
+
 .achievements-wrapper { height: 90%; overflow: auto; }
 
 

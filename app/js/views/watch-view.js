@@ -57,6 +57,7 @@ var WatchlistView = Backbone.View.extend({
 					       			var wlObj = new WatchListModel({symbol:symbol,description:desc,assetType:assetType});
 					       			wlObj.setAsset(app.assetcache.getAssetObject(symbol));
 					       			wlObj.get('asset').set({description:desc});
+					       			wlObj.get('asset').set({assetType:assetType});
 					       			wlc.add(wlObj);
 					       		}
 					       	}

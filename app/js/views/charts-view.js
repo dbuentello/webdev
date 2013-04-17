@@ -264,7 +264,7 @@ var ChartView = Backbone.View.extend({
                 },
                 yAxis: [{
                         title: {
-                            text: 'PRICE'
+                            text: null
                         },
                     }],
                 series: dailyseries

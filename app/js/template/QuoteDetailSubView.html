@@ -24,7 +24,7 @@
 			</tbody>
 		</table>
 		</div>
-		 <div id="quotedetailschartholder" class="span6" style="height:180px;">
+		 <div id="quotedetailschartholder" class="span7" style="height:180px;">
     	</div>
     </div>
 
@@ -50,7 +50,7 @@
 	   						<tr>
 	   						<tr>
 	   							<td>Last(Time)</td>
-	   							<td id='<%= model.cid%>lastTime' ><%= model.get('asset').get('lastTime')%></td>
+	   							<td id='<%= model.cid%>lastTime' ><%= model.get('asset').get('quoteTime')%></td>
 	   						<tr>
 	   						<tr>
 	   							<td>Last(Size)</td>
@@ -58,7 +58,9 @@
 	   						<tr>
 	   						<tr>
 	   							<td>52 wk Rande</td>
-	   							<td id='<%= model.cid%>yearRange' ><%= model.get('asset').yearRange()%></td>
+	   							<td id='<%= model.cid%>yearRange' >
+	   								<div><%= model.get('asset').yearRange()%></div>
+	   								<div> <%= model.get('asset').yearRangeBoxes()%></td>
 	   						<tr>
 	   				</tbody>
 	   			</table>
