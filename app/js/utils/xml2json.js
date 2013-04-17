@@ -1,6 +1,6 @@
 function xmlToJson(xml) {
-    console.log("xml2Json");
-    console.log(xml);
+    //console.log("xml2Json");
+    //console.log(xml);
 // Create the return object
     var obj = {};
 

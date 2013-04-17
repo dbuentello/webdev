@@ -30,6 +30,7 @@
                     <ul class="dropdown-menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#quotedetails">Detail</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#chart">Charts</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#news">News</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#research">Research</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#optoins">Options</a></li>
                     </ul>
@@ -58,7 +59,7 @@
 	<link rel="stylesheet" href="main.css">
 
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script> 
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
@@ -77,7 +78,9 @@
 	<script type="text/javascript" src="app/js/model/watchlistmodel.js"></script>
 	<script type="text/javascript" src="app/js/model/quotedetailmodel.js"></script>
 	<script type="text/javascript" src="app/js/model/watchlistmodelcollection.js"></script>
-        <script type="text/javascript" src="app/js/model/chartmodel.js"></script>
+	<script type="text/javascript" src="app/js/model/newsheadlinemodel.js"></script>
+	<script type="text/javascript" src="app/js/model/newsheadlinemodelcollection.js"></script>
+    <script type="text/javascript" src="app/js/model/chartmodel.js"></script>
 	<script type="text/javascript" src="app/js/assets/AssetCache.js"></script>
 	<script type="text/javascript" src="app/js/assets/assetmodel.js"></script>
 	<script type="text/javascript" src="app/js/routes/router.js"></script>
@@ -85,10 +88,10 @@
     <script type="text/javascript" src="app/js/views/watch-view.js"></script>
 	<script type="text/javascript" src="app/js/views/main-view.js"></script>
 	<script type="text/javascript" src="app/js/views/quotedetailsubview.js"></script>
-
+	<script type="text/javascript" src="app/js/views/newssubview.js"></script>
     <script type="text/javascript" src="app/js/views/charts-view.js"></script>
     <script type="text/javascript" src="app/js/utils/jDataView.js"></script>
-<script type="text/javascript" src="app/js/app.js"></script>
+	<script type="text/javascript" src="app/js/app.js"></script>
 
 
 <script type="text/javascript" src="app/js/views/quotedetailview.js"></script>
@@ -175,7 +178,7 @@
 
 			</tbody>
 			</table>
-	</script>     
+	</script>
 
 </body>
 

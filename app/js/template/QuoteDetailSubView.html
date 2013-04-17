@@ -2,11 +2,11 @@
 	<div>
 		<p><h2><%= model.get('asset').get('description')%></h2></p>
 	</div>
-	<div>
-	<p class="lead">$<span id='<%= model.cid%>last' ><%= model.get('asset').get('last')%></span><span id='<%= model.cid%>change' style='padding-left:5px;padding-right:5px;' ><%= model.get('asset').get('change')%></span></p>
-	</div>
 	<div class="row-fluid">
       <div class="span4">
+    	<div>
+		  	<p class="lead">$<span id='<%= model.cid%>last' ><%= model.get('asset').get('last')%></span><span id='<%= model.cid%>change' style='padding-left:5px;padding-right:5px;' ><%= model.get('asset').get('change')%></span></p>
+		</div>
 		<table  id="bidasktable" class="table">
 			<thead>
 				<tr>
@@ -24,7 +24,10 @@
 			</tbody>
 		</table>
 		</div>
+		 <div id="quotedetailschartholder" class="span6" style="height:180px;">
+    	</div>
     </div>
+
     <div class="row-fluid">
 	         <div class="span6">
 	   			<table  id="quotedetailsTable" class="table">

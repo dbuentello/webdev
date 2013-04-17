@@ -59,7 +59,7 @@
         }
 
         this.quoteDetailView.render(symbol);
-       
+        app.chartView.renderTodayChart(symbol,"quotedetailschartholder");
     });
 
 

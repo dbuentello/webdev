@@ -21,6 +21,11 @@ var ChartView = Backbone.View.extend({
         this.drawCharts();
 
     },
+    
+    renderTodayChart: function(symbol,divId) {   
+    		$('#'+divId).empty();            
+    	this.getPriceHistoryForSymbol(symbol);    	
+    },
     events: {
         'click #goButton': 'getPriceHistory',
         'change #chartType':  'changeChartType'  
@@ -29,6 +34,26 @@ var ChartView = Backbone.View.extend({
     changeChartType:function(){
         this.chartType = $('#chartType').val();
         this.drawCharts();
+    },
+    
+	getPriceHistoryForSymbol: function(symbol)
+	{
+            this.chartModel.set({symbol: symbol});
+            var sessionToken = app.userProfileModel.get('session-id');
+            var dailyReq = new XMLHttpRequest();
+            var url = 'https://apista.tdameritrade.com/apps/100/PriceHistory?jsessionid=' + sessionToken +
+                    '&requestidentifiertype=SYMBOL&requestvalue=' + symbol + '&source=TAG' +
+                    '&intervaltype=MINUTE&periodtype=DAY' +
+                    '&intervalduration=5&enddate=' + this.endDate + '&period=1' +
+                    '&extended=false';
+            dailyReq.open('GET', url, true);
+            dailyReq.responseType = 'arraybuffer';
+            dailyReq.onload = function(oEvent) {
+                var arrayBuffer = dailyReq.response;
+                app.chartView.priceHistoryResponse(arrayBuffer, true,true);
+            };
+            dailyReq.send(null);
+    
     },
     getPriceHistory: function()
     {
@@ -59,12 +84,12 @@ var ChartView = Backbone.View.extend({
         dailyReq.responseType = 'arraybuffer';
         dailyReq.onload = function(oEvent) {
             var arrayBuffer = dailyReq.response;
-            app.chartView.priceHistoryResponse(arrayBuffer, true);
+            app.chartView.priceHistoryResponse(arrayBuffer, true,false);
         };
         dailyReq.send(null);
 
     },
-    priceHistoryResponse: function(arrayBuffer, dailyChart) {
+    priceHistoryResponse: function(arrayBuffer, dailyChart,quotetab) {
         if (arrayBuffer) {
             var byteArray = new Uint8Array(arrayBuffer);
             var view = new jDataView(byteArray);
@@ -96,6 +121,11 @@ var ChartView = Backbone.View.extend({
                     date, // the date
                     symVolume // the volume
                 ]);
+            }
+            if(quotetab){
+            	this.chartModel.set({dailyohlc: ohlc});
+            	this.drawTodayCharts();
+            	return;
             }
             if (dailyChart) {
                 this.chartModel.set({dailyohlc: ohlc});
@@ -198,6 +228,47 @@ var ChartView = Backbone.View.extend({
                 }],
             series: dailyseries
         });
+    },
+    
+    drawTodayCharts: function(continerId) {
+                Highcharts.setOptions({
+                    global: {
+                        useUTC: false
+                    }
+                });
+            var dailyseries = [{
+                    type: 'line',             
+                    name: this.chartModel.get('symbol'),
+                    data: this.chartModel.get('dailyohlc')
+                }];
+            var series = [{
+                    type: 'line',
+                    name: this.chartModel.get('symbol'),
+                    data: this.chartModel.get('ohlc')
+                }];
+            var chart = new Highcharts.StockChart({
+                chart: {
+                    renderTo: 'quotedetailschartholder'
+                },
+                rangeSelector: {
+                    enabled: false
+                },
+                 navigator: {
+			    	enabled: false
+	    	},
+	    	 scrollbar: {
+			enabled: false
+		    },
+                title: {
+                    text: null
+                },
+                yAxis: [{
+                        title: {
+                            text: 'PRICE'
+                        },
+                    }],
+                series: dailyseries
+            });
     }
 
 });

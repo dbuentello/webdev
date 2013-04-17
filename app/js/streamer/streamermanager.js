@@ -63,7 +63,7 @@ function getSteamerInfo(app) {
 function loginUpdate(message){
 	if(!app.streamerLoggedIn){
 		app.streamerLoggedIn=true;
-		Backbone.history.navigate('watchlist', true); 
+		Backbone.history.navigate('', true); 
 	}
 }
 
@@ -75,7 +75,6 @@ function onMessage(message){
 	var wl111 = app.assetcache.getAssetObject(message['key']);
 
 	for(var propt in message){
-		console.log(" PROMTP "+propt);
 		if(app.streamerResponseReaderHelper.quoteReaderMap[propt]){
 			wl111.set(app.streamerResponseReaderHelper.quoteReaderMap[propt],message[propt]);
 		}
