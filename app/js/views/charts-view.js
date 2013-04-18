@@ -2,6 +2,7 @@
 var app = app || {};
 var ChartView = Backbone.View.extend({
     el: '.page',
+    model:this.chartModel,
     initialize: function() {
         console.log("Chart initialize " + app.userProfileModel);
         this.timeinterval;
@@ -12,13 +13,14 @@ var ChartView = Backbone.View.extend({
         _.bindAll(this, 'render');
 
     },
-    render: function() {   
+    render: function() {
         var template = _.template(utils.templates['ChartView'], {});
-       // var template = _.template(utils.templates['ChartView']);
+        // var template = _.template(utils.templates['ChartView']);
         this.$el.html(template);
         if (this.chartModel.get('symbol') !== '')
             $('#chartSymbol').val(this.chartModel.get('symbol'));
         this.drawCharts();
+        return this;
 
     },
     
@@ -28,10 +30,9 @@ var ChartView = Backbone.View.extend({
     },
     events: {
         'click #goButton': 'getPriceHistory',
-        'change #chartType':  'changeChartType'  
+        'change #chartType': 'changeChartType'
     },
-            
-    changeChartType:function(){
+    changeChartType: function() {
         this.chartType = $('#chartType').val();
         this.drawCharts();
     },
@@ -133,24 +134,26 @@ var ChartView = Backbone.View.extend({
                 this.drawCharts();
             } else {
                 this.chartModel.set({ohlc: ohlc});
-                this.chartModel.set({volume: volume});                
+                this.chartModel.set({volume: volume});
             }
 
 
         }
     },
     drawCharts: function() {
-            Highcharts.setOptions({
-                global: {
-                    useUTC: false
-                }
-            });
+        Highcharts.setOptions({
+            global: {
+                useUTC: false
+            }
+        });
         var dailyseries = [{
-                type: this.chartType,             
+                type: this.chartType,
                 name: this.chartModel.get('symbol'),
-                data: this.chartModel.get('dailyohlc')
+                data: this.chartModel.get('dailyohlc'),
+                color: 'red',
+                upColor: 'green'
             }, {
-                type: 'column',              
+                type: 'column',
                 name: 'Volume',
                 data: this.chartModel.get('dailyvolume'),
                 yAxis: 1
@@ -158,7 +161,9 @@ var ChartView = Backbone.View.extend({
         var series = [{
                 type: this.chartType,
                 name: this.chartModel.get('symbol'),
-                data: this.chartModel.get('ohlc')
+                data: this.chartModel.get('ohlc'),
+                color: 'red',
+                upColor: 'green'
             }, {
                 type: 'column',
                 name: 'Volume',
@@ -171,7 +176,7 @@ var ChartView = Backbone.View.extend({
                 events: {
                     load: function() {
                         var chart = this,
-                                buttons = chart.rangeSelector.buttons;                        
+                                buttons = chart.rangeSelector.buttons;
                     }
                 }
             },
@@ -185,7 +190,7 @@ var ChartView = Backbone.View.extend({
                         type: 'day',
                         count: 1,
                         text: '1d'
- //                   }
+                                //                   }
 //                    , {
 //                        type: 'month',
 //                        count: 1,
@@ -212,12 +217,20 @@ var ChartView = Backbone.View.extend({
                 text: this.chartModel.get('symbol') + ' Historical'
             },
             yAxis: [{
+                    labels: {
+                        align: 'right',
+                        x: -10
+                    },
                     title: {
                         text: 'OHLC'
                     },
                     height: 200,
                     lineWidth: 2
                 }, {
+                    labels: {
+                        align: 'right',
+                        x: -10
+                    },
                     title: {
                         text: 'Volume'
                     },
