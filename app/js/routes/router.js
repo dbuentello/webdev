@@ -6,6 +6,7 @@
 	var Router = Backbone.Router.extend({
 		routes: {
 			'':'home',
+			'loggedin':'home',
 			'watchlist':'watchlist',
 			'watchlistname/:name':'watchlistname',
             'chart':'chart',
