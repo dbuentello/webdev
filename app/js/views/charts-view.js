@@ -45,7 +45,7 @@ var ChartView = Backbone.View.extend({
             var url = 'https://apista.tdameritrade.com/apps/100/PriceHistory?jsessionid=' + sessionToken +
                     '&requestidentifiertype=SYMBOL&requestvalue=' + symbol + '&source=TAG' +
                     '&intervaltype=MINUTE&periodtype=DAY' +
-                    '&intervalduration=5&enddate=' + this.endDate + '&period=1' +
+                    '&intervalduration=1&enddate=' + this.endDate + '&period=1' +
                     '&extended=false';
             dailyReq.open('GET', url, true);
             dailyReq.responseType = 'arraybuffer';
@@ -180,6 +180,9 @@ var ChartView = Backbone.View.extend({
                     }
                 }
             },
+            tooltip: {
+	    			crosshairs: [true, true]
+	    	},
             rangeSelector: {
                 buttons: [{
                         type: 'hour',
@@ -244,6 +247,16 @@ var ChartView = Backbone.View.extend({
     },
     
     drawTodayCharts: function(continerId) {
+    
+    		var d = new Date();
+    		d.setHours(9);
+    		d.setMinutes(30);
+    		d.setSeconds(0);
+    		
+    		var xmin = d.getTime();
+    		d.setHours(16);
+    		d.setMinutes(0);
+    		var xmax = d.getTime();
                 Highcharts.setOptions({
                     global: {
                         useUTC: false
@@ -262,10 +275,33 @@ var ChartView = Backbone.View.extend({
             var chart = new Highcharts.StockChart({
                 chart: {
                     renderTo: 'quotedetailschartholder'
+                   /* events: {
+		                load: function(){
+		                    var chart = this,
+		                        series1 = chart.series[0];
+		                    
+		                    setInterval(function(){
+		                    	var assetM = app.assetcache.getAssetObject(series1.name);
+		                        series1.data[series1.data.length-1].update(series1.data[series1.data.length-1].y = assetM.get('last') , false,true);
+		                        series1.chart.redraw();
+		                    }, 1000)
+		                }
+        		} */
                 },
                 rangeSelector: {
                     enabled: false
                 },
+                tooltip: {
+			crosshairs: [true, true],
+			formatter: function() {
+				var s = '<b>'+ Highcharts.dateFormat('%b %e, %H:%M', this.x) +'</b>';
+				$.each(this.points, function(i, point) {
+					s += '<br/>'+ point.y.toFixed(2);
+				});
+
+				return s;
+			}
+	    	},
                  navigator: {
 			    	enabled: false
 	    	},
@@ -275,11 +311,47 @@ var ChartView = Backbone.View.extend({
                 title: {
                     text: null
                 },
-                yAxis: [{
-                        title: {
-                            text: null
-                        },
-                    }],
+                  yAxis:[{
+                  
+                  
+        opposite: false,
+        gridLineColor:'#ddd',
+        forceRedraw:true
+    },{
+    	linkedTo:0,
+    	forceRedraw:true,
+        opposite: true,
+        gridLineColor:'#F8F8F8',
+        labels:{
+	            align:'left',
+	            formatter: function() {
+		    	return "<b>"+ this.value+'</b>';
+		    },
+		    style: {
+		                    color: 'green',
+		                    font: '12px Helvetica',
+		                    fontWeight: 'bold'
+            		}
+	        },
+        tickPositioner: function(min,max){
+            var data = this.chart.series[0].yData,
+            ticks = new Array();
+            if(data.length > 0){            
+            	ticks.push((data[data.length-1]).toFixed(2));
+            }
+            if(data.length > 1){            
+            	ticks.push((data[data.length-1] -0.01).toFixed(2));
+            }
+	    ticks.sort(function(a,b){ 
+	                    return b - a;
+            })
+            return ticks;
+        }
+    }],   
+                xAxis: [{
+                	min: xmin,
+                	max: xmax
+                }],
                 series: dailyseries
             });
     }

@@ -63,7 +63,7 @@ function getSteamerInfo(app) {
 function loginUpdate(message){
 	if(!app.streamerLoggedIn){
 		app.streamerLoggedIn=true;
-		Backbone.history.navigate('', true); 
+		Backbone.history.navigate('loggedin', true); 
 	}
 }
 

@@ -12,7 +12,7 @@ var AssetModel = Backbone.Model.extend({
 		changePercent:"",
 		dayRange:"",
 		description:"",
-		assettype:""
+		assetType:""
 	},
 	initialize: function(){
 		console.log(" initialise watch list object");
@@ -46,13 +46,27 @@ var AssetModel = Backbone.Model.extend({
 	},
 	
 	setMODDetails : function(respJson){
-		this.set({divDate:new Date(respJson.Overview.ExDivDate)});
-		this.set({marktetCap:respJson.Overview.MarketCap});
-		this.set({sector:respJson.Overview.Sector});
-		this.set({industry:respJson.Overview.Industry});
-		this.set({peRatio:respJson.Overview.PERatio});
-		this.set({divYield:respJson.Overview.AnnualDividend});
-		this.set({histVolatility:respJson.Overview.HistoricalVolatility});
+		if(respJson.Results != null){
+			respJson = respJson.Results[0];
+		}else if(respJson.Overview != null){
+			respJson = respJson.Overview;
+		}
+		this.set({divDate:new Date(respJson.ExDivDate)});
+		this.set({marktetCap:respJson.MarketCap});
+		this.set({sector:respJson.Sector});
+		this.set({industry:respJson.Industry});
+		this.set({peRatio:respJson.PERatio});
+		this.set({divYield:respJson.AnnualDividend});
+		this.set({histVolatility:respJson.HistoricalVolatility});
+		
+		if(this.get('assetType')== 'ETF'){
+			this.set({ProspectusLink:respJson.ProspectusLink});
+			this.set({NetAssets:respJson.NetAssets});
+			this.set({LeveragedETFFactor:respJson.LeveragedETFFactor});
+			this.set({InceptionDate:new Date(respJson.InceptionDate)});
+			this.set({StrategyText:respJson.StrategyText});
+			
+		}
 	},
 	
 	
@@ -64,13 +78,19 @@ var AssetModel = Backbone.Model.extend({
 	        options = value;
 	    } else {
 	        attrs = {};
+	        if(key == 'assetType'){
+	        	if(value =='EQ'){
+	        		value = 'E';
+	        	}
+	        }
 	        attrs[key] = value;
+	        
 	    }
 	
 	    // Go over all the set attributes and make your changes
 	    for (attr in attrs) {
 	        if (attr == 'change') {
-	            attrs['changePercent'] = (attrs['change'] /(this.get('last')- attrs['change'] ) * 100).toFixed(2);
+	            attrs['changePercent'] = (attrs['change'] /(this.get('last')- attrs['change'] ) * 100).toFixed(2) +"%";
 	        }
 	    }
 	
