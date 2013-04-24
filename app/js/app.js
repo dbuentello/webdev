@@ -6,14 +6,14 @@ $(function() {
 	console.log('starting application');
 
 
-    utils.loadTemplates(['QuoteDetailView','QuoteDetailSubView','newSubView','ChartView'], function(){
+    utils.loadTemplates(['QuoteDetailView','QuoteDetailSubView','newSubView','ChartView','BalanceView'], function(){
             app.mainView = new MainView();
             var dummyCollection  = new WatchListModelCollection()
             app.watchlistView = new WatchlistView({collection: dummyCollection});
             app.chartView = new ChartView();
             app.assetcache = new AssetCache();
             app.streamerResponseReaderHelper = new StreamerResponseReaderHelper();
-
+            app.balanceView = new BalanceView();
             Backbone.history.start();
 
         }

@@ -49,6 +49,7 @@
 						app.userProfileModel.set(jsonResponse.amtd["xml-log-in"]);
 						console.log( JSON.stringify(app.userProfileModel));
 						alert(JSON.stringify(jsonResponse.amtd["xml-log-in"]["session-id"]));
+                                                app.loginView.parseLoginResponse();
 						getSteamerInfo(app);
                         			// This is an error
 
@@ -60,8 +61,32 @@
 					console.log(data);
 				}
 			});		
-		}
-
+		},
+                
+                parseLoginResponse:function(){
+                    app.tdaUser.set({sessionID:app.userProfileModel.get('session-id')});
+                    app.tdaUser.set({username:app.userProfileModel.get('user-id')});                   
+                    var accountlist = app.userProfileModel.get('accounts'); 
+                    var accountmap = new Object();
+                    $.each(accountlist,function(){
+                        var account = accountlist.account;  
+                        var accountmodel = new AccountModel();
+                        accountmodel.set({accountNum:account['account-id']});
+                        accountmodel.set({description:account['description']});
+                        accountmodel.set({displayName:account['display-name']});
+                        var isPrimary = false;
+                        isPrimary = account["associated-account"];
+                        accountmodel.set({isPrimary: isPrimary});
+                        if(isPrimary){
+                           app.tdaUser.set({primaryAccount:accountmodel}); 
+                        }                        
+                        accountmap[account['account-id']] = accountmodel;
+                    });  
+                    
+                    app.tdaUser.set({accountsMap:accountmap});    
+                }
+                        
+               
 
 	});
 

@@ -11,7 +11,8 @@
             'chart':'chart',
             'news':'news',
             'newsdetail/:newsid':'newsdetail',
-            'quotedetails/:symbol': 'quotedetails'		
+            'quotedetails/:symbol': 'quotedetails',
+            'balance':'balances'
             }	
 	});
 
@@ -70,6 +71,12 @@
         				app.chartView.renderTodayChart(symbol,"quotedetailschartholder");
 				    });	
         
+    });
+    
+    app.router.on('route:balances',function(actions){
+		
+        app.balanceView.render();
+
     });
 
 
