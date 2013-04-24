@@ -25,8 +25,10 @@ app.QuoteDetailSubView = Backbone.View.extend({
 
 				if(model.get('asset').get(att) > 0){
 					$("#"+model.cid+att).removeClass().addClass("greenColorText");
+					$("#"+model.cid+'changePercent').removeClass().addClass("greenColorText");
 				}else {
 					$("#"+model.cid+att).removeClass().addClass("redColorText");
+					$("#"+model.cid+'changePercent').removeClass().addClass("redColorText");
 				}
 			}
 			

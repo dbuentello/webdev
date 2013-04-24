@@ -51,14 +51,25 @@ var WatchlistView = Backbone.View.extend({
 					       			var symboldetails = wlsymbol[j];
 					       			var avgPrice = symboldetails["average-price"];
 					       			var quantity = symboldetails["quantity"];
-					       			var assetType = symboldetails["security"]["asset-type"];
+					       			//var assetType = symboldetails["security"]["asset-type"];
 					       			var desc = symboldetails["security"]["description"];
 					       			var symbol = symboldetails["security"]["symbol"];
-					       			var wlObj = new WatchListModel({symbol:symbol,description:desc,assetType:assetType});
+					       			var wlObj = new WatchListModel({symbol:symbol,description:desc});
 					       			wlObj.setAsset(app.assetcache.getAssetObject(symbol));
 					       			wlObj.get('asset').set({description:desc});
-					       			wlObj.get('asset').set({assetType:assetType});
 					       			wlc.add(wlObj);
+					       			
+					       			getAssetFastLook(symbol,function(resp) { 
+										var respJson = JSON.parse(resp);
+										if(respJson.Results.length > 0 ){
+											var assetM = app.assetcache.getAssetObject(respJson.Results[0].s)										
+											assetM.set("assetType",respJson.Results[0].i);
+										}
+									},
+								    function(respData) {
+									
+									alert('error');
+				    				});	
 					       		}
 					       	}
 					       	//var template = _.template($('#watch-list-template').html(), {coll:wlc,wlmap:app.watchListMap});
@@ -122,12 +133,10 @@ var WatchlistView = Backbone.View.extend({
 
 				if(model.get('asset').get(att) > 0){
 					$("#"+model.cid+att).removeClass().addClass("greenColorText");
+					$("#"+model.cid+'changePercent').removeClass().addClass("greenColorText");
 				}else {
 					$("#"+model.cid+att).removeClass().addClass("redColorText");
-				}
-				
-				if(att == 'changePercent'){
-					$("#"+model.cid+att).text(model.get('asset').get(att)+"%");
+					$("#"+model.cid+'changePercent').removeClass().addClass("redColorText");
 				}
 			}
 		}				
