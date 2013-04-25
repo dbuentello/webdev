@@ -1,26 +1,41 @@
 var app = app || {};
 var BalanceView = Backbone.View.extend({
-    el: '.page',
-    model: this.balanceModel,
+    el: '.page',    
     initialize: function() {
         this.balanceModel = new BalanceModel();
         this.initialLoad = true;
+        this.activeAccount = '';
+        this.accountMap = {};
         _.bindAll(this, 'render');
         this.balanceModel.bind('change', this.render);
     },
+            
     render: function() {
-        var template = _.template(utils.templates['BalanceView'], {model: this.balanceModel, accountMap: app.tdaUser.get('accountsMap')});
-        // var template = _.template(utils.templates['ChartView']);
+        var template = _.template(utils.templates['BalanceView'], {model: this.balanceModel, accountMap: app.tdaUser.get('accountsMap')});        
         this.$el.html(template);
-        if (this.initialLoad) {          
+        if (this.initialLoad) { 
+            this.accountMap = app.tdaUser.get('accountsMap');
             if (app.tdaUser.get('multipleAccount'))
                 this.getMultipleAccountBalance();
             else
                 this.getSingleAccountBalance();
         }
-
         return this;
     },
+            
+     events: {     
+        'change #accountType':  'changeAccount'  
+    },
+            
+    changeAccount:function(){
+        this.activeAccount = $('#accountType').val();    
+        var activeAccountModel = this.accountMap[this.activeAccount];
+        app.tdaUser.set({activeAccount:activeAccountModel});
+        this.balanceModel = app.accountAndBalancesMap[this.activeAccount];
+        this.render();
+        
+    },
+            
     getSingleAccountBalance: function() {
         this.initialLoad = false;
         if (!app.tdaUser.get('primaryAccount') || !app.userProfileModel.get('session-id')) {
@@ -42,8 +57,9 @@ var BalanceView = Backbone.View.extend({
                     alert(JSON.stringify(jsonResponse.amtd.error));
                 }
                 else {
-                    var balanceData = jsonResponse.amtd['balance'];
-                    app.balanceView.balanceModel = balanceView.setbalanceModel(balanceData);
+                    var balanceData = jsonResponse.amtd['balance'];                   
+                    app.balanceView.balanceModel = app.balanceView.setbalanceModel(balanceData);
+                    app.balanceView.render();
                 }
             },
             error: function(data) {
@@ -76,23 +92,24 @@ var BalanceView = Backbone.View.extend({
                     app.accountAndBalancesMap = {};
                     for (var i = 0; i < balanceData.length; i++) {
                         if (app.tdaUser.get('activeAccount').get('accountNum') === balanceData[i]["account-id"]) {
-                            app.balanceView.setbalanceModel(balanceData[i], app.balanceView.balanceModel) ;                            
+                            app.balanceView.balanceModel = app.balanceView.setbalanceModel(balanceData[i]) ;  
                             app.accountAndBalancesMap[balanceData[i]["account-id"]] = app.balanceView.balanceModel;
                         }
                         else{
-                            var balanceModel = new BalanceModel();
-                            app.balanceView.setbalanceModel(balanceData[i],balanceModel);                            
+                            var balanceModel = app.balanceView.setbalanceModel(balanceData[i]);                            
                             app.accountAndBalancesMap[balanceData[i]["account-id"]] = balanceModel;
                         }                        
                     }
                 }
+                app.balanceView.render();
             },
             error: function(data) {
                 console.log(data);
             }
         });
     },
-    setbalanceModel: function(balanceData,balanceModel) {      
+    setbalanceModel: function(balanceData) {      
+        var balanceModel = new BalanceModel();
         balanceModel.set({accountID: balanceData["account-id"]});
         balanceModel.set({cashBalance: app.balanceView.balanceModel.setBalance(balanceData["cash-balance"])});
         balanceModel.set({accountValue: app.balanceView.balanceModel.setBalance(balanceData["account-value"])});

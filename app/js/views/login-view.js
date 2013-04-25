@@ -22,7 +22,7 @@ var LoginView = Backbone.View.extend({
 
         // This should moved it is here now because we need trigger an event
         // if login is successful
-        var url = 'https://apista-qae8.tdameritrade.com/apps/300/LogIn';
+        var url = 'https://apis.tdameritrade.com/apps/300/LogIn';
         $.ajax({
             url: url,
             type: 'POST',
