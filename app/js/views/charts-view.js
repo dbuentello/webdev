@@ -148,7 +148,9 @@ var ChartView = Backbone.View.extend({
         var dailyseries = [{
                 type: this.chartType,             
                 name: this.chartModel.get('symbol'),
-                data: this.chartModel.get('dailyohlc')
+                data: this.chartModel.get('dailyohlc'),
+                color: 'red',
+                upColor: 'green'
             }, {
                 type: 'column',              
                 name: 'Volume',
@@ -158,7 +160,9 @@ var ChartView = Backbone.View.extend({
         var series = [{
                 type: this.chartType,
                 name: this.chartModel.get('symbol'),
-                data: this.chartModel.get('ohlc')
+                data: this.chartModel.get('ohlc'),
+                color: 'red',
+                upColor: 'green'
             }, {
                 type: 'column',
                 name: 'Volume',
