@@ -76,10 +76,8 @@
         
     });
     
-    app.router.on('route:balances',function(actions){
-		
+   app.router.on('route:balances',function(actions){
         app.balanceView.render();
-
     });
 
 
