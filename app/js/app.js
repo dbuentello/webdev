@@ -8,6 +8,7 @@ $(function() {
 
     utils.loadTemplates(['QuoteDetailView','QuoteDetailSubView','newSubView','ChartView','BalanceView'], function(){
             app.mainView = new MainView();
+            app.accountEvent = _.extend({}, Backbone.Events);
             var dummyCollection  = new WatchListModelCollection()
             app.watchlistView = new WatchlistView({collection: dummyCollection});
             app.chartView = new ChartView();

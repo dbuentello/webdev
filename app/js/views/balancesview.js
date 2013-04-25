@@ -8,10 +8,12 @@ var BalanceView = Backbone.View.extend({
         this.accountMap = {};
         _.bindAll(this, 'render');
         this.balanceModel.bind('change', this.render);
+        app.accountEvent.on("account:changeEvent", this.render);
     },
             
-    render: function() {
-        var template = _.template(utils.templates['BalanceView'], {model: this.balanceModel, accountMap: app.tdaUser.get('accountsMap')});        
+    render: function() {       
+        var template = _.template(utils.templates['BalanceView'], {model: this.balanceModel, accountMap: app.tdaUser.get('accountsMap'),
+            activeAccount: app.tdaUser.get('activeAccount').get('accountNum')});        
         this.$el.html(template);
         if (this.initialLoad) { 
             this.accountMap = app.tdaUser.get('accountsMap');
@@ -31,8 +33,8 @@ var BalanceView = Backbone.View.extend({
         this.activeAccount = $('#accountType').val();    
         var activeAccountModel = this.accountMap[this.activeAccount];
         app.tdaUser.set({activeAccount:activeAccountModel});
-        this.balanceModel = app.accountAndBalancesMap[this.activeAccount];
-        this.render();
+        this.balanceModel = app.accountAndBalancesMap[this.activeAccount];       
+        app.accountEvent.trigger("account:changeEvent");
         
     },
             
