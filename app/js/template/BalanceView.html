@@ -1,4 +1,13 @@
 <div>
+    
+    <div class="btn-group">
+	<select id="accountType">
+            <% for(var account in accountMap){ %>
+                <option value="<%= account%>"><%= accountMap[account].get('accountLabel')%></option>      
+            <% }%>                           
+         </select>
+  </div>
+    
     <table id="accountSummary" class="table">
         <tr>
             <td>Account Id</td>

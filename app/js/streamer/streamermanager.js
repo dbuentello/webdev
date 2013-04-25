@@ -19,7 +19,7 @@ function getSteamerInfo(app) {
 			var jsonResponse  = xmlToJson(xml);
 
 			if ( jsonResponse.amtd.error ){
-				alert(JSON.stringify(jsonResponse.amtd.error));
+				console.log(JSON.stringify(jsonResponse.amtd.error));
 			}
 			else
 			{ 

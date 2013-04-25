@@ -5,6 +5,7 @@ var AccountModel = Backbone.Model.extend({
 		accountNum:"",
 		description:"",
                 displayName:"",
+                accountLabel:"",
                 isPrimary:false
 	}
 });

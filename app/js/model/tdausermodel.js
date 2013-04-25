@@ -13,7 +13,8 @@ var TdaUserModel = Backbone.Model.extend({
                 segment:"",
                 activeAccount: new Object(),
                 primaryAccount:new Object(),
-                accountsMap:new Object() 
+                accountsMap:new Object(),
+                multipleAccount:false
 	}
 });
 
