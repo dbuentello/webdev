@@ -5,7 +5,17 @@ var Balance = Backbone.Model.extend({
         initial: 0,
         current: 0,
         change: 0
-    }   
+    },
+    initialize:function(){
+      this.initial =0;
+      this.current=0;
+      this.change=0;
+    },
+    addBalance:function(balance){
+            this.initial += balance.initial;
+            this.current += balance.current;
+            this.change +=balance.change;
+    }
 });
 
 var BalanceModel = Backbone.Model.extend({
@@ -59,7 +69,8 @@ var BalanceModel = Backbone.Model.extend({
         }
         
         return balance;        
-    }
+    }    
+    
 });
 
 
