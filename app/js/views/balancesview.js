@@ -119,6 +119,30 @@ var BalanceView = Backbone.View.extend({
         balanceModel.set({longStockValue: app.balanceView.balanceModel.setBalance(balanceData["long-stock-value"])});
         balanceModel.set({longOptionValue: app.balanceView.balanceModel.setBalance(balanceData["long-option-value"])});
         balanceModel.set({shortStockValue: app.balanceView.balanceModel.setBalance(balanceData["short-stock-value"])});
+        balanceModel.set({shortOptionValue: app.balanceView.balanceModel.setBalance(balanceData["short-option-value"])});
+        balanceModel.set({mutualFundValue: app.balanceView.balanceModel.setBalance(balanceData["mutual-fund-value"])});
+        balanceModel.set({bondValue: app.balanceView.balanceModel.setBalance(balanceData["bond-value"])});
+        balanceModel.set({accountValue: app.balanceView.balanceModel.setBalance(balanceData["account-value"])});
+        balanceModel.set({pendingDeposits: app.balanceView.balanceModel.setBalance(balanceData["pending-deposits"])});
+        balanceModel.set({savingsBalance: app.balanceView.balanceModel.setBalance(balanceData["savaings-balance"])});
+        balanceModel.set({marginBalance: app.balanceView.balanceModel.setBalance(balanceData["margin-balance"])});
+        balanceModel.set({shortBalance: app.balanceView.balanceModel.setBalance(balanceData["short-balance"])});
+        balanceModel.set({longMarginableValue: app.balanceView.balanceModel.setBalance(balanceData["long-marginable-value"])});
+        balanceModel.set({shortMarginableValue: app.balanceView.balanceModel.setBalance(balanceData["short-marginable-value"])});
+        balanceModel.set({marginEquity: app.balanceView.balanceModel.setBalance(balanceData["margin-equity"])});
+        balanceModel.set({equityPercentage: app.balanceView.balanceModel.setBalance(balanceData["equity-percentage"])});
+        balanceModel.set({cashForWithdrawal: app.balanceView.balanceModel.setBalance(balanceData["cash-for-withdrawal"])});   
+        balanceModel.set({cashDebitCallValue: app.balanceView.balanceModel.setBalance(balanceData["cash-debit-call-value"])});   
+        balanceModel.set({unsettledCash: app.balanceView.balanceModel.setBalance(balanceData["unsettled-cash"])});   
+       
+        balanceModel.set({stockBuyingPower: balanceData["stock-buying-power"]});       
+        balanceModel.set({optionBuyingPower: balanceData["option-buying-power"]});
+        balanceModel.set({dayTradingBuyingPower: balanceData["day-trading-buying-power"]});
+        balanceModel.set({availableFundsForTrading: balanceData["available-funds-for-trading"]});
+        balanceModel.set({dayEquityCallValue: balanceData["day-equity-call-value"]});
+        
+        
+        
         balanceModel.set({bondValue: app.balanceView.balanceModel.setBalance(balanceData["bond-value"])});
         if (balanceModel.get('accountValue').get('change') > 0)
         {
