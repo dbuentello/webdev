@@ -6,10 +6,12 @@ var ChartView = Backbone.View.extend({
         console.log("Chart initialize " + app.userProfileModel);
         this.timeinterval;
         this.periodType;
+        this.chartInstance;
+        this.chartdivId;
         this.chartType = 'candlestick';
         this.endDate = $.datepicker.formatDate('yymmdd', new Date());
         this.chartModel = new ChartModel();
-        _.bindAll(this, 'render');
+        _.bindAll(this,'render','update');
 
     },
     render: function() {   
@@ -23,7 +25,8 @@ var ChartView = Backbone.View.extend({
     },
     
     renderTodayChart: function(symbol,divId) {   
-    		$('#'+divId).empty();            
+    	$('#'+divId).empty();   
+    	this.chartdivId = divId;
     	this.getPriceHistoryForSymbol(symbol);    	
     },
     events: {
@@ -36,6 +39,20 @@ var ChartView = Backbone.View.extend({
         this.drawCharts();
     },
     
+    update: function(model) {
+    		//this.collection.each(this.renderOne);
+    		var diff = model.get('changedColumns');
+    		for(var att in diff){
+			if(att == 'last'){
+				series1 = this.chartInstance.series[0];
+				var assetM = app.assetcache.getAssetObject(series1.name);
+				series1.data[series1.data.length-1].update(series1.data[series1.data.length-1].y = assetM.get('last'));
+				series1.chart.yAxis[1].update({opposite: true});
+			}
+    		}				
+	},
+	
+    
 	getPriceHistoryForSymbol: function(symbol)
 	{
             this.chartModel.set({symbol: symbol});
@@ -44,7 +61,7 @@ var ChartView = Backbone.View.extend({
             var url = 'https://apista.tdameritrade.com/apps/100/PriceHistory?jsessionid=' + sessionToken +
                     '&requestidentifiertype=SYMBOL&requestvalue=' + symbol + '&source=TAG' +
                     '&intervaltype=MINUTE&periodtype=DAY' +
-                    '&intervalduration=1&enddate=' + this.endDate + '&period=1' +
+                    '&intervalduration=5&enddate=' + this.endDate + '&period=1' +
                     '&extended=false';
             dailyReq.open('GET', url, true);
             dailyReq.responseType = 'arraybuffer';
@@ -124,7 +141,12 @@ var ChartView = Backbone.View.extend({
             }
             if(quotetab){
             	this.chartModel.set({dailyohlc: ohlc});
-            	this.drawTodayCharts();
+            	if(this.chartInstance){
+            		this.chartInstance.destroy();
+            	}
+            	this.chartInstance = drawUtilTodayCharts(this.chartdivId,this.chartModel.get('symbol'),ohlc);
+            	this.chartModel.setAsset(app.assetcache.getAssetObject(this.chartModel.get('symbol')));
+            	this.chartModel.on("change",this.update);
             	return;
             }
             if (dailyChart) {
@@ -231,116 +253,6 @@ var ChartView = Backbone.View.extend({
                 }],
             series: dailyseries
         });
-    },
-    
-    drawTodayCharts: function(continerId) {
-    
-    		var d = new Date();
-    		d.setHours(9);
-    		d.setMinutes(30);
-    		d.setSeconds(0);
-    		
-    		var xmin = d.getTime();
-    		d.setHours(16);
-    		d.setMinutes(0);
-    		var xmax = d.getTime();
-                Highcharts.setOptions({
-                    global: {
-                        useUTC: false
-                    }
-                });
-            var dailyseries = [{
-                    type: 'line',             
-                    name: this.chartModel.get('symbol'),
-                    data: this.chartModel.get('dailyohlc')
-                }];
-            var series = [{
-                    type: 'line',
-                    name: this.chartModel.get('symbol'),
-                    data: this.chartModel.get('ohlc')
-                }];
-            var chart = new Highcharts.StockChart({
-                chart: {
-                    renderTo: 'quotedetailschartholder'
-                   /* events: {
-		                load: function(){
-		                    var chart = this,
-		                        series1 = chart.series[0];
-		                    
-		                    setInterval(function(){
-		                    	var assetM = app.assetcache.getAssetObject(series1.name);
-		                        series1.data[series1.data.length-1].update(series1.data[series1.data.length-1].y = assetM.get('last') , false,true);
-		                        series1.chart.redraw();
-		                    }, 1000)
-		                }
-        		} */
-                },
-                rangeSelector: {
-                    enabled: false
-                },
-                tooltip: {
-			crosshairs: [true, true],
-			formatter: function() {
-				var s = '<b>'+ Highcharts.dateFormat('%b %e, %H:%M', this.x) +'</b>';
-				$.each(this.points, function(i, point) {
-					s += '<br/>'+ point.y.toFixed(2);
-				});
-
-				return s;
-			}
-	    	},
-                 navigator: {
-			    	enabled: false
-	    	},
-	    	 scrollbar: {
-			enabled: false
-		    },
-                title: {
-                    text: null
-                },
-                  yAxis:[{
-                  
-                  
-        opposite: false,
-        gridLineColor:'#ddd',
-        forceRedraw:true
-    },{
-    	linkedTo:0,
-    	forceRedraw:true,
-        opposite: true,
-        gridLineColor:'#F8F8F8',
-        labels:{
-	            align:'left',
-	            formatter: function() {
-		    	return "<b>"+ this.value+'</b>';
-		    },
-		    style: {
-		                    color: 'green',
-		                    font: '12px Helvetica',
-		                    fontWeight: 'bold'
-            		}
-	        },
-        tickPositioner: function(min,max){
-            var data = this.chart.series[0].yData,
-            ticks = new Array();
-            if(data.length > 0){            
-            	ticks.push((data[data.length-1]).toFixed(2));
-            }
-            if(data.length > 1){            
-            	ticks.push((data[data.length-1] -0.01).toFixed(2));
-            }
-	    ticks.sort(function(a,b){ 
-	                    return b - a;
-            })
-            return ticks;
-        }
-    }],   
-                xAxis: [{
-                	min: xmin,
-                	max: xmax
-                }],
-                series: dailyseries
-            });
     }
-
+    
 });

@@ -47,7 +47,7 @@ function getSteamerInfo(app) {
 						"ws" :  "ws://tdameritrade-web.streamer.com/ws",
 						"flash" : "ws://tdameritrade-web.streamer.com/ws",
 						});
-				app.streamer.setDebugMode(true);
+				app.streamer.setDebugMode(false);
 				app.streamer.onMessage(onMessage,"default");
 				app.streamer.onLogin(loginUpdate);
 				app.streamer.onError(streamerError);
@@ -73,12 +73,15 @@ function streamerError(message){
 
 function onMessage(message){
 	var wl111 = app.assetcache.getAssetObject(message['key']);
-
-	for(var propt in message){
-		if(app.streamerResponseReaderHelper.quoteReaderMap[propt]){
-			wl111.set(app.streamerResponseReaderHelper.quoteReaderMap[propt],message[propt]);
-		}
+	if(message.dataID == 'QUOTE'){
+		for(var propt in message){
+			if(app.streamerResponseReaderHelper.quoteReaderMap[propt]){
+				wl111.set(app.streamerResponseReaderHelper.quoteReaderMap[propt],message[propt]);
+			}
 		
+		}
+	}else if(message.dataID == 'CHART'){
+		i = 1;
 	}
 	
 }
@@ -96,8 +99,27 @@ function addLevel1QuoteSubscription(symbols){
 }
 
 //pass comma seperated symbols for level1 quote subscription
+function addChartBarsSubscription(symbols){
+	if(app.streamerLoggedIn){
+		symbols = symbols.toUpperCase();
+		var fields = "0,1,2,3,4,5,6,7";
+		var dataID = "CHART";
+		app.streamer.addSymbol(dataID, symbols, fields);
+	}else{
+		alert('not logged on');
+	}
+}
+
+//pass comma seperated symbols for level1 quote subscription
 function unSubscribeLevel1QuoteSubscription(symbols){
 	symbols = symbols.toUpperCase();
 	var dataID = "QUOTE";
+	app.streamer.removeSymbol(dataID, symbols);
+}
+
+//pass comma seperated symbols for level1 quote subscription
+function unSubscribeAddChartBars(symbols){
+	symbols = symbols.toUpperCase();
+	var dataID = "CHART";
 	app.streamer.removeSymbol(dataID, symbols);
 }

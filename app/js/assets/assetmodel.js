@@ -69,8 +69,6 @@ var AssetModel = Backbone.Model.extend({
 		}
 	},
 	
-	
-	
 	set: function(key, value, options) {
 	    // Normalize the key-value into an object
 	    if (_.isObject(key) || key == null) {
