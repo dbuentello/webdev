@@ -91,7 +91,18 @@ function drawUtilTodayCharts(continerId,symbol, ohlcData) {
                 	max: xmax
                 }],
                 series: dailyseries
-            });
+            }, function(chart) {
+    
+    var renderer = chart.renderer;
+    
+    renderer.text(symbol, 200, 100).attr({
+        
+    }).css({
+        fontSize: '16pt',
+        color: 'green'
+    }).add();
+    
+});
             
             return chart;
     }

@@ -6,10 +6,34 @@ app.currentWLMap = {};
 var WatchlistView = Backbone.View.extend({
 	el: '.page',
 	initialize: function(){
+	 	this.chartlist = [];
 		console.log("Watch initialize "+app.userProfileModel);
 		_.bindAll(this,'render','update');
 
-	},		
+	},
+	events: {
+	        'click #wlchartview': 'renderChartList'
+    	},
+    	
+    	renderChartList: function(){
+    		if(this.chartlist.length > 0){
+    			for(var i=0; i < this.chartlist.length ; i++){
+    				this.chartlist[i].destroy();
+    			}
+    		}
+    		this.$el.html("<div><div id='chartsgrid' class='row'> </div></div>");
+    		this.chartlist = [];
+    		wlLview = this;
+    		this.collection.each(function(model){
+    			$('#chartsgrid').append("<div class='span4' style='height:180px;' id='chartsgrid"+model.get('symbol')+"'> </div>");
+			var ch = new ChartView();
+			wlLview.chartlist.push(ch);
+			ch.renderTodayChart(model.get('symbol'),"chartsgrid"+model.get('symbol'));				
+			
+		});
+    		
+    		
+    	},
 
 	render: function() {
 	 //TODO: check to see if session is valid -  For now if the api returns invalid session please set the user model to {}
@@ -93,6 +117,13 @@ var WatchlistView = Backbone.View.extend({
 			});
 	            	
 	            }else{
+	                if(this.chartlist.length > 0){
+				for(var i=0; i < this.chartlist.length ; i++){
+					this.chartlist[i].destroy();
+				}
+			}
+		    
+    			this.chartlist = [];
 	            	//this.$el.html("showing WATCHLISTTT");
 	            	var template = _.template($('#watch-list-template').html(), {coll:this.collection,wlmap:app.watchListMap});
 			this.$el.html(template);
@@ -109,6 +140,13 @@ var WatchlistView = Backbone.View.extend({
 	},
 	
 	renderList: function(name){
+		if(this.chartlist.length > 0){
+		for(var i=0; i < this.chartlist.length ; i++){
+				this.chartlist[i].destroy();
+			}
+		}
+			    
+    		this.chartlist = [];
 		var symbols='';
 		this.collection.each(function(model){
 			symbols = symbols+","+model.get('symbol');

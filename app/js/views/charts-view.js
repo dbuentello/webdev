@@ -27,8 +27,16 @@ var ChartView = Backbone.View.extend({
     renderTodayChart: function(symbol,divId) {   
     	$('#'+divId).empty();   
     	this.chartdivId = divId;
-    	this.getPriceHistoryForSymbol(symbol);    	
+    	that = this;
+    	this.getPriceHistoryForSymbol(symbol,that);    	
     },
+    
+    destroy: function(){
+    	if(this.chartInstance){
+			this.chartInstance.destroy();
+	}
+    },
+    
     events: {
         'click #goButton': 'getPriceHistory',
         'change #chartType':  'changeChartType'  
@@ -53,7 +61,7 @@ var ChartView = Backbone.View.extend({
 	},
 	
     
-	getPriceHistoryForSymbol: function(symbol)
+	getPriceHistoryForSymbol: function(symbol,that)
 	{
             this.chartModel.set({symbol: symbol});
             var sessionToken = app.userProfileModel.get('session-id');
@@ -67,7 +75,7 @@ var ChartView = Backbone.View.extend({
             dailyReq.responseType = 'arraybuffer';
             dailyReq.onload = function(oEvent) {
                 var arrayBuffer = dailyReq.response;
-                app.chartView.priceHistoryResponse(arrayBuffer, true,true);
+                that.priceHistoryResponse(arrayBuffer, true,true);
             };
             dailyReq.send(null);
     
