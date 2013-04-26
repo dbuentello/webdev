@@ -1,0 +1,47 @@
+<div>
+
+    <div class="btn-group">
+        <select id="accountType">
+            <% for(var account in accountMap){ 
+              if(account == activeAccount) { %>
+                  <option value="<%= account%>" selected='selected'><%= accountMap[account].get('accountLabel')%></option>      
+              <%} 
+              else{%>          
+                 <option value="<%= account%>"><%= accountMap[account].get('accountLabel')%></option>      
+                <% }
+            }%>                           
+        </select>
+    </div>
+
+    <table id="accountSummary" class="table">
+        <tr>
+            <td>Account Id</td>
+            <td><%= model.get('accountID')%></td>
+        </tr>
+
+        <tr>
+            <td>Account Value</td>
+            <td><%= model.get('accountValue').get('current')%></td>
+        </tr>
+
+        <tr>
+            <td>Today's Net Change</td>
+            <td class="<%= model.get('todayNetChangeColor')%> "> <%= model.get('accountValue').get('change')%></td>
+        </tr>
+
+        <tr>
+            <td>Avail. Funds for Trading</td>
+            <td><%= model.get('availableFundsForTrading')%></td>
+        </tr>
+
+        <tr>
+            <td>Cash &amp; Money Market</td>
+            <td><%= model.get('cashBal')%></td>
+        </tr>
+        <tr>
+            <td>Long Stock Value</td>
+            <td><%= model.get('longStockValue').get('current')%></td>
+        </tr>
+
+    </table>
+</div>
