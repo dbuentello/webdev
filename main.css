@@ -3,6 +3,11 @@
 	font-weight: bold;
 }
 
+.highcharts-contextmenu {
+    bottom: auto !important;
+    top: 5px;
+}
+
 .greenColorText {
 	color: green;
 	font-weight: bold;

@@ -7,7 +7,7 @@ function drawUtilTodayCharts(continerId,symbol, ohlcData) {
     		
     		var xmin = d.getTime();
     		d.setHours(16);
-    		d.setMinutes(10);
+    		d.setMinutes(20);
     		var xmax = d.getTime();
                 Highcharts.setOptions({
                     global: {
@@ -69,10 +69,10 @@ function drawUtilTodayCharts(continerId,symbol, ohlcData) {
 		  	        linkedTo: 0,
 		  	        opposite: true,
 		  	        gridLineColor:'#F8F8F8',
-		  	        offset: 10,
+		  	        offset: 20,
 		  	        labels:{
 					            formatter: function() {
-						    	return "<b>"+ this.value+'</b>';
+						    	return "<b>  "+ this.value+'</b>';
 						    },
 						    style: {
 						                    color: 'green',
@@ -90,12 +90,15 @@ function drawUtilTodayCharts(continerId,symbol, ohlcData) {
                 	min: xmin,
                 	max: xmax
                 }],
-                series: dailyseries
+                series: dailyseries,
+                exporting: {
+		            enabled: false
+        	}
             }, function(chart) {
     
     var renderer = chart.renderer;
     
-    renderer.text(symbol, 200, 100).attr({
+    renderer.text(symbol, 150, 100).attr({
         
     }).css({
         fontSize: '16pt',

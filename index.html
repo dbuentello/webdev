@@ -155,8 +155,11 @@
 						<li role="presentation"><a role="menuitem" tabindex="-1" href="#watchlistname/<%= propt%>"><%= propt%></a></li>
 					<% }%>
 				</ul>
-				<button type="button" class="btn btn-success" id="wlchartview" >Ch</button>
 			</div>
+			<div class="btn-group">
+							  <button type="button" class="btn" id="wlchartview"><i class='icon-th-large'> </i></button>
+							  <button type="button" class="btn" id="wllistview"><i class=' icon-th-list'> </i></button>
+				</div>
 		<table  id="watchlistTable" class="table table-hover">
 			<thead>
 				<tr>
@@ -184,6 +187,30 @@
 
 			</tbody>
 			</table>
+	</script>
+
+	    <script type="text/template" id="watch-list-chart-template">
+
+				<div class="btn-group">
+					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+					WatchList
+					<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<% for(var propt in wlmap){ %>
+							<li role="presentation"><a role="menuitem" tabindex="-1" href="#watchlistname/<%= propt%>"><%= propt%></a></li>
+						<% }%>
+					</ul>
+				</div>
+				<div class="btn-group">
+								  <button type="button" class="btn" id="wlchartview"><i class='icon-th-large'> </i></button>
+								  <button type="button" class="btn" id="wllistview"><i class=' icon-th-list'> </i></button>
+				</div>
+				<div>
+					<div id='chartsgrid' class='row'>
+					</div>
+				</div>
+
 	</script>
 
 

@@ -12,7 +12,8 @@ var WatchlistView = Backbone.View.extend({
 
 	},
 	events: {
-	        'click #wlchartview': 'renderChartList'
+	        'click #wlchartview': 'renderChartList',
+	        'click #wllistview': 'render'
     	},
     	
     	renderChartList: function(){
@@ -21,7 +22,8 @@ var WatchlistView = Backbone.View.extend({
     				this.chartlist[i].destroy();
     			}
     		}
-    		this.$el.html("<div><div id='chartsgrid' class='row'> </div></div>");
+    		var template = _.template($('#watch-list-chart-template').html(), {coll:this.collection,wlmap:app.watchListMap});
+		this.$el.html(template);
     		this.chartlist = [];
     		wlLview = this;
     		this.collection.each(function(model){
