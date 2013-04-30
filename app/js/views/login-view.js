@@ -71,7 +71,7 @@ var LoginView = Backbone.View.extend({
             var accountmodel = this.setAccountValues(account);
             accountmap[account['account-id']] = accountmodel;
         } else {
-            var accountmodel = new AccountModel({accountLabel: 'ALL'});
+            var accountmodel = new AccountModel({accountLabel: 'ALL',accountNum:'ALL'});
             accountmap['ALL'] = accountmodel;
             app.tdaUser.set({multipleAccount: true});
             for (var i = 0; i < account.length; i++) {

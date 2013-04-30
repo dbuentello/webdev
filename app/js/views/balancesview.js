@@ -92,16 +92,23 @@ var BalanceView = Backbone.View.extend({
                 else {
                     var balanceData = jsonResponse.amtd["all-accounts"]["all-balances"]["account-balances"];
                     app.accountAndBalancesMap = {};
+                    var allBalances = new BalanceModel();
+                    allBalances.set({accountID: 'ALL'});
                     for (var i = 0; i < balanceData.length; i++) {
                         if (app.tdaUser.get('activeAccount').get('accountNum') === balanceData[i]["account-id"]) {
                             app.balanceView.balanceModel = app.balanceView.setbalanceModel(balanceData[i]) ;  
                             app.accountAndBalancesMap[balanceData[i]["account-id"]] = app.balanceView.balanceModel;
+                            allBalances.addAllBalance(app.balanceView.balanceModel);
                         }
                         else{
                             var balanceModel = app.balanceView.setbalanceModel(balanceData[i]);                            
                             app.accountAndBalancesMap[balanceData[i]["account-id"]] = balanceModel;
-                        }                        
+                            allBalances.addAllBalance(balanceModel);
+                        }   
+                        
                     }
+                    
+                    app.accountAndBalancesMap['ALL'] = allBalances;
                 }
                 app.balanceView.render();
             },
@@ -141,18 +148,15 @@ var BalanceView = Backbone.View.extend({
         balanceModel.set({availableFundsForTrading: balanceData["available-funds-for-trading"]});
         balanceModel.set({dayEquityCallValue: balanceData["day-equity-call-value"]});
         
-        
-        
         balanceModel.set({bondValue: app.balanceView.balanceModel.setBalance(balanceData["bond-value"])});
-        if (balanceModel.get('accountValue').get('change') > 0)
-        {
+        if (balanceModel.get('accountValue').get('change') > 0){
             balanceModel.set({todayNetChangeColor: 'greenColorText'});
         }
         else if (balanceModel.get('accountValue').get('change') < 0) {
             balanceModel.set({todayNetChangeColor: 'redColorText'});
         }
         balanceModel.set({availableFundsForTrading: balanceData["available-funds-for-trading"]});
-        var cashBal = balanceModel.get('cashBalance').get('current') + balanceModel.get('moneyMarketBalance').get('current');
+        var cashBal = parseFloat(balanceModel.get('cashBalance').get('current')) + parseFloat(balanceModel.get('moneyMarketBalance').get('current'));
         balanceModel.set({cashBal: cashBal});
         return balanceModel;
     },
