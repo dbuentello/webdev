@@ -13,7 +13,8 @@
             'news':'news',
             'newsdetail/:newsid':'newsdetail',
             'quotedetails/:symbol': 'quotedetails',
-            'balance':'balances'
+            'balance':'balances',
+            'positions':'positions'
             }	
 	});
 
@@ -79,5 +80,9 @@
    app.router.on('route:balances',function(actions){
         app.balanceView.render();
     });
+    
+    app.router.on('route:positions',function(actions){
+        app.positionsView.render();
+    }); 
 
 

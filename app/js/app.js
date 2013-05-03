@@ -6,7 +6,7 @@ $(function() {
 	console.log('starting application');
 
 
-    utils.loadTemplates(['QuoteDetailView','QuoteDetailSubView','newSubView','ChartView','BalanceView'], function(){
+    utils.loadTemplates(['QuoteDetailView','QuoteDetailSubView','newSubView','ChartView','BalanceView','PositionView'], function(){
             app.mainView = new MainView();
             app.accountEvent = _.extend({}, Backbone.Events);
             var dummyCollection  = new WatchListModelCollection()
@@ -15,6 +15,7 @@ $(function() {
             app.assetcache = new AssetCache();
             app.streamerResponseReaderHelper = new StreamerResponseReaderHelper();           
             app.balanceView = new BalanceView();
+            app.positionsView = new PoistionsView();
             Backbone.history.start();
 
         }
