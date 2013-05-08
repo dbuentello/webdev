@@ -32,7 +32,7 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#chart">Charts</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#news">News</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#research">Research</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#optoins">Options</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#optionchain">Options</a></li>
                     </ul>
                     </a>
                 </li>
@@ -57,12 +57,13 @@
 		<div id="page" class="page" style="height:100%;width:100%"></div>
 	</div>
 	<link rel="stylesheet" href="main.css">
-
+	<link rel="stylesheet" href="themes/blue/style.css" type="text/css" id="" media="print, projection, screen" />
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
            <script src="http://code.highcharts.com/stock/highstock.js"></script>
         <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
     <script type="text/javascript" src="app/js/lib/jquery.xml2json.js"></script>
@@ -81,6 +82,8 @@
 	<script type="text/javascript" src="app/js/model/watchlistmodel.js"></script>
 	<script type="text/javascript" src="app/js/model/quotedetailmodel.js"></script>
 	<script type="text/javascript" src="app/js/model/watchlistmodelcollection.js"></script>
+	<script type="text/javascript" src="app/js/model/optionchainlistmodel.js"></script>
+	<script type="text/javascript" src="app/js/model/optionchainlistmodelcollection.js"></script>
 	<script type="text/javascript" src="app/js/model/newsheadlinemodel.js"></script>
 	<script type="text/javascript" src="app/js/model/newsheadlinemodelcollection.js"></script>
     <script type="text/javascript" src="app/js/model/chartmodel.js"></script>
@@ -93,6 +96,7 @@
 	<script type="text/javascript" src="app/js/views/quotedetailsubview.js"></script>
 	<script type="text/javascript" src="app/js/views/newssubview.js"></script>
     <script type="text/javascript" src="app/js/views/charts-view.js"></script>
+    <script type="text/javascript" src="app/js/views/optionchain-view.js"></script>
     <script type="text/javascript" src="app/js/utils/jDataView.js"></script>
 	<script type="text/javascript" src="app/js/app.js"></script>
 	<script type="text/javascript" src="app/js/model/tdausermodel.js"></script>
@@ -160,7 +164,7 @@
 							  <button type="button" class="btn" id="wlchartview"><i class='icon-th-large'> </i></button>
 							  <button type="button" class="btn" id="wllistview"><i class=' icon-th-list'> </i></button>
 				</div>
-		<table  id="watchlistTable" class="table table-hover">
+		<table  id="watchlistTable" class="table table-hover tablesorter-bootstrap">
 			<thead>
 				<tr>
 					<th>SYMBOL</th>

@@ -69,6 +69,13 @@ var AssetModel = Backbone.Model.extend({
 		}
 	},
 	
+	setOptionDetails : function(optObj){
+		this.set({bid:optObj.bid});
+		this.set({ask:optObj.ask});
+		this.set({last:optObj.last});
+		this.set({ITM:optObj["in-the-money"]});		
+	},
+	
 	set: function(key, value, options) {
 	    // Normalize the key-value into an object
 	    if (_.isObject(key) || key == null) {

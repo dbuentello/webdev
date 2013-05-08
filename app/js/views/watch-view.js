@@ -86,14 +86,14 @@ var WatchlistView = Backbone.View.extend({
 					       			wlc.add(wlObj);
 					       			
 					       			getAssetFastLook(symbol,function(resp) { 
-										var respJson = JSON.parse(resp);
-										if(respJson.Results.length > 0 ){
-											var assetM = app.assetcache.getAssetObject(respJson.Results[0].s)										
-											assetM.set("assetType",respJson.Results[0].i);
-										}
-									},
+									var respJson = JSON.parse(resp);
+									if(respJson.Results.length > 0 ){
+										var assetM = app.assetcache.getAssetObject(respJson.Results[0].s);
+										assetM.set("assetType",respJson.Results[0].i);
+									}
+								},
 								    function(respData) {
-									
+
 									alert('error');
 				    				});	
 					       		}
@@ -136,6 +136,7 @@ var WatchlistView = Backbone.View.extend({
 				app.currentWLMap[model.get('symbol')]=model;
 			});
 			addLevel1QuoteSubscription(symbols);
+			$("#watchlistTable").tablesorter(); 
 	            }
         	}
 		

@@ -13,6 +13,7 @@
             'news':'news',
             'newsdetail/:newsid':'newsdetail',
             'quotedetails/:symbol': 'quotedetails',
+            'optionchain': 'optionchain',
             'balance':'balances'
             }	
 	});
@@ -78,6 +79,10 @@
     
    app.router.on('route:balances',function(actions){
         app.balanceView.render();
+    });
+    
+    app.router.on('route:optionchain',function(actions){
+            app.optionchainView.render();
     });
 
 

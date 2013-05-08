@@ -65,11 +65,15 @@ function getQuoteSnapShot(symbol,successCallback, errorCallback){
     // This takes a symbol array as an input because you can have more than one input to the api
     // logic should check the symbol quote cache first before requesting fresh data.  This call may make sense to be made in
     // in a worker thread if it exists
-    var response = makeTDARequestHelper('/Quote','source='+getSourceID()+'&symbol='+symbol,successCallback, errorCallback);
+    var response = makeTDARequestHelper('/OptionChain','source='+getSourceID()+'&symbol='+symbol,successCallback, errorCallback);
     //jsonResponse = xmlToJson(response);
     //return jsonResponse;
 
 
+}
+
+function getOptionChain(symbol,successCallback, errorCallback){
+	var response = makeTDARequestHelper('/OptionChain','source='+getSourceID()+'&quotes=true&range=N&symbol='+symbol,successCallback, errorCallback);
 }
 
 function getSymbolLookup(text){

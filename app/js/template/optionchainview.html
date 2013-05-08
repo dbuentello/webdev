@@ -1,0 +1,92 @@
+<table class="table table-hover">
+<col width="3%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+
+
+<thead>
+				<tr>
+					<th></th>
+					<th id="SYMBOL1">LAST</th>
+					<th id="SYMBOL1">BID</th>
+					<th id="SYMBOL2">ASK</th>
+					<th></th>
+					<th id="SYMBOL2">STRIKE</th>
+					<th></th>
+					<th id="SYMBOL2">ASK</th>
+					<th id="SYMBOL1">BID</th>
+					<th id="SYMBOL1">LAST</th>
+				</tr>
+			</thead>
+
+
+		<% for(var propt in opmap){
+			var opcoll = opmap[propt];
+			%>
+				<tr>
+					<td>
+						<i class='icon-chevron-right' id='<%= propt%>open' onclick="javascript: document.getElementById('stufftohide<%= propt%>').style.display = 'table-row-group';document.getElementById('<%= propt%>open').style.display = 'none';document.getElementById('<%= propt%>close').style.display = 'block';"></i>
+						<i class='icon-chevron-down'  id='<%= propt%>close' style="display:none;" onclick="javascript: document.getElementById('stufftohide<%= propt%>').style.display = 'none';document.getElementById('<%= propt%>open').style.display = 'block';document.getElementById('<%= propt%>close').style.display = 'none';"></i>
+					</td>
+					<td colspan='9'><%= propt%></td>
+				</tr>
+			<tbody id="stufftohide<%= propt%>" style="display:none;">
+
+			<% opcoll.each(function(model){
+				var bgc = "#ffffff";
+				if(model.get('callAsset').get('ITM') == 'true'){
+					bgc= "#f9f9f9";
+				}
+
+				var pbgc = "#ffffff";
+
+				if(model.get('putAsset').get('ITM') == 'true'){
+					pbgc= "#f9f9f9"
+				}
+			%>
+
+
+				<tr>
+					<td bgcolor="<%= bgc%>"></td>
+					<td bgcolor="<%= bgc%>" style=" text-align:right"><%= model.get('callAsset').get('last')%></td>
+					<td bgcolor="<%= bgc%>" style=" text-align:right"><%= model.get('callAsset').get('bid')%></td>
+					<td bgcolor="<%= bgc%>" style=" text-align:right"><%= model.get('callAsset').get('ask')%></td>
+					<td bgcolor="<%= bgc%>" style=" text-align:right"><i class='icon-arrow-right' rel="drevil"> </i></td>
+					<td bgcolor="#e7e7e7" style=" text-align:center"><%= model.get('strikePrice')%></td>
+					<td bgcolor="<%= pbgc%>" style=" text-align:left"><i class='icon-arrow-left' rel="drevil"> </i></td>
+					<td bgcolor="<%= pbgc%>" style=" text-align:right"><%= model.get('putAsset').get('ask')%></td>
+					<td bgcolor="<%= pbgc%>" style=" text-align:right"><%= model.get('putAsset').get('bid')%></td>
+					<td bgcolor="<%= pbgc%>" style=" text-align:right"><%= model.get('putAsset').get('last')%></td>
+				</tr>
+			<%
+			}); %>
+			</tbody>
+		<% }%>
+
+</table>
+
+<script type="text/javascript">
+ $(document).ready(function() {
+
+	$('i[rel=drevil]').popover({
+	    trigger: 'manual',
+	    html: 'true',
+	    placement:'right',
+	    content: '<div style="background-color:#000000;"><table class="table table-hover"><tr><td><a href="#cc">Covered Call</a></td></tr><tr><td><a href="#cc">Covered Call</a></td></tr><tr><td><a href="#cc">Covered Call</a></td></tr><tr><td><a href="#cc">Covered Call</a></td></tr><tr><td><a href="#cc">Covered Call</a></td></tr><tr><td><a href="#cc">Covered Call</a></td></tr></table></div>'
+	}).click(function(evt) {
+	    evt.stopPropagation();
+	    $(this).popover('show');
+});
+
+	$('html').click(function() {
+	    $('i[rel=drevil]').popover('hide');
+});
+	});
+
+
+</script>
