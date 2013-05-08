@@ -14,6 +14,7 @@
             'newsdetail/:newsid':'newsdetail',
             'quotedetails/:symbol': 'quotedetails',
             'optionchain': 'optionchain',
+            'positions':'positions',
             'balance':'balances'
             }	
 	});
@@ -83,6 +84,10 @@
     
     app.router.on('route:optionchain',function(actions){
             app.optionchainView.render();
+    });
+    
+    app.router.on('route:positions',function(actions){
+                app.poistionsView.render();
     });
 
 
