@@ -1,0 +1,22 @@
+
+<div class="row-fluid">
+    <div class="span8">
+
+        <table  id="quotedetailsTable">
+            <tbody>
+                <tr>
+                    <td>   <input type="text" name="chartSymbol" id="chartSymbol" placeholder="[Symbol]" /></td>
+                    <td> <button type="button" class="btn btn-success" id="goButton"> Go </button></td>
+                    <td> <label>Chart Type</label></td>
+                    <td>  <select id="chartType">
+                            <option value="line">Line</option>
+                            <option value="ohlc">OHLC</option>
+                            <option value="candlestick" selected="selected">Candlestick</option>
+                            <option value="area">Area</option>
+                        </select></td>                 
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="chartPage" class="page" style="height:500px;width:100%"></div>
+</div>   
