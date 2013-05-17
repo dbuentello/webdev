@@ -1,0 +1,109 @@
+<div class="row-fluid">
+
+    <div class="btn-group">
+        <select id="accountType">
+            <% for(var account in accountMap){ 
+              if(account == activeAccount) { %>
+                  <option value="<%= account%>" selected='selected'><%= accountMap[account].get('accountLabel')%></option>      
+              <%} 
+              else{%>          
+                 <option value="<%= account%>"><%= accountMap[account].get('accountLabel')%></option>      
+                <% }
+            }%>                           
+        </select>
+    </div>
+
+    <table id="accountSummary" class="table">
+        <tr>
+            <td>Account Id</td>
+            <td><%= model.get('accountID')%></td>
+        </tr>
+
+        <tr>
+            <td>Account Value</td>
+            <td><%= model.get('accountValue').get('current')%></td>
+        </tr>
+
+        <tr>
+            <td>Today's Net Change</td>
+            <td class="<%= model.get('todayNetChangeColor')%> "> <%= model.get('accountValue').get('change')%></td>
+        </tr>
+
+        <tr>
+            <td>Avail. Funds for Trading</td>
+            <td><%= model.get('availableFundsForTrading')%></td>
+        </tr>
+
+        <tr>
+            <td>Cash &amp; Money Market</td>
+            <td><%= model.get('cashBal')%></td>
+        </tr>
+       
+        <tr>
+            <td>Margin Balance</td>
+            <td><%= model.get('marginBalance').get('current')%></td>
+        </tr>
+        
+        <tr>
+            <td>Stock BP</td>
+            <td><%= model.get('stockBuyingPower')%></td>
+        </tr>
+        
+        <tr>
+            <td>Options BP</td>
+            <td><%= model.get('optionBuyingPower')%></td>
+        </tr>
+        <tr>
+            <td>Day Trading BP</td>
+            <td><%= model.get('dayTradingBuyingPower')%></td>
+        </tr>
+        
+        <tr>
+            <td>Mutual Fund Value</td>
+            <td><%= model.get('mutualFundValue').get('current')%></td>
+        </tr>
+        
+        <tr>
+            <td>Bond Value</td>
+            <td><%= model.get('bondValue').get('current')%></td>
+        </tr>         
+        
+        <tr>
+            <td>Cash For Withdrawal</td>
+            <td><%= model.get('cashForWithdrawal').get('current')%></td>
+        </tr>
+        
+        <tr>
+            <td>Long Stock Value</td>
+            <td><%= model.get('longStockValue').get('current')%></td>
+        </tr>
+         <tr>
+            <td>Short Stock Value</td>
+            <td><%= model.get('shortStockValue').get('current')%></td>
+        </tr>
+         <tr>
+            <td>Long Option Value</td>
+            <td><%= model.get('longOptionValue').get('current')%></td>
+        </tr>
+        <tr>
+            <td>Short Option Value</td>
+            <td><%= model.get('shortOptionValue').get('current')%></td>
+        </tr>
+        
+         <tr>
+            <td>Long Marginable Value</td>
+            <td><%= model.get('longMarginableValue').get('current')%></td>
+        </tr>
+        
+        <tr>
+            <td>Short Marginable Value</td>
+            <td><%= model.get('shortMarginableValue').get('current')%></td>
+        </tr>
+        
+        <tr>
+            <td>Margin Equity</td>
+            <td><%= model.get('marginEquity').get('current')%></td>
+        </tr>
+        
+    </table>
+</div>
