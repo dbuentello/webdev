@@ -7,7 +7,7 @@ function getSessionID(){
 }
 
 function getSourceID(){
-    return "TAG";
+    return "tda-mobile";
 }
 
 function getEnvironmentURLString(){
@@ -17,18 +17,23 @@ function getEnvironmentURLString(){
 }
 
 
-function makeTDARequestHelper(request, data ,successCallback, errorCallback) {
+function makeTDARequestHelper(request, data) {
 
     // I'm going to use JQuery and reference the user model
     if (app.userProfileModel.get('session-id')) {
          url = getEnvironmentURLString() + '/' + request + ';jession-id=' + app.userProfileModel.get('session-id') ;
         $.ajax ({
             url:url,
-            type:'POST',
+            type:post,
             datatype:'',
             data:data,
-            success : successCallback,
-            error : errorCallback            
+            success: function(response){
+
+            },
+            error: function(error) {
+                console.log(error);
+
+            }
         } ) ;
 
     }
@@ -46,10 +51,10 @@ function createError(errorName, errorMessage){
 }
 
 // Mock Request Responses can be made from here
-function makeTDARequest(url, postdata, authtoken, sessionid){
+function makeTDARequest(url, postdata, authtoken, session-id){
 
     if (authtoken === mock.token){
-        return mock.makeMockRequest( url, postdata, authtoken, sessionid);
+        return mock.makeMockRequest( url, postdata, authtoken, session-id);
     }
     else {
 
@@ -61,19 +66,15 @@ function makeTDARequest(url, postdata, authtoken, sessionid){
     return response;
 }
 
-function getQuoteSnapShot(symbol,successCallback, errorCallback){
+function getQuoteSnapShot(symbol[]){
     // This takes a symbol array as an input because you can have more than one input to the api
     // logic should check the symbol quote cache first before requesting fresh data.  This call may make sense to be made in
     // in a worker thread if it exists
-    var response = makeTDARequestHelper('/OptionChain','source='+getSourceID()+'&symbol='+symbol,successCallback, errorCallback);
-    //jsonResponse = xmlToJson(response);
-    //return jsonResponse;
+    var response = makeTDARequestHelper('/Quote','source='+getSourceID()'&symbol=msft');
+    jsonResponse = xmlToJson(response);
+    return jsonResponse;
 
 
-}
-
-function getOptionChain(symbol,successCallback, errorCallback){
-	var response = makeTDARequestHelper('/OptionChain','source='+getSourceID()+'&quotes=true&range=N&symbol='+symbol,successCallback, errorCallback);
 }
 
 function getSymbolLookup(text){

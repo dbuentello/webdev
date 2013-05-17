@@ -1,14 +1,33 @@
 var app = app || {};
 
 var WatchListModel = Backbone.Model.extend({
-	
+	defaults:{
+		symbol:"",
+		bid:"",
+		ask:"",
+		last:"",
+		change:"",
+		changePercent:"",
+		description:"",
+		changedColumns:{},
+		asset:{}
+	},
+		
 	initialize: function(){
-		_.bindAll(this,"setAsset","updateQuote");
+		console.log(" initialise watch list object");
+ 		_.bindAll(this,"registerAsset","updateQuote");
+	},
+
+	symbol: function(){
+	   this.symbol;
 	},
 	
-	setAsset : function(assetObj){
-		this.set({asset: assetObj});
+	registerAsset : function(){
 		this.get('asset').on("change",this.updateQuote);
+	},
+
+	bid: function(){
+	   this.symbol;
 	},	
 	
 	updateQuote: function(model){
