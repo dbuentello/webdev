@@ -1,14 +1,13 @@
 var app = app || {}
 
 app.NewsSubView = Backbone.View.extend({
-	el:'.page',
+	el:'#page',
 	initialize: function () {
 		_.bindAll(this, 'renderAll', 'addItem');
 	},
 	
 	render: function () {
-	
-		console.log('render news subb view');
+        console.log('render news subb view');
 		this.collection = new NewsHeadLineModelCollection();
 		
 		this.$el.html("NEWSSSS ");
@@ -20,7 +19,7 @@ app.NewsSubView = Backbone.View.extend({
 	renderAll: function(collection) {
 		var tmp = _.template(utils.templates["newSubView"], {coll:this.collection});
 		this.$el.html(tmp);		    
-        },
+    },
 	
 	addItem: function(item) {
 	       console.log(item);

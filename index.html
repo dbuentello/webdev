@@ -3,10 +3,15 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap.min.css">
-        <style>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+
+    <style>
               body {
                 padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
               }
+              .draggable { width: 290px; height: 290px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+              #containment-wrapper { width: 95%; height:800px; border:2px solid #ccc; padding: 10px; }
         </style>
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap-responsive.min.css">
 </head>
@@ -58,10 +63,11 @@
 	</div>
 	<link rel="stylesheet" href="main.css">
 	<link rel="stylesheet" href="themes/blue/style.css" type="text/css" id="" media="print, projection, screen" />
+
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script src="http://cdn.jsdelivr.net/underscorejs/1.4.4/underscore-min.js"></script>
+	<script src="http://cdn.jsdelivr.net/backbonejs/1.0.0/backbone-min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
            <script src="http://code.highcharts.com/stock/highstock.js"></script>
@@ -102,7 +108,7 @@
     <script type="text/javascript" src="app/js/views/charts-view.js"></script>
     <script type="text/javascript" src="app/js/views/optionchain-view.js"></script>
 	<script type="text/javascript" src="app/js/views/positionsview.js"></script>
-
+    <script type="text/javascript" src="app/js/views/custom-view.js"></script>
     <script type="text/javascript" src="app/js/utils/jDataView.js"></script>
 	<script type="text/javascript" src="app/js/app.js"></script>
 	<script type="text/javascript" src="app/js/model/tdausermodel.js"></script>
@@ -132,13 +138,13 @@
 					<div class="control-group">
 						<label class="control-label" for="inputUsername">User Name</label>
 						<div class="controls">
-							<input type="text" name="username" value="aruntrade01" id="inputUsername" placeholder="User Name"/>
+							<input type="text" name="username" value="tst144162199" id="inputUsername" placeholder="User Name"/>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="inputPassword" placeholder="Password">Password</Label>
 						<div class="controls">
-							<input type="password" name="password" value="test123" id="inputPassword"/>
+							<input type="password" name="password" value="test9033" id="inputPassword"/>
 						</div>
 					</div>
 					<div class="control-group">

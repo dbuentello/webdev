@@ -13,7 +13,7 @@ function getSourceID(){
 function getEnvironmentURLString(){
 
     // We should probably move the 100 to a version for request and not leave it here
-    return "https://apis.tdameritrade.com/apps/100"
+    return app.apiUrl+"/apps/100"
 }
 
 

@@ -15,6 +15,7 @@
             'quotedetails/:symbol': 'quotedetails',
             'optionchain': 'optionchain',
             'positions':'positions',
+            'custom':'custom',
             'balance':'balances'
             }	
 	});
@@ -62,19 +63,32 @@
             this.quoteDetailView = new app.QuoteDetailView();
         }
         var that = this;
-        
-	//need to call the snapquotes to get the details
-	getAssetOverView(symbol,function(resp) { 
-					alert('Success');
-					},
-				    function(respData) {
-				    	var assetM = app.assetcache.getAssetObject(symbol);
-				    	var respJson = JSON.parse(respData.responseText);
-				    	assetM.setMODDetails(respJson);
-					that.quoteDetailView.render(symbol);
-					$('#quotedetailschartholder').empty();
-        				app.chartView.renderTodayChart(symbol,"quotedetailschartholder");
-				    });	
+        getAssetFastLook(symbol,function(resp) {
+                var respJson = JSON.parse(resp);
+                if(respJson.Results.length > 0 ){
+                    var assetM = app.assetcache.getAssetObject(symbol);
+                    assetM.set("assetType",respJson.Results[0].i);
+                    //need to call the snapquotes to get the details
+                    getAssetOverView(symbol,function(resp) {
+                            alert('Success');
+                        },
+                        function(respData) {
+                            var assetM = app.assetcache.getAssetObject(symbol);
+                            var respJson = JSON.parse(respData.responseText);
+                            assetM.setMODDetails(respJson);
+                            that.quoteDetailView.render(symbol);
+                            $('#quotedetailschartholder').empty();
+                            app.chartView.renderTodayChart(symbol,"quotedetailschartholder");
+                        });
+
+                }
+            },
+            function(respData) {
+
+                alert('error');
+            });
+
+
         
     });
     
@@ -90,4 +104,7 @@
                 app.poistionsView.render();
     });
 
+    app.router.on('route:custom',function(actions){
+        app.customView.render();
+    });
 

@@ -47,7 +47,7 @@ var WatchlistView = Backbone.View.extend({
 	            if(!app.watchListMap){
 	            	this.$el.html("Retriveing WATCHLISTTT");
 	            	console.log("NO wathclist");
-	            	var url = 'https://apis.tdameritrade.com/apps/100/GetWatchlists;jsessionid='+app.userProfileModel.get('session-id');
+	            	var url = app.apiUrl+'/apps/100/GetWatchlists;jsessionid='+app.userProfileModel.get('session-id');
 			$.ajax({
 				url:url,
 				type:'POST',
@@ -84,18 +84,6 @@ var WatchlistView = Backbone.View.extend({
 					       			wlObj.setAsset(app.assetcache.getAssetObject(symbol));
 					       			wlObj.get('asset').set({description:desc});
 					       			wlc.add(wlObj);
-					       			
-					       			getAssetFastLook(symbol,function(resp) { 
-									var respJson = JSON.parse(resp);
-									if(respJson.Results.length > 0 ){
-										var assetM = app.assetcache.getAssetObject(respJson.Results[0].s);
-										assetM.set("assetType",respJson.Results[0].i);
-									}
-								},
-								    function(respData) {
-
-									alert('error');
-				    				});	
 					       		}
 					       	}
 					       	//var template = _.template($('#watch-list-template').html(), {coll:wlc,wlmap:app.watchListMap});

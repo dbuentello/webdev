@@ -3,7 +3,7 @@ var app;
 
 function getSteamerInfo(app) {
 	app = app;
-	var url = 'https://apis.tdameritrade.com/apps/200/StreamerInfo;jsessionid='+app.userProfileModel.get('session-id');
+	var url = app.apiUrl+'/apps/200/StreamerInfo;jsessionid='+app.userProfileModel.get('session-id');
 	$.ajax({
 		url:url,
 		type:'POST',
@@ -22,16 +22,22 @@ function getSteamerInfo(app) {
 				alert(JSON.stringify(jsonResponse.amtd.error));
 			}
 			else
-			{ 
+			{
+                var acct;
+                if(app.userProfileModel.get("accounts").account.length){
+                     acct =      app.userProfileModel.get("accounts").account[0];
+                }else{
+                    acct =      app.userProfileModel.get("accounts").account;
+                }
 				app.streamerconfig = new Object();
 				var info = jsonResponse.amtd["streamer-info"];
-				app.streamerconfig.account =app.userProfileModel.get("accounts").account["account-id"];
-				app.streamerconfig.userid =app.userProfileModel.get("accounts").account["account-id"];
+				app.streamerconfig.account =acct["account-id"];
+				app.streamerconfig.userid =acct["account-id"];
 				app.streamerconfig.token = info.token;
-				app.streamerconfig.company =app.userProfileModel.get("accounts").account["company"];
+				app.streamerconfig.company =acct["company"];
 				app.streamerconfig.source ='TAG-1234';
-				app.streamerconfig.segment =app.userProfileModel.get("accounts").account["segment"];
-				app.streamerconfig.cddomain =app.userProfileModel.get("accounts").account["cdi"];
+				app.streamerconfig.segment =acct["segment"];
+				app.streamerconfig.cddomain =acct["cdi"];
 				app.streamerconfig.usergroup =info.usergroup;
 				app.streamerconfig.accesslevel =info["access-level"];
 				app.streamerconfig.authorized =info.authorized;
@@ -42,12 +48,20 @@ function getSteamerInfo(app) {
 				//if(connectionData.content){
 					//connectionData = connectionData.content;				
 				//}
-				app.streamer = new tda.adaptors.Session( app.streamerconfig, {
+
+                //QA npeqae-streamer-web.ameritrade.com
+                app.streamer = new tda.adaptors.Session( app.streamerconfig, {
+                    "http" : "http://npeqae-streamer-web.ameritrade.com/ws",
+                    "ws" :  "ws://npeqae-streamer-web.ameritrade.com/ws",
+                    "flash" : "ws://npeqae-streamer-web.ameritrade.com/ws",
+                });
+                //Prod
+				/*app.streamer = new tda.adaptors.Session( app.streamerconfig, {
 						"http" : "http://tdameritrade-web.streamer.com/ws",
 						"ws" :  "ws://tdameritrade-web.streamer.com/ws",
 						"flash" : "ws://tdameritrade-web.streamer.com/ws",
-						});
-				app.streamer.setDebugMode(false);
+						});*/
+				app.streamer.setDebugMode(true);
 				app.streamer.onMessage(onMessage,"default");
 				app.streamer.onLogin(loginUpdate);
 				app.streamer.onError(streamerError);
