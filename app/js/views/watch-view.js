@@ -6,10 +6,36 @@ app.currentWLMap = {};
 var WatchlistView = Backbone.View.extend({
 	el: '.page',
 	initialize: function(){
+	 	this.chartlist = [];
 		console.log("Watch initialize "+app.userProfileModel);
 		_.bindAll(this,'render','update');
 
-	},		
+	},
+	events: {
+	        'click #wlchartview': 'renderChartList',
+	        'click #wllistview': 'render'
+    	},
+    	
+    	renderChartList: function(){
+    		if(this.chartlist.length > 0){
+    			for(var i=0; i < this.chartlist.length ; i++){
+    				this.chartlist[i].destroy();
+    			}
+    		}
+    		var template = _.template($('#watch-list-chart-template').html(), {coll:this.collection,wlmap:app.watchListMap});
+		this.$el.html(template);
+    		this.chartlist = [];
+    		wlLview = this;
+    		this.collection.each(function(model){
+    			$('#chartsgrid').append("<div class='span4' style='height:180px;' id='chartsgrid"+model.get('symbol')+"'> </div>");
+			var ch = new ChartView();
+			wlLview.chartlist.push(ch);
+			ch.renderTodayChart(model.get('symbol'),"chartsgrid"+model.get('symbol'));				
+			
+		});
+    		
+    		
+    	},
 
 	render: function() {
 	 //TODO: check to see if session is valid -  For now if the api returns invalid session please set the user model to {}
@@ -51,13 +77,25 @@ var WatchlistView = Backbone.View.extend({
 					       			var symboldetails = wlsymbol[j];
 					       			var avgPrice = symboldetails["average-price"];
 					       			var quantity = symboldetails["quantity"];
-					       			var assetType = symboldetails["security"]["asset-type"];
+					       			//var assetType = symboldetails["security"]["asset-type"];
 					       			var desc = symboldetails["security"]["description"];
 					       			var symbol = symboldetails["security"]["symbol"];
-					       			var wlObj = new WatchListModel({symbol:symbol,description:desc,assetType:assetType});
-					       			wlObj.set({asset: app.assetcache.getAssetObject(symbol)});
-					       			wlObj.registerAsset();
+					       			var wlObj = new WatchListModel({symbol:symbol,description:desc});
+					       			wlObj.setAsset(app.assetcache.getAssetObject(symbol));
+					       			wlObj.get('asset').set({description:desc});
 					       			wlc.add(wlObj);
+					       			
+					       			getAssetFastLook(symbol,function(resp) { 
+									var respJson = JSON.parse(resp);
+									if(respJson.Results.length > 0 ){
+										var assetM = app.assetcache.getAssetObject(respJson.Results[0].s);
+										assetM.set("assetType",respJson.Results[0].i);
+									}
+								},
+								    function(respData) {
+
+									alert('error');
+				    				});	
 					       		}
 					       	}
 					       	//var template = _.template($('#watch-list-template').html(), {coll:wlc,wlmap:app.watchListMap});
@@ -66,6 +104,7 @@ var WatchlistView = Backbone.View.extend({
 						// This is an error
 						//Backbone.history.navigate('watchlist', true); 
 						app.watchlistView.collection = wlc;
+						
 						app.watchlistView.render();
 						app.watchlistView.collection.on("change",app.watchlistView.update);
 						app.watchlistView.collection.on("add",app.watchlistView.render);
@@ -80,6 +119,13 @@ var WatchlistView = Backbone.View.extend({
 			});
 	            	
 	            }else{
+	                if(this.chartlist.length > 0){
+				for(var i=0; i < this.chartlist.length ; i++){
+					this.chartlist[i].destroy();
+				}
+			}
+		    
+    			this.chartlist = [];
 	            	//this.$el.html("showing WATCHLISTTT");
 	            	var template = _.template($('#watch-list-template').html(), {coll:this.collection,wlmap:app.watchListMap});
 			this.$el.html(template);
@@ -90,12 +136,20 @@ var WatchlistView = Backbone.View.extend({
 				app.currentWLMap[model.get('symbol')]=model;
 			});
 			addLevel1QuoteSubscription(symbols);
+			$("#watchlistTable").tablesorter(); 
 	            }
         	}
 		
 	},
 	
 	renderList: function(name){
+		if(this.chartlist.length > 0){
+		for(var i=0; i < this.chartlist.length ; i++){
+				this.chartlist[i].destroy();
+			}
+		}
+			    
+    		this.chartlist = [];
 		var symbols='';
 		this.collection.each(function(model){
 			symbols = symbols+","+model.get('symbol');
@@ -120,8 +174,10 @@ var WatchlistView = Backbone.View.extend({
 
 				if(model.get('asset').get(att) > 0){
 					$("#"+model.cid+att).removeClass().addClass("greenColorText");
+					$("#"+model.cid+'changePercent').removeClass().addClass("greenColorText");
 				}else {
 					$("#"+model.cid+att).removeClass().addClass("redColorText");
+					$("#"+model.cid+'changePercent').removeClass().addClass("redColorText");
 				}
 			}
 		}				

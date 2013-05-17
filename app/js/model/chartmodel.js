@@ -1,7 +1,13 @@
 var app = app || {};
 
-var WatchListModel = Backbone.Model.extend({
-	
+var ChartModel = Backbone.Model.extend({
+    defaults:{
+		symbol:"",
+		ohlc:{},
+                dailyohlc:{},
+                dailyvolume:{},
+                volume:{}
+	},
 	initialize: function(){
 		_.bindAll(this,"setAsset","updateQuote");
 	},

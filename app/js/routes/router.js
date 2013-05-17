@@ -6,12 +6,17 @@
 	var Router = Backbone.Router.extend({
 		routes: {
 			'':'home',
+			'loggedin':'home',
 			'watchlist':'watchlist',
 			'watchlistname/:name':'watchlistname',
             'chart':'chart',
+            'news':'news',
+            'newsdetail/:newsid':'newsdetail',
             'quotedetails/:symbol': 'quotedetails',
-            'quotedetails': 'quotedetails'
-		}	
+            'optionchain': 'optionchain',
+            'positions':'positions',
+            'balance':'balances'
+            }	
 	});
 
     app.router = new Router();
@@ -35,14 +40,54 @@
         app.chartView.render();
 
     });
+    
+    app.router.on('route:news',function(actions){
+	if (!this.newssubview){
+	    this.newssubview = new app.NewsSubView();
+	 }
+	 this.newssubview.render();
+    
+    });
+    
+    app.router.on('route:newsdetail',function(newsid){
+    	
+    	this.newssubview.loadNewsDetails(newsid,"newdetailssectionspan", "newheadsectionspan");
+        
+    });
 
 
     app.router.on('route:quotedetails', function (symbol){
 
-        if (!this.quoteDetailView)
+        if (!this.quoteDetailView){
             this.quoteDetailView = new app.QuoteDetailView();
-        else
-            this.quoteDetailView.render();
+        }
+        var that = this;
+        
+	//need to call the snapquotes to get the details
+	getAssetOverView(symbol,function(resp) { 
+					alert('Success');
+					},
+				    function(respData) {
+				    	var assetM = app.assetcache.getAssetObject(symbol);
+				    	var respJson = JSON.parse(respData.responseText);
+				    	assetM.setMODDetails(respJson);
+					that.quoteDetailView.render(symbol);
+					$('#quotedetailschartholder').empty();
+        				app.chartView.renderTodayChart(symbol,"quotedetailschartholder");
+				    });	
+        
+    });
+    
+   app.router.on('route:balances',function(actions){
+        app.balanceView.render();
+    });
+    
+    app.router.on('route:optionchain',function(actions){
+            app.optionchainView.render();
+    });
+    
+    app.router.on('route:positions',function(actions){
+                app.poistionsView.render();
     });
 
 

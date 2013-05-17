@@ -61,33 +61,29 @@ function getSteamerInfo(app) {
 }
 
 function loginUpdate(message){
-	app.streamerLoggedIn=true;
-	Backbone.history.navigate('watchlist', true); 
-
+	if(!app.streamerLoggedIn){
+		app.streamerLoggedIn=true;
+		Backbone.history.navigate('balance', true); 
+	}
 }
+
 function streamerError(message){
 	alert(message);
 }
 
 function onMessage(message){
-	console.log(message);
 	var wl111 = app.assetcache.getAssetObject(message['key']);
-
-	if( typeof message[1] != 'undefined'){
-		wl111.set('bid',message[1]);
+	if(message.dataID == 'QUOTE'){
+		for(var propt in message){
+			if(app.streamerResponseReaderHelper.quoteReaderMap[propt]){
+				wl111.set(app.streamerResponseReaderHelper.quoteReaderMap[propt],message[propt]);
+			}
+		
+		}
+	}else if(message.dataID == 'CHART'){
+		i = 1;
 	}
-	if( typeof message[2] != 'undefined'){
-		wl111.set('ask',message[2]);
-	}
-	if( typeof message[3] != 'undefined'){
-		wl111.set('last',message[3]);
-	}
-	if( typeof message[29] != 'undefined'){
-		wl111.set('change',message[29]);
-	}
-	if( typeof message[29] != 'undefined'){
-		wl111.set('changePercent',message[29]);
-	}
+	
 }
 
 //pass comma seperated symbols for level1 quote subscription
@@ -103,8 +99,27 @@ function addLevel1QuoteSubscription(symbols){
 }
 
 //pass comma seperated symbols for level1 quote subscription
+function addChartBarsSubscription(symbols){
+	if(app.streamerLoggedIn){
+		symbols = symbols.toUpperCase();
+		var fields = "0,1,2,3,4,5,6,7";
+		var dataID = "CHART";
+		app.streamer.addSymbol(dataID, symbols, fields);
+	}else{
+		alert('not logged on');
+	}
+}
+
+//pass comma seperated symbols for level1 quote subscription
 function unSubscribeLevel1QuoteSubscription(symbols){
 	symbols = symbols.toUpperCase();
 	var dataID = "QUOTE";
+	app.streamer.removeSymbol(dataID, symbols);
+}
+
+//pass comma seperated symbols for level1 quote subscription
+function unSubscribeAddChartBars(symbols){
+	symbols = symbols.toUpperCase();
+	var dataID = "CHART";
 	app.streamer.removeSymbol(dataID, symbols);
 }
