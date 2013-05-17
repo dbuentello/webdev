@@ -30,9 +30,8 @@
                     <ul class="dropdown-menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#quotedetails">Detail</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#chart">Charts</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#news">News</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#research">Research</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#optionchain">Options</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#optoins">Options</a></li>
                     </ul>
                     </a>
                 </li>
@@ -47,7 +46,7 @@
                   </ul>
               </a></li>
               <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="#contact">Contact</a></li>             
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -57,60 +56,38 @@
 		<div id="page" class="page" style="height:100%;width:100%"></div>
 	</div>
 	<link rel="stylesheet" href="main.css">
-	<link rel="stylesheet" href="themes/blue/style.css" type="text/css" id="" media="print, projection, screen" />
+
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
            <script src="http://code.highcharts.com/stock/highstock.js"></script>
         <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
     <script type="text/javascript" src="app/js/lib/jquery.xml2json.js"></script>
-    <script type="text/javascript" src="app/js/utils/tdaapiutil.js"></script>
-    <script type="text/javascript" src="app/js/utils/chartutil.js"></script>
 	<script type="text/javascript" src="app/js/utils/parsexml.js"></script>
 	<script type="text/javascript" src="app/js/utils/xml2json.js"></script>
 	<script type="text/javascript" src="app/js/utils/serializeobj.js"></script>
     <script type="text/javascript" src="app/js/utils/templateloader.js"></script>
     <script type="text/javascript" src="app/js/utils/emptyobj.js"></script>
-    <script type="text/javascript" src="app/js/utils/marketodapiutil.js"></script>
     <script type="text/javascript" src="app/js/streamer/streamermanager.js"></script>
-    <script type="text/javascript" src="app/js/streamer/StreamerResponseReaderHelper.js"></script>
     <script type="text/javascript" src="app/js/streamer/tdaStreamer.js"></script>
 	<script type="text/javascript" src="app/js/model/userprofilemodel.js"></script>
 	<script type="text/javascript" src="app/js/model/watchlistmodel.js"></script>
-	<script type="text/javascript" src="app/js/model/quotedetailmodel.js"></script>
 	<script type="text/javascript" src="app/js/model/watchlistmodelcollection.js"></script>
-	<script type="text/javascript" src="app/js/model/optionchainlistmodel.js"></script>
-	<script type="text/javascript" src="app/js/model/optionchainlistmodelcollection.js"></script>
-	<script type="text/javascript" src="app/js/model/newsheadlinemodel.js"></script>
-	<script type="text/javascript" src="app/js/model/newsheadlinemodelcollection.js"></script>
-	
-	<script type="text/javascript" src="app/js/model/positionsmodel.js"></script>
-	<script type="text/javascript" src="app/js/model/positionscollection.js"></script>
-
-    <script type="text/javascript" src="app/js/model/chartmodel.js"></script>
 	<script type="text/javascript" src="app/js/assets/AssetCache.js"></script>
 	<script type="text/javascript" src="app/js/assets/assetmodel.js"></script>
 	<script type="text/javascript" src="app/js/routes/router.js"></script>
 	<script type="text/javascript" src="app/js/views/login-view.js"></script>
     <script type="text/javascript" src="app/js/views/watch-view.js"></script>
 	<script type="text/javascript" src="app/js/views/main-view.js"></script>
-	<script type="text/javascript" src="app/js/views/quotedetailsubview.js"></script>
-	<script type="text/javascript" src="app/js/views/newssubview.js"></script>
-    <script type="text/javascript" src="app/js/views/charts-view.js"></script>
-    <script type="text/javascript" src="app/js/views/optionchain-view.js"></script>
-	<script type="text/javascript" src="app/js/views/positionsview.js"></script>
-
+	
+    <script type="text/javascript" src="app/js/views/charts-view.js"></script>	
     <script type="text/javascript" src="app/js/utils/jDataView.js"></script>
-	<script type="text/javascript" src="app/js/app.js"></script>
-	<script type="text/javascript" src="app/js/model/tdausermodel.js"></script>
-        <script type="text/javascript" src="app/js/model/accountmodel.js"></script>
-         <script type="text/javascript" src="app/js/views/balancesview.js"></script>
-<script type="text/javascript" src="app/js/views/quotedetailview.js"></script>
-<script type="text/javascript" src="app/js/model/balancesmodel.js"></script>
+<script type="text/javascript" src="app/js/app.js"></script>
 
+
+<script type="text/javascript" src="app/js/views/quotedetailview.js"></script>
+	
 
 	<!-- page templates -->
 	<script type="text/template" id="tda-loading">
@@ -119,34 +96,34 @@
 
 	<script type="text/template" id="tda-quote-detail">
 		<table>
-			<tr><td>Symbol<td> <td id="qd_symbol">...</td></tr>
+			<tr><td>Symbol<td> <td id="qd_symbol">...</td></tr>			
 		</table>
 	</script>
 
 
 	<!-- page templates -->
 	<script type="text/template" id="tda-login-page">
-				<form class="form-horizontal" id="tda-login-form">
-					<legend> Login </legend>
+		<form class="form-horizontal" id="tda-login-form">
+			<legend> Login </legend>
 
-					<div class="control-group">
-						<label class="control-label" for="inputUsername">User Name</label>
-						<div class="controls">
-							<input type="text" name="username" value="aruntrade01" id="inputUsername" placeholder="User Name"/>
-						</div>
-					</div>
-					<div class="control-group">
-						<label class="control-label" for="inputPassword" placeholder="Password">Password</Label>
-						<div class="controls">
-							<input type="password" name="password" value="test123" id="inputPassword"/>
-						</div>
-					</div>
-					<div class="control-group">
-						<div class="controls">
-							<button type="button" class="btn btn-success" id="loginButton"> Login </button>
-						</div>
-					</div>
-				</form>
+			<div class="control-group">
+				<label class="control-label" for="inputUsername">User Name</label>
+				<div class="controls">
+					<input type="text" name="username" value="apiuprtest07" id="inputUsername" placeholder="User Name"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="inputPassword" placeholder="Password">Password</Label>
+				<div class="controls">
+					<input type="password" name="password" value="07apiuprtest" id="inputPassword"/>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button type="button" class="btn btn-success" id="loginButton"> Login </button>
+				</div>
+			</div>
+		</form>
 	</script>
     <script  type="text/template" id="tda-main-page">
         <h1>Welcome!</h1>
@@ -166,11 +143,7 @@
 					<% }%>
 				</ul>
 			</div>
-			<div class="btn-group">
-							  <button type="button" class="btn" id="wlchartview"><i class='icon-th-large'> </i></button>
-							  <button type="button" class="btn" id="wllistview"><i class=' icon-th-list'> </i></button>
-				</div>
-		<table  id="watchlistTable" class="table table-hover tablesorter-bootstrap">
+		<table  id="watchlistTable" class="table table-hover">
 			<thead>
 				<tr>
 					<th>SYMBOL</th>
@@ -189,7 +162,7 @@
 						<td id='<%= model.cid%>bid' ><%= model.get('asset').get('bid')%></td>
 						<td id='<%= model.cid%>ask' ><%= model.get('asset').get('ask')%></td>
 						<td id='<%= model.cid%>last' ><%= model.get('asset').get('last')%></td>
-						<td id='<%= model.cid%>change' ><%= model.get('asset').get('change')%></td>
+						<td id='<%= model.cid%>change' class='redColorText' ><%= model.get('asset').get('change')%></td>
 						<td id='<%= model.cid%>changePercent' ><%= model.get('asset').get('changePercent')%></td>
 					<tr>
 				<%
@@ -198,31 +171,6 @@
 			</tbody>
 			</table>
 	</script>
-
-	    <script type="text/template" id="watch-list-chart-template">
-
-				<div class="btn-group">
-					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					WatchList
-					<span class="caret"></span>
-					</a>
-					<ul class="dropdown-menu">
-						<% for(var propt in wlmap){ %>
-							<li role="presentation"><a role="menuitem" tabindex="-1" href="#watchlistname/<%= propt%>"><%= propt%></a></li>
-						<% }%>
-					</ul>
-				</div>
-				<div class="btn-group">
-								  <button type="button" class="btn" id="wlchartview"><i class='icon-th-large'> </i></button>
-								  <button type="button" class="btn" id="wllistview"><i class=' icon-th-list'> </i></button>
-				</div>
-				<div>
-					<div id='chartsgrid' class='row'>
-					</div>
-				</div>
-
-	</script>
-
 
 </body>
 
