@@ -42,7 +42,7 @@ var BalanceView = Backbone.View.extend({
             app.loginView.render();
             return;
         }
-        var url = 'https://apis.tdameritrade.com/apps/100/BalancesAndPositions;accountid=' + app.tdaUser.get('activeAccount').get('accountNum');
+        var url = app.apiUrl+'/apps/100/BalancesAndPositions;accountid=' + app.tdaUser.get('activeAccount').get('accountNum');
         $.ajax({
             url: url,
             type: 'POST',
@@ -57,6 +57,11 @@ var BalanceView = Backbone.View.extend({
                 else {
                     var balanceData = jsonResponse.amtd['balance'];
                     app.balanceView.balanceModel = app.balanceView.setbalanceModel(balanceData);
+
+                    //Set Positions
+                    var positionsData = jsonResponse.amtd["positions"];
+                    var stockData = app.balanceView.getPositions(positionsData,"stocks");
+                    app.balanceView.addToPositions(stockData, positionsCollection);
                     app.balanceView.render();
                 }
             },
@@ -73,7 +78,7 @@ var BalanceView = Backbone.View.extend({
             app.loginView.render();
             return;
         }
-        var url = 'https://apista-qae8.tdameritrade.com/apps/100/MultipleBalancesAndPositions;accountid=' + app.tdaUser.get('activeAccount').get('accountNum');
+        var url = app.apiUrl+'/apps/100/MultipleBalancesAndPositions;accountid=' + app.tdaUser.get('activeAccount').get('accountNum');
         $.ajax({
             url: url,
             type: 'POST',
@@ -189,7 +194,25 @@ var BalanceView = Backbone.View.extend({
         if (listData) {
             for (var i = 0; i < listData.length; i++) {
                 var positionModel = new PoistionsModel();
-                positionModel.set(listData[i]);
+                var symbol = listData[i].security['symbol'];
+                var assetType = listData[i].security["asset-type"];
+                var underlyingSymbol;
+                if(assetType === 'O'){
+                    underlyingSymbol = app.balanceView.getUnderlyingSymbol(symbol);
+                    if(underlyingSymbol === '')
+                        continue;
+                }else
+                    underlyingSymbol =  listData[i].security['symbol'];
+
+                positionModel.set({currentValue:listData[i]["current-value"]});
+                positionModel.set({description: listData[i].security["description"]});
+                positionModel.set({underlyingSymbol: underlyingSymbol});
+                positionModel.set({quantity:listData[i]['quantity']});
+                positionModel.set({closePrice:listData[i]['close-price']});
+                positionModel.set({purchasePrice : listData[i]["average-price"]});
+                positionModel.set({symbol:symbol});                
+                var asset = app.assetcache.getAssetObject(symbol);
+                positionModel.setAsset(asset);
                 positionsCollection.add(positionModel);
             }
         }
@@ -202,5 +225,10 @@ var BalanceView = Backbone.View.extend({
     },        
     clearDetails: function() {
         this.initialLoad = true;
+    }  ,
+    //temporary extracting underlying symbol from option symbol
+    getUnderlyingSymbol:function(symbol){
+              var sym = symbol.substring(0,symbol.indexOf('_'));
+               return sym;
     }
 });

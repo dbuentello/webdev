@@ -66,7 +66,7 @@ var ChartView = Backbone.View.extend({
             this.chartModel.set({symbol: symbol});
             var sessionToken = app.userProfileModel.get('session-id');
             var dailyReq = new XMLHttpRequest();
-            var url = 'https://apista.tdameritrade.com/apps/100/PriceHistory?jsessionid=' + sessionToken +
+            var url = app.apiUrl+'/apps/100/PriceHistory?jsessionid=' + sessionToken +
                     '&requestidentifiertype=SYMBOL&requestvalue=' + symbol + '&source=TAG' +
                     '&intervaltype=MINUTE&periodtype=DAY' +
                     '&intervalduration=5&enddate=' + this.endDate + '&period=1' +
