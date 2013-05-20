@@ -55,13 +55,33 @@ var BalanceView = Backbone.View.extend({
                     alert(JSON.stringify(jsonResponse.amtd.error));
                 }
                 else {
+                    app.positionsByAccount = {};
                     var balanceData = jsonResponse.amtd['balance'];
                     app.balanceView.balanceModel = app.balanceView.setbalanceModel(balanceData);
-
+                    var accountId = app.tdaUser.get('activeAccount').get('accountNum');
                     //Set Positions
+                    var positionsCollection = new PositionsCollection();
+
                     var positionsData = jsonResponse.amtd["positions"];
                     var stockData = app.balanceView.getPositions(positionsData,"stocks");
                     app.balanceView.addToPositions(stockData, positionsCollection);
+
+                    var fundData = app.balanceView.getPositions(positionsData,"funds");
+                    app.balanceView.addToPositions(fundData, positionsCollection);
+
+                    var optionData = app.balanceView.getPositions(positionsData,"options");
+                    app.balanceView.addToPositions(optionData, positionsCollection);
+
+                    var bondData = app.balanceView.getPositions(positionsData,"bonds");
+                    app.balanceView.addToPositions(bondData, positionsCollection);
+
+                    var moneyMarketData = app.balanceView.getPositions(positionsData,"money-market");
+                    app.balanceView.addToPositions(moneyMarketData, positionsCollection);
+
+                    var savingsData = app.balanceView.getPositions(positionsData,"savings");
+                    app.balanceView.addToPositions(savingsData, positionsCollection);
+
+                    app.positionsByAccount[accountId] = positionsCollection;
                     app.balanceView.render();
                 }
             },
