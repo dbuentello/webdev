@@ -176,7 +176,9 @@ var ChartView = Backbone.View.extend({
                 }
             });
         var dailyseries = [{
-                type: this.chartType,             
+                type: this.chartType,
+                color:'red',
+                upColor:'green',
                 name: this.chartModel.get('symbol'),
                 data: this.chartModel.get('dailyohlc')
             }, {
