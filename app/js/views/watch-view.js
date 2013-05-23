@@ -7,15 +7,87 @@ var WatchlistView = Backbone.View.extend({
 	el: '.page',
 	initialize: function(){
 	 	this.chartlist = [];
+        this.viewCreated = false;
 		console.log("Watch initialize "+app.userProfileModel);
 		_.bindAll(this,'render','update');
 
 	},
 	events: {
 	        'click #wlchartview': 'renderChartList',
+            'click #wlheatview': 'renderHeatMapView',
 	        'click #wllistview': 'render'
     	},
-    	
+
+
+
+        renderHeatMapView: function(){
+            if(this.chartlist.length > 0){
+                for(var i=0; i < this.chartlist.length ; i++){
+                    this.chartlist[i].destroy();
+                }
+            }
+            var template = _.template($('#watch-list-heatmap-template').html(), {coll:this.collection,wlmap:app.watchListMap});
+            this.$el.html(template);
+            wlLview = this;
+            this.chartlist = [];
+            var arrr = [];
+            arrr.push( ['Location', 'Parent', 'Market trade volume (size)', 'Market increase/decrease (color)']);
+            arrr.push(['Global',    null,                 0,                               0]);
+
+            this.collection.each(function(model){
+                var symbol = model.get('symbol');
+                var assetM = app.assetcache.getAssetObject(symbol);
+                if(assetM.get('modLoaded') != true){
+                     getAssetFastLook(symbol,function(resp) {
+                        var respJson = JSON.parse(resp);
+                        if(respJson.Results.length > 0 ){
+                            var assetM = app.assetcache.getAssetObject(symbol);
+                            assetM.set("assetType",respJson.Results[0].i);
+                            //need to call the snapquotes to get the details
+                            getAssetOverView(symbol,function(resp) {
+                                        alert('Success');
+                                    },
+                                function(respData) {
+
+                                    var respJson = JSON.parse(respData.responseText);
+                                    assetM.setMODDetails(respJson);
+                                    wlLview.renderHeatMapView();
+                                });
+
+                        }
+                    },
+                    function(respData) {
+
+                        alert('error');
+                    });
+                }
+                if(assetM.get('assetType') =='E'){
+                    var obj = [symbol+" "+assetM.get('changePercent') , 'Global',assetM.get('marktetCap'),parseFloat(assetM.get('changePercent'))*100];
+                    arrr.push(obj);
+                }
+            });
+            var datasdsd = google.visualization.arrayToDataTable(arrr);
+
+            // Create and draw the visualization.
+            var tree = new google.visualization.TreeMap(document.getElementById('heatmapdiv'));
+            tree.draw(datasdsd, {
+                minColor: 'red',
+                midColor: '#1C1C1C',
+                midHighlightColor:'orange',
+                maxColor: 'green',
+                maxColorValue:200,
+                minColorValue:-200,
+                headerHeight: 0,
+                fontColor: 'white',
+                showScale: true});
+
+            google.visualization.events.addListener(tree, 'select', function(item){
+               // alert( datasdsd.getValue(tree.getSelection()[0].row,0));
+                var sym =       datasdsd.getValue(tree.getSelection()[0].row,0).split(" ");
+                Backbone.history.navigate('quotedetails/'+sym[0], true);
+                //or show the row details in a div. I will get some help from jquery to select a specific div:
+            });
+        },
     	renderChartList: function(){
     		if(this.chartlist.length > 0){
     			for(var i=0; i < this.chartlist.length ; i++){
@@ -124,7 +196,8 @@ var WatchlistView = Backbone.View.extend({
 				app.currentWLMap[model.get('symbol')]=model;
 			});
 			addLevel1QuoteSubscription(symbols);
-			$("#watchlistTable").tablesorter(); 
+			$("#watchlistTable").tablesorter();
+                    this.viewCreated = true;
 	            }
         	}
 		
@@ -168,6 +241,6 @@ var WatchlistView = Backbone.View.extend({
 					$("#"+model.cid+'changePercent').removeClass().addClass("redColorText");
 				}
 			}
-		}				
+		}
 	}
 });

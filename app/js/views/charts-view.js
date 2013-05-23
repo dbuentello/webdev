@@ -51,12 +51,14 @@ var ChartView = Backbone.View.extend({
     		//this.collection.each(this.renderOne);
     		var diff = model.get('changedColumns');
     		for(var att in diff){
-			if(att == 'last'){
-				series1 = this.chartInstance.series[0];
-				var assetM = app.assetcache.getAssetObject(series1.name);
-				series1.data[series1.data.length-1].update(series1.data[series1.data.length-1].y = assetM.get('last'));
-				series1.chart.yAxis[1].update({opposite: true});
-			}
+                if(att == 'last'){
+                    if(this.chartInstance.series){
+                        series1 = this.chartInstance.series[0];
+                        var assetM = app.assetcache.getAssetObject(series1.name);
+                        series1.data[series1.data.length-1].update(series1.data[series1.data.length-1].y = assetM.get('last'));
+                        series1.chart.yAxis[1].update({opposite: true});
+                    }
+                }
     		}				
 	},
 	
