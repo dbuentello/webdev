@@ -2,47 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a254914-27bb-45f0-abf7-b18b126cbcb3" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/template/BalanceView.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/template/ChartView.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/template/PositionView.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/template/QuoteDetailSubView.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/streamer/StreamerResponseReaderHelper.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/model/accountmodel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/views/balancesview.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/model/chartmodel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/utils/chartutil.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/utils/marketodapiutil.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/template/newSubView.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/model/newsheadlinemodel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/model/newsheadlinemodelcollection.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/views/optionchain-view.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/model/optionchainlistmodel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/model/optionchainlistmodelcollection.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/template/optionchainview.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/model/positionscollection.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/model/positionsmodel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/views/positionsview.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/model/quotedetailmodel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/views/quotedetailsubview.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/model/tdausermodel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/assets/AssetCache.js" afterPath="$PROJECT_DIR$/app/js/assets/AssetCache.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/app.js" afterPath="$PROJECT_DIR$/app/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/assets/assetmodel.js" afterPath="$PROJECT_DIR$/app/js/assets/assetmodel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/model/balancesmodel.js" afterPath="$PROJECT_DIR$/app/js/model/balancesmodel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/views/charts-view.js" afterPath="$PROJECT_DIR$/app/js/views/charts-view.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/assets/bootstrap.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/template/symbollookup.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/model/symbollookupcollection.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/views/symbollookview.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/views/login-view.js" afterPath="$PROJECT_DIR$/app/js/views/login-view.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/views/newssubview.js" afterPath="$PROJECT_DIR$/app/js/views/newssubview.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/views/quotedetailview.js" afterPath="$PROJECT_DIR$/app/js/views/quotedetailview.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/streamer/streamermanager.js" afterPath="$PROJECT_DIR$/app/js/streamer/streamermanager.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/utils/tdaapiutil.js" afterPath="$PROJECT_DIR$/app/js/utils/tdaapiutil.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/views/watch-view.js" afterPath="$PROJECT_DIR$/app/js/views/watch-view.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/model/watchlistmodel.js" afterPath="$PROJECT_DIR$/app/js/model/watchlistmodel.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/utils/xml2json.js" afterPath="$PROJECT_DIR$/app/js/utils/xml2json.js" />
     </list>
     <ignored path="webdev.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="5a254914-27bb-45f0-abf7-b18b126cbcb3" time="1368803590856" ignored="false" />
+    <file path="/Dummy.txt" changelist="5a254914-27bb-45f0-abf7-b18b126cbcb3" time="1369316478108" ignored="false" />
     <file path="/main-view.js" changelist="5a254914-27bb-45f0-abf7-b18b126cbcb3" time="1365097472360" ignored="false" />
     <file path="/router.js" changelist="5a254914-27bb-45f0-abf7-b18b126cbcb3" time="1368543562696" ignored="false" />
     <file path="/tdaapiutil.js" changelist="5a254914-27bb-45f0-abf7-b18b126cbcb3" time="1365522118786" ignored="false" />
@@ -55,7 +26,8 @@
     <file path="/CustomView.html" changelist="5a254914-27bb-45f0-abf7-b18b126cbcb3" time="1368478772195" ignored="false" />
     <file path="/newssubview.js" changelist="5a254914-27bb-45f0-abf7-b18b126cbcb3" time="1368539227984" ignored="false" />
     <file path="/streamermanager.js" changelist="5a254914-27bb-45f0-abf7-b18b126cbcb3" time="1368802715505" ignored="false" />
-    <file path="$PROJECT_DIR$/app/js/routes/router.js" changelist="5a254914-27bb-45f0-abf7-b18b126cbcb3" time="1368804158136" ignored="false" />
+    <file path="$PROJECT_DIR$/../groovyscripts/.idea/workspace.xml" changelist="5a254914-27bb-45f0-abf7-b18b126cbcb3" time="1369236534409" ignored="false" />
+    <file path="/bootstrap.css" changelist="5a254914-27bb-45f0-abf7-b18b126cbcb3" time="1369319155850" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,10 +95,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="tdaapiutil.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="tdaapiutil.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/utils/tdaapiutil.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="78" selection-start="1481" selection-end="1481" vertical-scroll-proportion="0.49704143">
+            <state line="64" column="78" selection-start="1481" selection-end="1481" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login-view.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/js/views/login-view.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="47" column="70" selection-start="1541" selection-end="1541" vertical-scroll-proportion="-0.6630435">
               <folding />
             </state>
           </provider>
@@ -135,25 +116,74 @@
       <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="76" selection-start="3448" selection-end="3448" vertical-scroll-proportion="-9.692307">
+            <state line="28" column="41" selection-start="1323" selection-end="1323" vertical-scroll-proportion="-8.125">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/app.js">
+      <file leaf-file-name="quotedetailview.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/views/quotedetailview.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="57" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0">
+            <state line="12" column="44" selection-start="323" selection-end="323" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="streamermanager.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/streamer/streamermanager.js">
+      <file leaf-file-name="router.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/routes/router.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="21" selection-start="2132" selection-end="2132" vertical-scroll-proportion="0.0">
+            <state line="82" column="0" selection-start="2504" selection-end="2504" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="symbollookupcollection.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/model/symbollookupcollection.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="3" selection-start="568" selection-end="568" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#153#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="symbollookview.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/views/symbollookview.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="0" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1369317926000" expanded="true" signature="360:365" placeholder="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="symbollookup.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/template/symbollookup.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="54" selection-start="450" selection-end="450" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/assets/bootstrap.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="129976" selection-start="130205" selection-end="130205" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -177,30 +207,30 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone.js" />
-        <option value="$PROJECT_DIR$/app/js/views/secureview.js" />
-        <option value="$PROJECT_DIR$/app/js/views/quotedetailview.js" />
-        <option value="$PROJECT_DIR$/app/js/template/QuoteDetailView.html" />
         <option value="code.jquery.com/ui/1.10.3/jquery-ui.js" />
         <option value="$PROJECT_DIR$/app/js/template/CustomView.html" />
         <option value="$PROJECT_DIR$/app/js/views/custom-view.js" />
         <option value="$PROJECT_DIR$/app/js/views/newssubview.js" />
         <option value="$PROJECT_DIR$/app/js/routes/router.js" />
-        <option value="$PROJECT_DIR$/app/js/views/login-view.js" />
         <option value="$PROJECT_DIR$/app/js/views/watch-view.js" />
         <option value="$PROJECT_DIR$/app/js/utils/tdaapiutil.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/main.css" />
         <option value="$PROJECT_DIR$/app/js/app.js" />
         <option value="$PROJECT_DIR$/app/js/streamer/streamermanager.js" />
+        <option value="$PROJECT_DIR$/app/js/model/symbollookup.js" />
+        <option value="$PROJECT_DIR$/app/js/views/symbollookview.js" />
+        <option value="$PROJECT_DIR$/app/js/assets/bootstrap.css" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/app/js/views/quotedetailview.js" />
+        <option value="$PROJECT_DIR$/app/js/views/login-view.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-4" />
-    <option name="y" value="-4" />
-    <option name="width" value="1688" />
-    <option name="height" value="1024" />
+    <option name="x" value="4" />
+    <option name="y" value="22" />
+    <option name="width" value="1436" />
+    <option name="height" value="878" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -230,6 +260,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane />
+      </pane>
       <pane id="Scope">
         <subPane subId="Problems" />
         <subPane subId="Project Files" />
@@ -262,7 +295,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="streamer" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -276,14 +309,53 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webdev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webdev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webdev" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane />
       </pane>
     </panes>
   </component>
@@ -536,15 +608,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1688" height="1024" extended-state="6" />
+    <frame x="4" y="22" width="1436" height="878" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3272101" sideWeight="0.18543452" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283582" sideWeight="0.6370869" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3276316" sideWeight="0.6370869" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283582" sideWeight="0.8145655" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24908201" sideWeight="0.61053836" order="2" side_tool="true" content_ui="tabs" />
@@ -556,7 +628,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14316547" sideWeight="0.70580477" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24847001" sideWeight="0.67164177" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24748202" sideWeight="0.6723684" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -630,7 +702,7 @@
       <breakpoints>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/app/js/views/login-view.js</url>
-          <line>49</line>
+          <line>48</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
@@ -665,38 +737,28 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/js/views/login-view.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="28" selection-start="1716" selection-end="1716" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/views/watch-view.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="116" selection-start="2143" selection-end="2143" vertical-scroll-proportion="0.0">
+        <state line="57" column="116" selection-start="2143" selection-end="2143" vertical-scroll-proportion="0.030411448">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/views/newssubview.js">
+    <entry file="file://$PROJECT_DIR$/app/js/streamer/tdaStreamer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="59" selection-start="1278" selection-end="1278" vertical-scroll-proportion="0.0" />
+        <state line="23" column="88" selection-start="3735" selection-end="3735" vertical-scroll-proportion="0.7161172" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/assets/assetmodel.js">
+    <entry file="file://$PROJECT_DIR$/app/js/streamer/streamermanager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="102" column="0" selection-start="2633" selection-end="2633" vertical-scroll-proportion="0.0" />
+        <state line="56" column="21" selection-start="2132" selection-end="2132" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/assets/AssetCache.js">
+    <entry file="file://$PROJECT_DIR$/app/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="201" selection-end="201" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/routes/router.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="0" selection-start="2504" selection-end="2504" vertical-scroll-proportion="0.0">
+        <state line="7" column="52" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -708,67 +770,83 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/views/login-view.js">
+    <entry file="file://$PROJECT_DIR$/app/js/views/quotedetailsubview.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="28" selection-start="1716" selection-end="1716" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/views/main-view.js">
+    <entry file="file://$PROJECT_DIR$/app/js/routes/router.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="113" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0">
+        <state line="82" column="0" selection-start="2504" selection-end="2504" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/views/watch-view.js">
+    <entry file="file://$PROJECT_DIR$/app/js/model/symbollookupcollection.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="116" selection-start="2143" selection-end="2143" vertical-scroll-proportion="0.030411448">
+        <state line="19" column="3" selection-start="568" selection-end="568" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#153#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/views/symbollookview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1369317926000" expanded="true" signature="360:365" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/template/symbollookup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="54" selection-start="450" selection-end="450" vertical-scroll-proportion="0.5474061">
+        <state line="28" column="54" selection-start="450" selection-end="450" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/streamer/tdaStreamer.js">
+    <entry file="file://$PROJECT_DIR$/app/js/assets/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="88" selection-start="3735" selection-end="3735" vertical-scroll-proportion="0.7161172">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/streamer/streamermanager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="21" selection-start="2132" selection-end="2132" vertical-scroll-proportion="0.0">
+        <state line="8" column="129976" selection-start="130205" selection-end="130205" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="76" selection-start="3448" selection-end="3448" vertical-scroll-proportion="-9.692307">
+        <state line="28" column="41" selection-start="1323" selection-end="1323" vertical-scroll-proportion="-8.125">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/app.js">
+    <entry file="file://$PROJECT_DIR$/app/js/views/quotedetailview.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="57" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0">
+        <state line="12" column="44" selection-start="323" selection-end="323" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/utils/tdaapiutil.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="78" selection-start="1481" selection-end="1481" vertical-scroll-proportion="0.49704143">
+        <state line="64" column="78" selection-start="1481" selection-end="1481" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/views/login-view.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="70" selection-start="1541" selection-end="1541" vertical-scroll-proportion="-0.6630435">
           <folding />
         </state>
       </provider>
