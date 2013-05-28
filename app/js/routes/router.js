@@ -24,6 +24,11 @@
 
     app.router.on('route:home',function(actions){
         app.mainView.render();
+        if (!this.newssubview){
+            this.newssubview = new app.NewsSubView();
+        }
+        this.newssubview.render("newsDivForMain"); //newsDivForMain
+
 
     });
 	
@@ -47,7 +52,7 @@
 	if (!this.newssubview){
 	    this.newssubview = new app.NewsSubView();
 	 }
-	 this.newssubview.render();
+	 this.newssubview.render("page");
     
     });
     

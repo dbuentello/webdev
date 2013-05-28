@@ -1,6 +1,6 @@
 
 <div class="row-fluid">
-	<div class="span6 achievements-wrapper">
+	<div class="achievements-wrapper">
 		<table  id="newslistTable" class="table table-hover">
 			<tbody>
 				<% coll.each(function(model){
@@ -14,7 +14,7 @@
 								<div>
 									<p style="color:#2480D2;"><span><%= model.get('Headline')%></span></p>
 									<div class="collapse-group">
-									   <p class="collapse visible-phone" id="viewdetails<%=model.get('DocumentKey')%>">Loading ..</p>
+									   <p class="collapse" id="viewdetails<%=model.get('DocumentKey')%>">Loading ..</p>
         							</div>
 								</div>
 							</a>
@@ -25,9 +25,5 @@
 
 			</tbody>
 			</table>
-	</div>
-	<div id="newdetailssection" class="span6 achievements-wrapper hidden-phone">
-		<p style="color:#2480D2;" class="lead"><span id="newheadsectionspan"></span></p>
-		<p><span id="newdetailssectionspan"></span></p>
 	</div>
 </div>

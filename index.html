@@ -171,7 +171,7 @@
 					<div class="control-group">
 						<label class="control-label" for="inputPassword" placeholder="Password">Password</Label>
 						<div class="controls">
-							<input type="password" name="password" value="07apiutest" id="inputPassword"/>
+							<input type="password" name="password" value="test123" id="inputPassword"/>
 						</div>
 					</div>
 					<div class="control-group">
@@ -182,24 +182,50 @@
 				</form>
 	</script>
     <script  type="text/template" id="tda-main-page">
-        <div class="container">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab1" data-toggle="tab">DOW <span id="tabdata1"></br>15,155.50</br>+63.80 (0.42%)</a></span></li>
-                <li><a href="#tab2" data-toggle="tab">S&P <span id="tabdata2"></br>15,155.50</br>+63.80 (0.42%)</a></span></li>
-                <li><a href="#tab3" data-toggle="tab">NASDAQ <span id="tabdata3"></br>15,155.50</br>+63.80 (0.42%)</a></span></li>
-            </ul>
-            <div>
+        <div>
+            <div class="span7">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">DOW <span id="tabdata1"></br>15,155.50</br>+63.80 (0.42%)</a></span></li>
+                    <li><a href="#tab2" data-toggle="tab">S&P <span id="tabdata2"></br>15,155.50</br>+63.80 (0.42%)</a></span></li>
+                    <li><a href="#tab3" data-toggle="tab">NASDAQ <span id="tabdata3"></br>15,155.50</br>+63.80 (0.42%)</a></span></li>
+                </ul>
+                <div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1"><div style='height:180px;' id="tabchart1"></div><span id="tabdesc1"></span>
+                        </div>
+                        <div class="tab-pane" id="tab2"><div style='height:180px;' id="tabchart2"></div><span id="tabdesc2"></span>
+                        </div>
+                        <div class="tab-pane" id="tab3"><div style='height:180px;' id="tabchart3"></div><span id="tabdesc3"></span>
+                        </div>
+                    </div>
+                </div>
+                <h5>TODAY's EVENTS</h5>
+                <div style="margin-left:-20px;margin-top:20px;">
+
+                    <ul class="nav-tabs">
+                        <li style="width: 22%;height: 60px;background: lightgray;vertical-align: middle;text-align: center;margin-bottom: 10px;"> <p style="padding-top: 20px;" id="earn"></p></li>
+                        <li style="width: 22%;height: 60px;background: lightgray;vertical-align: middle;text-align: center;margin-left: 10px;"> <p style="padding-top: 20px;" id="divid"></p></li>
+                        <li style="width: 22%;height: 60px;background: lightgray;vertical-align: middle;text-align: center;margin-left: 10px;"> <p style="padding-top: 20px;" id="split"></p></li>
+                        <li style="width: 22%;height: 60px;background: lightgray;vertical-align: middle;text-align: center;margin-left: 10px;"> <p style="padding-top: 20px;" id="ipos"></p></li>
+                    </ul>
+                </div>
+                <h5>TOP & BOTTOM SECTORS</h5>
+                <div style="width: 100%;padding-left:10px;height:40px;">
+                    <p style="width: 42%;height: 40px;background: lightgreen;float: left;text-align: center;padding-top: 20px;"> <span id="topsec"></span></p>
+                    <p style="width: 42%;height: 40px;background: red;float: left;margin-left:5%;text-align: center;padding-top: 20px;"> <span id="bottomsec"></span></p>
+                </div>
                 <hr>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="tab1"><div style='height:180px;' id="tabchart1"></div><h1>THIS IS TAB 1 DATA</h1>
-                    </div>
-                    <div class="tab-pane" id="tab2"><div style='height:180px;' id="tabchart2"></div><h1>THIS IS TAB 2 DATA</h1>
-                    </div>
-                    <div class="tab-pane" id="tab3"><div style='height:180px;' id="tabchart3"></div><h1>THIS IS TAB 3 DATA</h1>
-                    </div>
+
+            </div>
+
+            <div class="span4" >
+                <h5>NEWS</h5>
+                <div class id="newsDivForMain">
                 </div>
             </div>
         </div>
+
+
     </script>
 
 
