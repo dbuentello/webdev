@@ -9,6 +9,9 @@ app.QuoteDetailView = Backbone.View.extend({
 	render: function (symbol) {
 			var tmp = _.template(utils.templates['QuoteDetailView'], {name:'Quote Details'});
 			this.$el.html(tmp);
+
+            // TODO: add symbol look up here
+
 			this.quoteDetailSubView = new app.QuoteDetailSubView();
             		this.quoteDetailSubView.renderSubView(symbol,'QuoteDetailSubView');
 	}

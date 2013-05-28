@@ -46,7 +46,6 @@ var LoginView = Backbone.View.extend({
 
                     app.userProfileModel.set(jsonResponse.amtd["xml-log-in"]);
                     console.log(JSON.stringify(app.userProfileModel));
-                    alert(JSON.stringify(jsonResponse.amtd["xml-log-in"]["session-id"]));
                     app.loginView.parseLoginResponse();
                     getSteamerInfo(app);
                     // This is an error

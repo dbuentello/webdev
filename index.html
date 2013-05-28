@@ -3,6 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="assets/bootstrap.css"  -->
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
 
@@ -14,6 +15,8 @@
               #containment-wrapper { width: 95%; height:800px; border:2px solid #ccc; padding: 10px; }
         </style>
 	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="app/js/jqxgrid/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="app/js/jqxgrid/styles/jqx.bootstrap.css" type="text/css" />
 </head>
 <body>
 
@@ -26,7 +29,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">TDA HTML5 - Demo</a>
+          <a class="brand" href="#">Trade</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -58,6 +61,11 @@
           </div><!--/.nav-collapse -->
         </div>
       </div>
+    </div>
+    <div class="container">
+        <div id="header">
+
+        </div>
     </div>
 	<div class="container">
 		<div id="page" class="page" style="height:100%;width:100%"></div>
@@ -124,6 +132,19 @@
         google.load("swfobject", "2.2");
       </script>
 
+    <script type="text/javascript" src="app/js/jqxgrid/jqxcore.js"></script>
+    <script type="text/javascript" src="app/js/jqxgrid/jqxdata.js"></script>
+    <script type="text/javascript" src="app/js/jqxgrid/jqxbuttons.js"></script>
+    <script type="text/javascript" src="app/js/jqxgrid/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="app/js/jqxgrid/jqxmenu.js"></script>
+    <script type="text/javascript" src="app/js/jqxgrid/jqxgrid.js"></script>
+    <script type="text/javascript" src="app/js/jqxgrid/jqxgrid.edit.js"></script>
+    <script type="text/javascript" src="app/js/jqxgrid/jqxgrid.selection.js"></script>
+    <script type="text/javascript" src="app/js/jqxgrid/jqxgrid.grouping.js"></script>
+    <script type="text/javascript" src="app/js/jqxgrid/jqxgrid.aggregates.js"></script>
+
+    <!-- JQX GRid Includes Ends-->
+
 	<!-- page templates -->
 	<script type="text/template" id="tda-loading">
 		<h1>Loading <%= name %></h1>
@@ -150,7 +171,7 @@
 					<div class="control-group">
 						<label class="control-label" for="inputPassword" placeholder="Password">Password</Label>
 						<div class="controls">
-							<input type="password" name="password" value="test123" id="inputPassword"/>
+							<input type="password" name="password" value="07apiutest" id="inputPassword"/>
 						</div>
 					</div>
 					<div class="control-group">
