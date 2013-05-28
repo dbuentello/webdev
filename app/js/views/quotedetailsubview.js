@@ -5,12 +5,13 @@ app.QuoteDetailSubView = Backbone.View.extend({
     initialize: function () {
     	_.bindAll(this,'render','update');
     },
-	renderSubView: function (symbol,templatename) {
+	renderSubView: function (symbol,templatename,divId) {
+        this.divId= divId;
 		console.log('render quote detail subb view');
 		this.model = new QuoteDetailModel({symbol:symbol});
 		this.model.setAsset(app.assetcache.getAssetObject(symbol));
 		var tmp = _.template(utils.templates[templatename], {model:this.model});
-		this.$el.html(tmp);
+		$('#'+this.divId).html(tmp);
 		this.model.on("change",this.update);
 	},
 	

@@ -86,6 +86,12 @@
                                 that.quoteDetailView.render(symbol);
                                 $('#quotedetailschartholder').empty();
                                 app.chartView.renderTodayChart(symbol,"quotedetailschartholder");
+
+                                if (!this.newssubview){
+                                    this.newssubview = new app.NewsSubView();
+                                }
+                                this.newssubview.render("QuoteDetailNewsView"); //newsDivForMain
+
                             });
 
                     }
