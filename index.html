@@ -20,6 +20,7 @@
 </head>
 <body>
 
+
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -80,7 +81,9 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
            <script src="http://code.highcharts.com/stock/highstock.js"></script>
         <script src="http://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript" src="app/js/lib/jquery.xml2json.js"></script>
+    <script type="text/javascript" src="app/js/assets/AssetCache.js"></script>
     <script type="text/javascript" src="app/js/utils/tdaapiutil.js"></script>
     <script type="text/javascript" src="app/js/utils/chartutil.js"></script>
 	<script type="text/javascript" src="app/js/utils/parsexml.js"></script>
@@ -100,12 +103,11 @@
 	<script type="text/javascript" src="app/js/model/optionchainlistmodelcollection.js"></script>
 	<script type="text/javascript" src="app/js/model/newsheadlinemodel.js"></script>
 	<script type="text/javascript" src="app/js/model/newsheadlinemodelcollection.js"></script>
-	
+
 	<script type="text/javascript" src="app/js/model/positionsmodel.js"></script>
 	<script type="text/javascript" src="app/js/model/positionscollection.js"></script>
 
     <script type="text/javascript" src="app/js/model/chartmodel.js"></script>
-	<script type="text/javascript" src="app/js/assets/AssetCache.js"></script>
 	<script type="text/javascript" src="app/js/assets/assetmodel.js"></script>
 	<script type="text/javascript" src="app/js/routes/router.js"></script>
 	<script type="text/javascript" src="app/js/views/login-view.js"></script>
@@ -124,7 +126,11 @@
          <script type="text/javascript" src="app/js/views/balancesview.js"></script>
 <script type="text/javascript" src="app/js/views/quotedetailview.js"></script>
 <script type="text/javascript" src="app/js/model/balancesmodel.js"></script>
-    <!-- JQX GRid Includes Starts-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1", {packages:["treemap"]});
+        google.load("swfobject", "2.2");
+      </script>
 
     <script type="text/javascript" src="app/js/jqxgrid/jqxcore.js"></script>
     <script type="text/javascript" src="app/js/jqxgrid/jqxdata.js"></script>
@@ -159,13 +165,13 @@
 					<div class="control-group">
 						<label class="control-label" for="inputUsername">User Name</label>
 						<div class="controls">
-							<input type="text" name="username" value="nelsontest2" id="inputUsername" placeholder="User Name"/>
+							<input type="text" name="username" value="aruntrade01" id="inputUsername" placeholder="User Name"/>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="inputPassword" placeholder="Password">Password</Label>
 						<div class="controls">
-							<input type="password" name="password" value="07apiutest" id="inputPassword"/>
+							<input type="password" name="password" value="test123" id="inputPassword"/>
 						</div>
 					</div>
 					<div class="control-group">
@@ -176,7 +182,50 @@
 				</form>
 	</script>
     <script  type="text/template" id="tda-main-page">
-        <h1>Welcome!</h1>
+        <div>
+            <div class="span7">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">DOW <span id="tabdata1"></br>15,155.50</br>+63.80 (0.42%)</a></span></li>
+                    <li><a href="#tab2" data-toggle="tab">S&P <span id="tabdata2"></br>15,155.50</br>+63.80 (0.42%)</a></span></li>
+                    <li><a href="#tab3" data-toggle="tab">NASDAQ <span id="tabdata3"></br>15,155.50</br>+63.80 (0.42%)</a></span></li>
+                </ul>
+                <div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1"><div style='height:180px;' id="tabchart1"></div><span id="tabdesc1"></span>
+                        </div>
+                        <div class="tab-pane" id="tab2"><div style='height:180px;' id="tabchart2"></div><span id="tabdesc2"></span>
+                        </div>
+                        <div class="tab-pane" id="tab3"><div style='height:180px;' id="tabchart3"></div><span id="tabdesc3"></span>
+                        </div>
+                    </div>
+                </div>
+                <h5>TODAY's EVENTS</h5>
+                <div style="margin-left:-20px;margin-top:20px;">
+
+                    <ul class="nav-tabs">
+                        <li style="width: 22%;height: 60px;background: lightgray;vertical-align: middle;text-align: center;margin-bottom: 10px;"> <p style="padding-top: 20px;" id="earn"></p></li>
+                        <li style="width: 22%;height: 60px;background: lightgray;vertical-align: middle;text-align: center;margin-left: 10px;"> <p style="padding-top: 20px;" id="divid"></p></li>
+                        <li style="width: 22%;height: 60px;background: lightgray;vertical-align: middle;text-align: center;margin-left: 10px;"> <p style="padding-top: 20px;" id="split"></p></li>
+                        <li style="width: 22%;height: 60px;background: lightgray;vertical-align: middle;text-align: center;margin-left: 10px;"> <p style="padding-top: 20px;" id="ipos"></p></li>
+                    </ul>
+                </div>
+                <h5>TOP & BOTTOM SECTORS</h5>
+                <div style="width: 100%;padding-left:10px;height:40px;">
+                    <p style="width: 42%;height: 40px;background: lightgreen;float: left;text-align: center;padding-top: 20px;"> <span id="topsec"></span></p>
+                    <p style="width: 42%;height: 40px;background: red;float: left;margin-left:5%;text-align: center;padding-top: 20px;"> <span id="bottomsec"></span></p>
+                </div>
+                <hr>
+
+            </div>
+
+            <div class="span4 hidden-phone" >
+                <h5>NEWS</h5>
+                <div class id="newsDivForMain">
+                </div>
+            </div>
+        </div>
+
+
     </script>
 
 
@@ -196,6 +245,7 @@
 			<div class="btn-group">
 							  <button type="button" class="btn" id="wlchartview"><i class='icon-th-large'> </i></button>
 							  <button type="button" class="btn" id="wllistview"><i class=' icon-th-list'> </i></button>
+                <button type="button" class="btn" id="wlheatview"><i class=' icon-picture'> </i></button>
 				</div>
 		<table  id="watchlistTable" class="table table-hover tablesorter-bootstrap">
 			<thead>
@@ -242,6 +292,7 @@
 				<div class="btn-group">
 								  <button type="button" class="btn" id="wlchartview"><i class='icon-th-large'> </i></button>
 								  <button type="button" class="btn" id="wllistview"><i class=' icon-th-list'> </i></button>
+                    <button type="button" class="btn" id="wlheatview"><i class=' icon-picture'> </i></button>
 				</div>
 				<div>
 					<div id='chartsgrid' class='row'>
@@ -249,6 +300,31 @@
 				</div>
 
 	</script>
+
+    <script type="text/template" id="watch-list-heatmap-template">
+
+        <div class="btn-group">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                WatchList
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <% for(var propt in wlmap){ %>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#watchlistname/<%= propt%>"><%= propt%></a></li>
+                <% }%>
+            </ul>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn" id="wlchartview"><i class='icon-th-large'> </i></button>
+            <button type="button" class="btn" id="wllistview"><i class=' icon-th-list'> </i></button>
+            <button type="button" class="btn" id="wlheatview"><i class=' icon-picture'> </i></button>
+        </div>
+
+            <div id='heatmapdiv' style="width: 900px; height: 600px;">
+            </div>
+
+
+    </script>
 
 
 </body>

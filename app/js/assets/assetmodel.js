@@ -67,6 +67,7 @@ var AssetModel = Backbone.Model.extend({
 			this.set({StrategyText:respJson.StrategyText});
 			
 		}
+        this.set({modLoaded:true});
 	},
 	
 	setOptionDetails : function(optObj){

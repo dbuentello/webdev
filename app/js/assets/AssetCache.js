@@ -3,7 +3,8 @@ function AssetCache() {
 	
 	this.getAssetObject=function (symbol){
 		if(!this.assetMap[symbol]){
-			this.assetMap[symbol] = new AssetModel();			
+			var asset = this.assetMap[symbol] = new AssetModel();
+            asset.set({symbol:symbol});
 		}
 		return this.assetMap[symbol];
 	}

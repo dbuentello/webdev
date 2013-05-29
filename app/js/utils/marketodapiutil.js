@@ -32,8 +32,12 @@ function getAssetOverView(symbol, successCallback, errorCallback){
     	}else if(assetObj.get('assetType') =='ETF'){
     		var response = makeMODRequestHelper(getMODEnvironmentURLString() +'/Quote/FundOverview','symbols='+symbol+'&user_id=mobileapi&user_password=mobileapi',successCallback, errorCallback);
     	}else {
-    		alert(' iooooo rama ' + assetObj.get('assetType'));
+    		//alert(' iooooo rama ' + assetObj.get('assetType'));
     	}
+}
+
+function getMarketOverView(successCallback, errorCallback){
+    var response = makeMODRequestHelper(getMODEnvironmentURLString() +'/Quote/ResearchOverview?','user_id=mobileapi&user_password=mobileapi',successCallback, errorCallback);
 }
 
 function getAssetFastLook(symbol, successCallback, errorCallback){

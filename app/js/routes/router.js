@@ -24,11 +24,17 @@
 
     app.router.on('route:home',function(actions){
         app.mainView.render();
+        if (!this.newssubview){
+            this.newssubview = new app.NewsSubView();
+        }
+        this.newssubview.render("newsDivForMain"); //newsDivForMain
+
 
     });
 	
     app.router.on('route:watchlist',function(actions){
-         app.watchlistView.render();
+            app.watchlistView.render();
+
     });
 
     app.router.on('route:watchlistname',function(name){
@@ -46,7 +52,7 @@
 	if (!this.newssubview){
 	    this.newssubview = new app.NewsSubView();
 	 }
-	 this.newssubview.render();
+	 this.newssubview.render("page");
     
     });
     
@@ -63,31 +69,42 @@
             this.quoteDetailView = new app.QuoteDetailView();
         }
         var that = this;
-        getAssetFastLook(symbol,function(resp) {
-                var respJson = JSON.parse(resp);
-                if(respJson.Results.length > 0 ){
-                    var assetM = app.assetcache.getAssetObject(symbol);
-                    assetM.set("assetType",respJson.Results[0].i);
-                    //need to call the snapquotes to get the details
-                    getAssetOverView(symbol,function(resp) {
-                            alert('Success');
-                        },
-                        function(respData) {
-                            var assetM = app.assetcache.getAssetObject(symbol);
-                            var respJson = JSON.parse(respData.responseText);
-                            assetM.setMODDetails(respJson);
-                            that.quoteDetailView.render(symbol);
-                            $('#quotedetailschartholder').empty();
-                            app.chartView.renderTodayChart(symbol,"quotedetailschartholder");
-                        });
+        var assetM = app.assetcache.getAssetObject(symbol);
+        if(assetM.get('modLoaded') != true){
+            getAssetFastLook(symbol,function(resp) {
+                    var respJson = JSON.parse(resp);
+                    if(respJson.Results.length > 0 ){
+                        var assetM = app.assetcache.getAssetObject(symbol);
+                        assetM.set("assetType",respJson.Results[0].i);
+                        //need to call the snapquotes to get the details
+                        getAssetOverView(symbol,function(resp) {
+                                alert('Success');
+                            },
+                            function(respData) {
+                                var respJson = JSON.parse(respData.responseText);
+                                assetM.setMODDetails(respJson);
+                                that.quoteDetailView.render(symbol);
+                                $('#quotedetailschartholder').empty();
+                                app.chartView.renderTodayChart(symbol,"quotedetailschartholder");
 
-                }
-            },
-            function(respData) {
+                                if (!this.newssubview){
+                                    this.newssubview = new app.NewsSubView();
+                                }
+                                this.newssubview.render("QuoteDetailNewsView"); //newsDivForMain
 
-                alert('error');
-            });
+                            });
 
+                    }
+                },
+                function(respData) {
+
+                    alert('error');
+                });
+        }  else{
+            that.quoteDetailView.render(symbol);
+            $('#quotedetailschartholder').empty();
+            app.chartView.renderTodayChart(symbol,"quotedetailschartholder");
+        }
 
         
     });

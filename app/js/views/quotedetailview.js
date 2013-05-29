@@ -13,6 +13,6 @@ app.QuoteDetailView = Backbone.View.extend({
             // TODO: add symbol look up here
 
 			this.quoteDetailSubView = new app.QuoteDetailSubView();
-            		this.quoteDetailSubView.renderSubView(symbol,'QuoteDetailSubView');
+            this.quoteDetailSubView.renderSubView(symbol,'QuoteDetailSubView','QuoteDetailSubView');
 	}
 });

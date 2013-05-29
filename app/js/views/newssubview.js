@@ -6,19 +6,19 @@ app.NewsSubView = Backbone.View.extend({
 		_.bindAll(this, 'renderAll', 'addItem');
 	},
 	
-	render: function () {
+	render: function (divId) {
         console.log('render news subb view');
 		this.collection = new NewsHeadLineModelCollection();
-		
-		this.$el.html("NEWSSSS ");
+        this.divId = divId;
+		$('#'+this.divId).html("");
+
 		this.collection.on('reset', this.renderAll);
-        	//this.collection.on("add",this.addItem);
-        	this.collection.fetch();
+       	this.collection.fetch();
 	},
 	
 	renderAll: function(collection) {
 		var tmp = _.template(utils.templates["newSubView"], {coll:this.collection});
-		this.$el.html(tmp);		    
+        $('#'+this.divId).html(tmp);
     },
 	
 	addItem: function(item) {
@@ -27,7 +27,7 @@ app.NewsSubView = Backbone.View.extend({
 	
 	loadNewsDetails: function(newsid, spanid, headid){
 		//console.log(newsid);
-		$("#"+spanid).html(newsid);
+		//$("#"+spanid).html(newsid);
 		
 		var url = 'https://test.tdameritrade.wallst.com/MobileAPI/News/Document?docKey='+newsid+'&user_id=mobileapi&user_password=mobileapi';
 		$.ajax({
@@ -40,8 +40,8 @@ app.NewsSubView = Backbone.View.extend({
 			},
 			error:function(data){
 				var resp = JSON.parse(data.responseText);
-				$("#"+spanid).html(resp.Body);
-				$("#"+headid).html(resp.Headline);
+				//$("#"+spanid).html(resp.Body);
+				//$("#"+headid).html(resp.Headline);
 				$("#viewdetails"+newsid).html(resp.Body);
 				console.log(data.responseText);
 			}
