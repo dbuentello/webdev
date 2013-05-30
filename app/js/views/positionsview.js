@@ -22,11 +22,20 @@ var PoistionsView = Backbone.View.extend({
         $("#positionGrid").jqxGrid('collapseallgroups');
     },
     update: function(model) {
-        //this.collection.each(this.renderOne);
         var diff = model.get('changedColumns');
 
         for(var att in diff){
             $("#"+model.cid+att).text(model.get('asset').get(att));
+        }
+        if(att == 'change' || att == 'changePercent'){
+            var val= 0;
+            val = model.get('asset').get(att);
+
+            if(model.get('asset').get(att) > 0){
+                $("#"+model.cid+att).removeClass().addClass("greenColorText");
+            }else {
+                $("#"+model.cid+att).removeClass().addClass("redColorText");
+            }
         }
     },
     createPositionsGrid:function(){
@@ -50,8 +59,7 @@ var PoistionsView = Backbone.View.extend({
             data.push(dic);
         });
 
-        addLevel1QuoteSubscription(symbols);
-        collection.on("change",app.poistionsView.update);
+
         var source =
         {
             localdata: data,
@@ -68,6 +76,7 @@ var PoistionsView = Backbone.View.extend({
                     { name: 'change', type: 'number' },
                     { name: 'changePercent', type: 'number'},
                     { name: 'volume', type: 'number'},
+                    { name: 'currentValue', type: 'number'},
                     { name: 'cid', type: 'string' }
 
                 ],
@@ -117,5 +126,8 @@ var PoistionsView = Backbone.View.extend({
                 ]
             });
         $("#positionGrid").jqxGrid('hidecolumn', 'underlyingSymbol');
+        this.expandAll();
+        collection.on("change",app.poistionsView.update);
+        addLevel1QuoteSubscription(symbols);
     }
 });
