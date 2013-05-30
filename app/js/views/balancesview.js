@@ -81,6 +81,8 @@ var BalanceView = Backbone.View.extend({
                     var savingsData = app.balanceView.getPositions(positionsData,"savings");
                     app.balanceView.addToPositions(savingsData, positionsCollection);
 
+                    positionsCollection.on("change",app.watchlistView.update);
+
                     app.positionsByAccount[accountId] = positionsCollection;
                     app.balanceView.render();
                 }
