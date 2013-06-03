@@ -223,16 +223,36 @@ var BalanceView = Backbone.View.extend({
                         continue;
                 }else
                     underlyingSymbol =  listData[i].security['symbol'];
-
-                positionModel.set({currentValue:listData[i]["current-value"]});
+                var currentVal = listData[i]["current-value"];
+                var closePrice = listData[i]["close-price"]  ;
+                var quantity = listData[i]["quantity"];
+                var assetType = listData[i].security["asset-type"];
+                var multiplier =1;
+                var dayGainPercent;
+                var gainPercent;
+                var purchasePrice = listData[i]["average-price"] ;
+                var averagePrice   =listData[i]["average-price"] ;
+                positionModel.set({currentValue:currentVal});
                 positionModel.set({description: listData[i].security["description"]});
                 positionModel.set({underlyingSymbol: underlyingSymbol});
-                positionModel.set({quantity:listData[i]['quantity']});
-                positionModel.set({closePrice:listData[i]['close-price']});
-                positionModel.set({purchasePrice : listData[i]["average-price"]});
+                positionModel.set({quantity:quantity});
+                positionModel.set({closePrice:closePrice});
+                positionModel.set({purchasePrice :purchasePrice });
                 positionModel.set({symbol:symbol});                
                 var asset = app.assetcache.getAssetObject(symbol);
                 positionModel.setAsset(asset);
+
+                var dayGain = (Math.abs(currentVal) - (closePrice * Math.abs(quantity) * multiplier));
+                var gain = (Math.abs(currentVal) - (averagePrice * Math.abs(quantity) * multiplier));
+                if(averagePrice > 0){
+                    dayGainPercent = dayGain/(averagePrice * Math.abs(quantity) * multiplier);
+                    gainPercent = gain/(averagePrice * Math.abs(quantity) * multiplier);
+                }
+                var totalCost = averagePrice * quantity * multiplier;
+                positionModel.set({dayGain:dayGain});
+                positionModel.set({dayGainPercent:dayGainPercent});
+                positionModel.set({gainPercent:gainPercent});
+
                 positionsCollection.add(positionModel);
             }
         }

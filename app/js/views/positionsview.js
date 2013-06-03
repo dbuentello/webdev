@@ -8,12 +8,23 @@ var PoistionsView = Backbone.View.extend({
     render:function(){
         var template = _.template(utils.templates['PositionView'], {});
         this.$el.html(template);
+        this.createPositionGraph();
         this.createPositionsGrid();
         return this;
     },
     events: {
         'click #expandall': 'expandAll',
-        'click #collapseall': 'collapseAll'
+        'click #collapseall': 'collapseAll',
+        'click #positionGraphBtn': 'renderPositionGraph',
+        'click #positionListBtn': 'renderPositionList'
+    },
+    renderPositionGraph:function(){
+        $('#positionGraph').show();
+        $("#positionGrid").hide();
+    },
+    renderPositionList:function(){
+        $('#positionGraph').hide();
+        $("#positionGrid").show();
     },
     expandAll:function(){
         $("#positionGrid").jqxGrid('expandallgroups');
@@ -30,6 +41,7 @@ var PoistionsView = Backbone.View.extend({
         if(att == 'change' || att == 'changePercent'){
             var val= 0;
             val = model.get('asset').get(att);
+            console.log(att);
 
             if(model.get('asset').get(att) > 0){
                 $("#"+model.cid+att).removeClass().addClass("greenColorText");
@@ -38,8 +50,61 @@ var PoistionsView = Backbone.View.extend({
             }
         }
     },
+    createPositionGraph:function(){
+        $("#positionGrid").hide();
+        $('#positionGraph').show();
+        var activeAccountId = app.tdaUser.get('activeAccount').get('accountNum');
+        var collection = app.positionsByAccount[activeAccountId];
+        var graphData = new Array();
+        collection.each(function(models,i){
+            var dic = models.attributes;
+            dic['name'] =  models.attributes.underlyingSymbol;
+            dic['y']  = Number(models.attributes.currentValue);
+            graphData[i] = dic;
+        });
+        Highcharts.getOptions().colors =   ['#CC3C24', '#63C814B','#A72B13', '#79170A',  '#56AF55', '#CB7221', '#63C151'];
+        $('#positionGraph').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            theme:{
+                colors: ['#CC3C24', '#A72B13', '#79170A', '#63C814B', '#56AF55', '#CB7221', '#63C151']
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '',
+                percentageDecimals: 1
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b> <br/>Daily Gain: '+ Number(this.point.dayGainPercent*100).toFixed(2) +' % <br/> Gain:' + Number(this.point.gainPercent*100).toFixed(2)+ '%';
+                        }
+                    }
+                }
+
+            },
+            series: [{
+                type: 'pie',
+                name: 'Gain Percentage',
+                data: graphData
+            }]
+        })
+    },
     createPositionsGrid:function(){
-        this.positionsLoaded = true;
+        $('#positionGraph').hide();
+        $("#positionGrid").show();
+
         var theme = 'bootstrap';
         var activeAccountId = app.tdaUser.get('activeAccount').get('accountNum');
         var collection = app.positionsByAccount[activeAccountId];
@@ -50,12 +115,12 @@ var PoistionsView = Backbone.View.extend({
         collection.each(function(models){
             this.symbols = this.symbols+","+models.attributes.underlyingSymbol;
             var dic = models.attributes;
-            dic['cid'] = models.cid;
+//            var assetDic = dic['asset'].attributes;
+//            for (var field in assetDic){
+//                dic[field] = assetDic[field] ;
+//            }
 
-            var assetDic = dic['asset'].attributes;
-            for (var field in assetDic){
-                   dic[field] = assetDic[field] ;
-            }
+            dic['cid'] = models.cid;
             data.push(dic);
         });
 
@@ -78,6 +143,7 @@ var PoistionsView = Backbone.View.extend({
                     { name: 'volume', type: 'number'},
                     { name: 'currentValue', type: 'number'},
                     { name: 'cid', type: 'string' }
+
 
                 ],
             datatype: "array",
@@ -105,7 +171,7 @@ var PoistionsView = Backbone.View.extend({
                 height:"90%",
                 rowsheight:30,
                 source: dataAdapter,
-                editable: true,
+                editable: false,
                 groupable: true,
                 groupsrenderer: groupsrenderer,
                 selectionmode: 'singlerow',
