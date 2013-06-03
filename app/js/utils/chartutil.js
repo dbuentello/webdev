@@ -83,7 +83,10 @@ function drawUtilTodayCharts(continerId,symbol, ohlcData) {
 		  	        tickPositioner: function(min,max){
 		  	            var data = this.chart.yAxis[0].series[0].processedYData;
 		  	            //last point
-		  	            return [(data[data.length-1]).toFixed(2) , data[data.length-2]];
+                        if(data.length > 2)
+		  	                return [(data[data.length-1]).toFixed(2) , data[data.length-2]];
+                        else
+                            return 0;
 		  	        }   
 	    }],
                 xAxis: [{

@@ -10,15 +10,19 @@ var OptionChainView = Backbone.View.extend({
 
 	},
 	
-	render: function() {	 
+	render: function(symbol) {
 		if ( !app.userProfileModel.get('session-id')) {
 		    app.loginView = new LoginView();
 		    app.loginView.render();
 		}else {
 		 	if(!app.optionchainMap){
 				app.optionchainMap = {};
+                if(symbol == null){
+                    alert("No Symbol in Context");
+                    return;
+                }
 				//get the option chain
-				getOptionChain('AAPL',function(data) { 
+				getOptionChain(symbol,function(data) {
 					var xml = parseXml(data);
 					var jsonResponse  = xmlToJson(xml);
 					var optionchains = jsonResponse.amtd["option-chain-results"]["option-date"];
@@ -58,26 +62,16 @@ var OptionChainView = Backbone.View.extend({
 						app.optionchainView.collection = opc;					
 					}
 					app.optionchainView.render();
-					//app.optionchainView.collection.on("change",app.watchlistView.update);
-					//app.optionchainView.collection.on("add",app.watchlistView.render);
-					
 				},
 				function(respData) {
 				});	
 			}else{
-				this.$el.html("showing Option chiansd");
+				this.$el.html("Option chain");
 				var tmp = _.template(utils.templates["optionchainview"], {coll:this.collection,opmap:app.optionchainMap});
 				this.$el.html(tmp);
-				/*var template = _.template($('#watch-list-template').html(), {coll:this.collection,wlmap:app.watchListMap});
-				this.$el.html(template);
-				app.currentWLMap= {};
-				var symbols='';
-				this.collection.each(function(model){
-					symbols = symbols+","+model.get('symbol');
-					app.currentWLMap[model.get('symbol')]=model;
-				});
-				addLevel1QuoteSubscription(symbols);
-				$("#watchlistTable").tablesorter(); */
+
+                this.quoteDetailSubView = new app.QuoteDetailSubView();
+                this.quoteDetailSubView.renderSubView(app.currentAppSymbol,'QuoteDetailSubView','QuoteDetailSubView');
 			}
 		
 		}

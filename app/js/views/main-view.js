@@ -6,7 +6,7 @@ var MainView = Backbone.View.extend({
 	el: '.page',
 	initialize: function(){
 		console.log("initialize");
-
+        _.bindAll(this,'render','update');
 	},		
 
 	render: function() {
@@ -70,13 +70,27 @@ var MainView = Backbone.View.extend({
                 var ch = new ChartView();
                 k = i+1;
                 tabname = "tabchart"+k;
+                tabdata = "tabdata"+k;
                 ch.renderTodayChart(symbol,tabname);
+
+                $('#'+tabdata).html("</br><span id='"+assetM.cid+"last' >"+assetM.get('last')+" </span>" +
+                    "</br><span id='"+assetM.cid+"change' style='padding-right:3px;' >"+assetM.get('change')+"</span>" +
+                    "(<span id='"+assetM.cid+"changePercent'>"+assetM.get('changePercent')+"</span>)");
+
                 coll.add(assetM);
             }
-            addLevel1QuoteSubscription("$DJI,$SPX.X,$COMPX");
             this.collection = coll;
+            this.collection.on("change",this.update);
+            addLevel1QuoteSubscription("$DJI,$SPX.X,$COMPX");
         }
 
 
-	}
+	} ,
+    update: function(model) {
+        //this.collection.each(this.renderOne);
+        var diff = model.changedAttributes();
+        for(var att in diff){
+            $("#"+model.cid+att).text(model.get(att));
+        }
+    }
 });

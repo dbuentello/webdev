@@ -51,7 +51,7 @@ var AssetModel = Backbone.Model.extend({
 		}else if(respJson.Overview != null){
 			respJson = respJson.Overview;
 		}
-		this.set({divDate:new Date(respJson.ExDivDate)});
+		this.set({divDate:new Date(respJson.ExDivDate * 1000).toDateString()});
 		this.set({marktetCap:respJson.MarketCap});
 		this.set({sector:respJson.Sector});
 		this.set({industry:respJson.Industry});

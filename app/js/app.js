@@ -5,7 +5,7 @@ var app = app || {};
 $(function() {
 	console.log('starting application');
 
-    app.apiUrl =  'https://apista.tdameritrade.com';
+    app.apiUrl =  'https://apista-qae8.tdameritrade.com';
 
     utils.loadTemplates(['QuoteDetailView','QuoteDetailSubView','newSubView','ChartView','BalanceView','optionchainview','PositionView','CustomView'], function(){
             app.mainView = new MainView();
