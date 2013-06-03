@@ -50,18 +50,17 @@ function getSteamerInfo(app) {
 				//}
 
                 //QA npeqae-streamer-web.ameritrade.com
-                app.streamer = new tda.adaptors.Session( app.streamerconfig, {
+                /*app.streamer = new tda.adaptors.Session( app.streamerconfig, {
                     "http" : "http://npeqae-streamer-web.ameritrade.com/ws",
                     "ws" :  "ws://npeqae-streamer-web.ameritrade.com/ws",
                     "flash" : "ws://npeqae-streamer-web.ameritrade.com/ws",
-                });
-
+                });*/
                 //Prod
-				/*app.streamer = new tda.adaptors.Session( app.streamerconfig, {
+				app.streamer = new tda.adaptors.Session( app.streamerconfig, {
 						"http" : "http://tdameritrade-web.streamer.com/ws",
 						"ws" :  "ws://tdameritrade-web.streamer.com/ws",
 						"flash" : "ws://tdameritrade-web.streamer.com/ws",
-						});*/
+						});
 				app.streamer.setDebugMode(true);
 				app.streamer.onMessage(onMessage,"default");
 				app.streamer.onLogin(loginUpdate);
