@@ -9,7 +9,7 @@
 						<td>
 							<a style="text-decoration: none;" href='#newsdetail/<%=model.get('DocumentKey')%>' data-toggle="collapse" data-target="#viewdetails<%=model.get('DocumentKey')%>" >
 								<div>
-									<small><%= new Date(model.get('DocumentDate'))%> - <%= model.get('Source')%></small>
+									<small><%= (new Date(model.get('DocumentDate')*1000)).toDateString()%> - <%= model.get('Source')%></small>
 								</div>
 								<div>
 									<p style="color:#2480D2;"><span><%= model.get('Headline')%></span></p>

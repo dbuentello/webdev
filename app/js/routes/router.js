@@ -27,7 +27,7 @@
         if (!this.newssubview){
             this.newssubview = new app.NewsSubView();
         }
-        this.newssubview.render("newsDivForMain"); //newsDivForMain
+        this.newssubview.render("newsDivForMain",null); //newsDivForMain
 
 
     });
@@ -52,7 +52,7 @@
 	if (!this.newssubview){
 	    this.newssubview = new app.NewsSubView();
 	 }
-	 this.newssubview.render("page");
+	 this.newssubview.render("page",null);
     
     });
     
@@ -64,6 +64,7 @@
 
 
     app.router.on('route:quotedetails', function (symbol){
+        app.currentAppSymbol = symbol;
 
         if (!this.quoteDetailView){
             this.quoteDetailView = new app.QuoteDetailView();
@@ -84,13 +85,11 @@
                                 var respJson = JSON.parse(respData.responseText);
                                 assetM.setMODDetails(respJson);
                                 that.quoteDetailView.render(symbol);
-                                $('#quotedetailschartholder').empty();
-                                app.chartView.renderTodayChart(symbol,"quotedetailschartholder");
-
                                 if (!this.newssubview){
                                     this.newssubview = new app.NewsSubView();
                                 }
-                                this.newssubview.render("QuoteDetailNewsView"); //newsDivForMain
+                                this.newssubview.render("QuoteDetailNewsView",symbol); //newsDivForMain
+                               //new Date().toDateString()
 
                             });
 
@@ -104,6 +103,10 @@
             that.quoteDetailView.render(symbol);
             $('#quotedetailschartholder').empty();
             app.chartView.renderTodayChart(symbol,"quotedetailschartholder");
+            if (!this.newssubview){
+                this.newssubview = new app.NewsSubView();
+            }
+            this.newssubview.render("QuoteDetailNewsView",symbol); //newsDivForMain
         }
 
         
@@ -114,7 +117,7 @@
     });
     
     app.router.on('route:optionchain',function(actions){
-            app.optionchainView.render();
+            app.optionchainView.render(app.currentAppSymbol);
     });
     
     app.router.on('route:positions',function(actions){

@@ -6,13 +6,19 @@ app.NewsSubView = Backbone.View.extend({
 		_.bindAll(this, 'renderAll', 'addItem');
 	},
 	
-	render: function (divId) {
+	render: function (divId,symbol) {
         console.log('render news subb view');
 		this.collection = new NewsHeadLineModelCollection();
+
         this.divId = divId;
 		$('#'+this.divId).html("");
 
 		this.collection.on('reset', this.renderAll);
+        if(symbol != null){
+            this.collection.url = "https://test.tdameritrade.wallst.com/MobileAPI/News/Documents/?source=BusinessWire|CBSMarketWatch|DowJonesNews|MarketWire|BriefingStockNews|PrimeNewswire|PRNewswire|StdPoors|ZacksRSS|BenzingaLatest|HUG&days=30&firstRow=0&rowCount=50&user_id=mobileapi&user_password=mobileapi&symbol="+symbol;
+        }else{
+            this.collection.url = "https://test.tdameritrade.wallst.com/MobileAPI/News/Documents/?source=BusinessWire|CBSMarketWatch|DowJonesNews|MarketWire|BriefingStockNews|PrimeNewswire|PRNewswire|StdPoors|ZacksRSS|BenzingaLatest|HUG&days=30&firstRow=0&rowCount=50&user_id=mobileapi&user_password=mobileapi";
+        }
        	this.collection.fetch();
 	},
 	

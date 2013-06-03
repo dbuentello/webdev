@@ -9,7 +9,12 @@ var ChartView = Backbone.View.extend({
         this.chartInstance;
         this.chartdivId;
         this.chartType = 'candlestick';
-        this.endDate = $.datepicker.formatDate('yymmdd', new Date());
+        var datetoday = new Date();
+        if(datetoday.getHours() <= 9 && datetoday.getMinutes() <= 30){
+            datetoday.setDate(datetoday.getDate()-1);
+        }
+
+        this.endDate = $.datepicker.formatDate('yymmdd', datetoday);
         this.chartModel = new ChartModel();
         _.bindAll(this,'render','update');
 

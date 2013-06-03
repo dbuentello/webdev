@@ -61,7 +61,7 @@ function getSteamerInfo(app) {
 						"ws" :  "ws://tdameritrade-web.streamer.com/ws",
 						"flash" : "ws://tdameritrade-web.streamer.com/ws",
 						});
-				app.streamer.setDebugMode(false);
+				app.streamer.setDebugMode(true);
 				app.streamer.onMessage(onMessage,"default");
 				app.streamer.onLogin(loginUpdate);
 				app.streamer.onError(streamerError);

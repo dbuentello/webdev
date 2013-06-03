@@ -13,6 +13,9 @@ app.QuoteDetailSubView = Backbone.View.extend({
 		var tmp = _.template(utils.templates[templatename], {model:this.model});
 		$('#'+this.divId).html(tmp);
 		this.model.on("change",this.update);
+
+        $('#quotedetailschartholder').empty();
+        app.chartView.renderTodayChart(symbol,"quotedetailschartholder");
 	},
 	
 	update: function(model) {
