@@ -62,15 +62,12 @@ var PoistionsView = Backbone.View.extend({
             dic['y']  = Number(models.attributes.currentValue);
             graphData[i] = dic;
         });
-        Highcharts.getOptions().colors =   ['#CC3C24', '#63C814B','#A72B13', '#79170A',  '#56AF55', '#CB7221', '#63C151'];
+        Highcharts.getOptions().colors =   ['#CC3C24', '#3C814B','#A72B13', '#79170A',  '#56AF55', '#CB7221', '#63C151'];
         $('#positionGraph').highcharts({
             chart: {
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false
-            },
-            theme:{
-                colors: ['#CC3C24', '#A72B13', '#79170A', '#63C814B', '#56AF55', '#CB7221', '#63C151']
             },
             title: {
                 text: ''
